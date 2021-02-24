@@ -34,3 +34,4 @@ db.sequelize.sync().then(() => {
     );
   });
 });
+console.log("butterball20");
