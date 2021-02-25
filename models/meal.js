@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Meal = sequelize.define("Meal", {
     date: {
-      type: DataTypes.DATE
+      type: DataTypes.INTEGER
     },
     time: {
       type: DataTypes.INTEGER,
