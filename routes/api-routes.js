@@ -54,4 +54,8 @@ Router.route("/api/user_data").get((req, res) => {
   }
 });
 
+// make an enpoint for submitting a meal
+// we are going to insert into meals a date and time
+// we are going to create a table via associations of meal date, time and ingredients.
+
 module.exports = Router;
