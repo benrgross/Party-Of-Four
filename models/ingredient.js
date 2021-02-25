@@ -6,14 +6,14 @@ module.exports = (sequelize, DataTypes) => {
     inflammatory: {
       type: DataTypes.BOOLEAN,
       allowNull: false
-    },
+    }
   });
 
-  Ingredient.associate = (models) => {
+  Ingredient.associate = models => {
     models.Ingredient.belongsToMany(models.Meal, {
       through: "MealIngredients",
       foreignKey: "IngredientId"
     });
   };
   return Ingredient;
-}
+};
