@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Meal.associate = models => {
-    Meal.belongsToMany(models.Ingredients, {
+    Meal.belongsToMany(models.Ingredient, {
       through: "MealIngredient",
       foreignKey: "MealId"
     });
