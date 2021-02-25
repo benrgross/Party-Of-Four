@@ -7,13 +7,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false
       }
-    });
+    })
   
     Ingredient.associate = (models) => {
       models.Ingredient.belongsToMany(models.Meal, {
-        through: "MealIngredient",
+        through: "MealIngredients",
         foreignKey: "IngredientId"
-      });
-    };
+      })
+    }
     return Ingredient;
-  };
+  }
