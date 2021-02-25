@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     time: {
       type: DataTypes.INTEGER,
-      allowNull: False,
+      allowNull: false,
       validate: {
         notNull: true
       }
