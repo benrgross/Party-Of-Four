@@ -20,7 +20,7 @@
     "express-handlebars": "^5.2.1",
     "express-session": "^1.16.1",
     "handlebars": "^4.7.7",
-    "mysql2": "^1.6.5",
+    "mysql2": "^2.2.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^5.8.6"
@@ -34,6 +34,7 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "nodemon": "^2.0.7",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "sequelize-cli": "^6.2.0"
   }
 }
