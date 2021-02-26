@@ -54,8 +54,111 @@ Router.route("/api/user_data").get((req, res) => {
   }
 });
 
+// Router.route("/api/meals").post((req, res) => {
+//   const ingredients = req.body.ingredients;
+//   for (let i = 0; i < ingredients.length; i++) {
+//     db.Ingredient.findOne({
+//       where: {
+//         name: ingredients[i]
+//       }
+//     }).then(ingredient => {
+//       ingredient
+//         .createMeal({
+//           date: req.body.date,
+//           time: req.body.time
+//         })
+//         .then(meal => {
+//           return meal;
+//         });
+//     });
+//   }
+//   res.json(meal);
+// });
+
+// Router.route("/api/meals").get((req, res) => {
+//   db.Meal.findAll({
+//     include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
+//   }).then(ingredient => {
+//     return res.json(ingredient);
+//   });
+// });
+
+// Router.route("/api/meals").post((req, res) => {
+//   console.log(req.body);
+
+//   db.Meal.create({
+//     date: req.body.date,
+//     time: req.body.time
+//   }).then(res => res.json(meal));
+//   .then(meal => {
+//     meal.setIngredient({
+//       where: {
+//         name: ingredients[0].name
+//       }
+//     });
+//   });
+// });
+
+//make an endpoint for submitting meal and creating list of ingredients
+// Router.route("/api/meal_data").post((req, res) => {
+//   db.Meal.create({
+//     date: req.body.date,
+//     time: req.body.time
+//   }).then(meal => {
+//     meal.setIngredient({
+//       ingredients.forEach(ingredient => {
+//         name: ingredient.name
+//       })
+//     })
+
+//   })
+
+// });
+
 // make an enpoint for submitting a meal
 // we are going to insert into meals a date and time
 // we are going to create a table via associations of meal date, time and ingredients.
+
+// working find one
+// Router.route("/api/meals").post((req, res) => {
+//   db.Ingredient.findOne({
+//     where: {
+//       name: req.body.name
+//     }
+//   }).then(ingredient => {
+//     ingredient
+//       .createMeal({
+//         date: req.body.date,
+//         time: req.body.time
+//       })
+//       .then(meal => {
+//         res.json(meal);
+//       });
+//   });
+// });
+
+Router.post("/api/meals", async (req, res) => {
+  const meal = await db.Meal.findOrCreate({
+    where: {
+      date: req.body.date,
+      time: req.body.time
+    },
+    defaults: { date: req.body.date, time: req.body.time }
+  });
+
+  const ingredient = await db.Ingredient.findOne({
+    // defaults: { name: req.body.name },
+    where: { name: req.body.name }
+  });
+  try {
+    console.log(ingredient);
+    console.log(meal);
+    const ingredientMeal = await meal.addIngredient(ingredient);
+    console.log("hello", ingredientMeal);
+    res.json();
+  } catch (err) {
+    throw new Error(err);
+  }
+});
 
 module.exports = Router;

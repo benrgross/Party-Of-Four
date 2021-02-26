@@ -27,4 +27,7 @@ Router.get("/members", isAuthenticated, (req, res) => {
   res.render("members");
 });
 
+Router.get("/meals", (req, res) => {
+  res.render("meals", res);
+});
 module.exports = Router;
