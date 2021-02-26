@@ -54,6 +54,7 @@ Router.route("/api/user_data").get((req, res) => {
   }
 });
 
+// get query for MealIngredient list
 Router.route("/api/meals").get((req, res) => {
   db.Meal.findAll({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
@@ -89,5 +90,41 @@ Router.post("/api/ingredients", async (req, res) => {
     throw new Error(err);
   }
 });
+
+// make route for adding meal to user
+
+//get query for Watchlist
+Router.route("/api/watchlist").get((req, res) => {
+  db.User.findAll({
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
+  }).then(ingredient => {
+    return res.json(ingredient);
+  });
+});
+
+// route for adding an ingredient to watchlist
+Router.post("/api/watchlist", async (req, res) => {
+  const user = await db.User.findOne({
+    where: {
+      id: req.body.id
+    }
+  });
+
+  const ingredient = await db.Ingredient.findOrCreate({
+    defaults: { name: req.body.name },
+    where: { name: req.body.name }
+  });
+  try {
+    const watchList = await user.addIngredient(ingredient);
+
+    res.json(watchList);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+// make route for delteing ingredient from watchlist
+
+// make route for deleting meal?
 
 module.exports = Router;
