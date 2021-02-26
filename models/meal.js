@@ -4,15 +4,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     time: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: true
-      }
+      type: DataTypes.INTEGER
     }
   });
   Meal.associate = models => {
-    Meal.belongsTo(models.User, {
+    models.Meal.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
@@ -20,8 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Meal.associate = models => {
-    Meal.belongsToMany(models.Ingredient, {
-      through: "MealIngredient",
+    models.Meal.belongsToMany(models.Ingredient, {
+      through: {
+        model: "MealIngredients",
+        // as: "userIngredients",
+        unique: false
+      },
+      constraints: false,
       foreignKey: "MealId"
     });
   };
