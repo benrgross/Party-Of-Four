@@ -93,7 +93,7 @@ Router.post("/api/ingredients", async (req, res) => {
 
 // make route for adding meal to user
 
-//get query for Watchlist
+//get query for WatchList
 Router.route("/api/watchlist").get((req, res) => {
   db.User.findAll({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
@@ -106,7 +106,7 @@ Router.route("/api/watchlist").get((req, res) => {
 Router.post("/api/watchlist", async (req, res) => {
   const user = await db.User.findOne({
     where: {
-      id: req.body.id
+      id: req.body.userId
     }
   });
 
@@ -123,7 +123,26 @@ Router.post("/api/watchlist", async (req, res) => {
   }
 });
 
-// make route for delteing ingredient from watchlist
+// make route for deleting ingredient from watchlist
+
+Router.delete("/api/deletefromwatchlist", async (req, res) => {
+  const user = await db.User.findOne({
+    where: {
+      id: req.body.userId
+    }
+  });
+  const ingredient = await db.Ingredient.findOne({
+    where: {
+      name: req.body.name
+    }
+  });
+  try {
+    const deleteWatch = await user.removeIngredient(ingredient);
+    res.json(deleteWatch);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
 
 // make route for deleting meal?
 
