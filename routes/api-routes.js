@@ -54,6 +54,36 @@ Router.route("/api/user_data").get((req, res) => {
   }
 });
 
+// // Version1 - works (displays Users though)
+// // Route for getting a user's meals
+// Router.route("/api/user/meals").get((req, res) => {
+//   db.Meal.findAll({
+//     include: [db.User]
+//   }).then(meals => {
+//     return res.json(meals);
+//   });
+// });
+
+// V2 - works; only displays meals, with associated UserId
+// Route for getting a user's meals
+Router.route("/api/user/meals").get((req, res) => {
+  db.Meal.findAll({}).then(meals => {
+    return res.json(meals);
+  });
+});
+
+// // V3 - doesn't work
+// // Route for getting a user's meals
+// Router.route("/api/user/meals").get((req, res) => {
+//   db.Meal.findAll({
+//     where: {
+//       id: req.body.UserId
+//     }
+//   }).then(meals => {
+//     res.json(meals);
+//   });
+// });
+
 // make an enpoint for submitting a meal
 // we are going to insert into meals a date and time
 // we are going to create a table via associations of meal date, time and ingredients.
