@@ -5,16 +5,33 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     inflammatory: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true,
+      type: DataTypes.BOOLEAN
     }
   });
 
   Ingredient.associate = models => {
     models.Ingredient.belongsToMany(models.Meal, {
-      through: "MealIngredient",
+      through: {
+        model: "MealIngredients",
+        // as: "userIngredients",
+        unique: false
+      },
+      constraints: false,
       foreignKey: "IngredientId"
     });
+
+    Ingredient.associate = models => {
+      models.Ingredient.belongsToMany(models.User, {
+        through: {
+          model: "WatchList",
+          as: "userWatchList",
+          unique: false
+        },
+        constraints: false,
+        foreignKey: "IngredientId"
+      });
+    };
   };
   return Ingredient;
 };

@@ -4,16 +4,8 @@ const bcrypt = require("bcryptjs");
 module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define("User", {
     // The email cannot be null, and must be a proper email before creation
-    firstName: {
-      type: DataTypes.STRING
-      // allowNull: false,
-      // unique: true
-    },
-    lastName: {
-      type: DataTypes.STRING
-      // allowNull: false,
-      // unique: true
-    },
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -28,10 +20,23 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-
-  // Associate User model with Meal model
   User.associate = models => {
-    models.User.hasMany(models.Meal);
+    models.User.belongsToMany(models.Meal, {
+      through: "UserMeal",
+      foreignKey: "UserId"
+    });
+  };
+
+  User.associate = models => {
+    models.User.belongsToMany(models.Ingredient, {
+      through: {
+        model: "WatchList",
+        as: "userWatchList",
+        unique: false
+      },
+      constraints: false,
+      foreignKey: "UserId"
+    });
   };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
