@@ -1,6 +1,6 @@
-<nav  style="background-color: #f0fbff" class="navbar" role="navigation" aria-label="main navigation">
+<nav style="background-color: #f0fbff" class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-  <img src="/images/logo.png" alt="">
+    <img src="/images/logo.png" alt="">
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
@@ -9,15 +9,74 @@
     </a>
   </div>
 </nav>
+<div style="margin-left: 25px;" class="columns">
+  <div class="column is-one-quarter">
+    <aside class="menu">
+      <ul class="menu-list">
+        <li><a>Home</a></li>
+        <p class="menu-label">Meals</p>
+        <li><a>Input Your Meals</a></li>
+        <li><a>Past Meals</a></li>
+      </ul>
+      <p class="menu-label">
+        Watchlist
+      </p>
+      <ul class="menu-list">
+        <ul>
+          <a class="is-active">Healthy Choices</a>
+          <li><a>Nutrition Info</a></li>
+          <li><a>Foods to Watchout for</a></li>
+          <li><a>Add a member</a></li>
+        </ul>
+    </aside>
+  </div>
+  <div style="margin-right: 100px;" class="column">
 
-<div class="container">
-    <div class="columns">
-      <div class="column is-one-fourth"></div>
-      <div class="column is-half ">
-        <h2>Welcome <span class="member-name"></span></h2>
+    <h1 style="margin-bottom: 100px;">Welcome <span class="member-name"></span></h1>
+    <div class="field">
+      <label class="label">Breakfast Meal time: </label>
+      <div class="control">
+        <input class="input" type="breakfast" placeholder="e.g pancake">
       </div>
-      <div class="column is-one-fourth"></div>
+    </div>
+    <div class="field">
+      <label class="label">Lunch Meal time: </label>
+      <div class="control">
+        <input class="input" type="lunch" placeholder="e.g sandwich">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Dinner Meal time: </label>
+      <div class="control">
+        <input class="input" type="dinner" placeholder="e.g pancake">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Ingredient1: </label>
+      <div class="control">
+        <input class="input" type="ingredient" placeholder="e.g pancake">
+      </div>
+
+      <div class="field">
+        <label class="label">Ingredient2: </label>
+        <div class="control">
+          <input class="input" type="ingredient" placeholder="e.g pancake">
+        </div>
+
+        <div class="field">
+          <label class="label">Ingredient3: </label>
+          <div class="control">
+            <input class="input" type="ingredient" placeholder="e.g pancake">
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 
-  <script type="text/javascript" src="js/members.js"></script>
+
+</div>
+
+
+
+<script type="text/javascript" src="js/members.js"></script>
