@@ -1,7 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Ingredient = sequelize.define("Ingredient", {
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     inflammatory: {
       type: DataTypes.BOOLEAN,
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Ingredient.associate = models => {
     models.Ingredient.belongsToMany(models.Meal, {
-      through: "MealIngredients",
+      through: "MealIngredient",
       foreignKey: "IngredientId"
     });
   };
