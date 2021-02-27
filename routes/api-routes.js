@@ -67,7 +67,9 @@ Router.route("/api/user_data").get((req, res) => {
 // V2 - works; only displays meals, with associated UserId
 // Route for getting a user's meals
 Router.route("/api/user/meals").get((req, res) => {
-  db.Meal.findAll({}).then(meals => {
+  db.Meal.findAll({
+    include: [{ model: db.User, attributes: ["id", "email", "password"] }]
+  }).then(meals => {
     return res.json(meals);
   });
 });
@@ -166,6 +168,21 @@ Router.route("/api/user/meals").get((req, res) => {
 //       });
 //   });
 // });
+
+// // Route for displaying all of a user's meals
+// Router.route("/api/user/meals").get((req, res) => {
+//   const query = {};
+//   if (req.query.MealId) {
+//     query.MealId = req.query.MealId;
+//   }
+//   db.User.findAll({
+//     where: req.query.UserId,
+//     include: [db.Meal]
+//   }).then(meals => {
+//     res.json(meals);
+//   });
+// });
+
 // get query for MealIngredient list
 Router.route("/api/meals").get((req, res) => {
   db.Meal.findAll({

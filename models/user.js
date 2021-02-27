@@ -28,6 +28,10 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   User.associate = models => {
+    models.User.hasMany(models.Meal);
+  };
+
+  User.associate = models => {
     models.User.belongsToMany(models.Ingredient, {
       through: {
         model: "WatchList",
