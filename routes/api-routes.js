@@ -54,6 +54,13 @@ Router.route("/api/user_data").get((req, res) => {
   }
 });
 
+// get lastest meal id
+Router.route("/api/mealId").get((req, res) => {
+  db.Meal.findOne({
+    order: [["createdAt", "DESC"]]
+  }).then(result => res.json(result));
+});
+
 // get query for MealIngredient list
 Router.route("/api/meals").get((req, res) => {
   console.log(res);
@@ -65,6 +72,7 @@ Router.route("/api/meals").get((req, res) => {
   });
 });
 
+// user id from params.
 Router.route("/api/meals/:userId").get((req, res) => {
   console.log(req.params);
   db.Meal.findOne({
@@ -88,7 +96,7 @@ Router.post("/api/meals", async (req, res) => {
   const meal = await db.Meal.create({});
   const user = await db.User.findOne({
     where: {
-      id: req.body.userId
+      id: req.body.id
     }
   });
   const userMeal = user.addMeal(meal);
