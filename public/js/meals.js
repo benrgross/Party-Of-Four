@@ -1,3 +1,5 @@
+const ingredientsList = $(".ingredients");
+
 let userId;
 $(document).ready(() => {
   $.get("/api/user_data").then(data => {
@@ -30,6 +32,9 @@ $(".add-ingredient").click(e => {
       postIngredient(mealId);
     })
     .then(result => console.log(result));
+
+  const newIngredient = $(`<h6>${this.ingredientName}</h6>`);
+  ingredientsList.append(newIngredient);
 });
 
 function postIngredient(mealId) {
