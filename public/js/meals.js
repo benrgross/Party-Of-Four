@@ -37,7 +37,8 @@ $(".add-ingredient").click(e => {
     })
     .then(result => console.log(result));
 
-  const newIngredient = $(`<h6>${this.ingredientName}</h6>`);
+  const ingredientEl = $("<h6></h6>");
+  const newIngredient = ingredientEl.text(ingredientName);
   ingredientsList.append(newIngredient);
 });
 
