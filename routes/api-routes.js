@@ -63,11 +63,26 @@ Router.route("/api/meals").get((req, res) => {
   });
 });
 
+// get query for MealIngredient list
+Router.route("/api/usermeal").get((req, res) => {
+  db.User.findAll({
+    include: [{ model: db.Meal, attributes: ["createdAt", "id"] }]
+  }).then(ingredient => {
+    return res.json(ingredient);
+  });
+});
+
 // creates a meal when user submits
 Router.post("/api/meals", async (req, res) => {
   const meal = await db.Meal.create({});
+  const user = await db.User.findOne({
+    where: {
+      id: req.body.userId
+    }
+  });
+  const userMeal = user.addMeal(meal);
 
-  res.json(meal);
+  res.json(userMeal);
 });
 
 //associates input ingredient with meal id in meal ingredient table upon submitting ingredient input
@@ -123,8 +138,7 @@ Router.post("/api/watchlist", async (req, res) => {
   }
 });
 
-// make route for deleting ingredient from watchlist
-
+// route for deleting ingredient from watchlist
 Router.delete("/api/deletefromwatchlist", async (req, res) => {
   const user = await db.User.findOne({
     where: {
@@ -138,6 +152,26 @@ Router.delete("/api/deletefromwatchlist", async (req, res) => {
   });
   try {
     const deleteWatch = await user.removeIngredient(ingredient);
+    res.json(deleteWatch);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+//delete from meal route
+Router.delete("/api/deletefrommeal", async (req, res) => {
+  const meal = await db.Meal.findOne({
+    where: {
+      id: req.body.mealId
+    }
+  });
+  const ingredient = await db.Ingredient.findOne({
+    where: {
+      name: req.body.name
+    }
+  });
+  try {
+    const deleteWatch = await meal.removeIngredient(ingredient);
     res.json(deleteWatch);
   } catch (err) {
     throw new Error(err);

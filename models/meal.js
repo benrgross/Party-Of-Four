@@ -8,11 +8,7 @@ module.exports = sequelize => {
     // }
   });
   Meal.associate = models => {
-    models.Meal.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
+    models.Meal.belongsTo(models.User);
   };
 
   Meal.associate = models => {
