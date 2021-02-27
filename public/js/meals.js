@@ -11,11 +11,12 @@ $(document).ready(() => {
 });
 console.log(userId);
 
+// click event for creating a meal
 $("#create-meal").click(() => {
   console.log(userId);
 
   $.post("/api/meals", {
-    userId: userId
+    id: userId
   }).catch(error => {
     console.error("Error:", error);
     alert(error);
@@ -23,6 +24,8 @@ $("#create-meal").click(() => {
 });
 
 let mealId;
+
+// click event for adding to list of ingredients
 $(".add-ingredient").click(e => {
   e.preventDefault();
   console.log("click");
@@ -30,19 +33,35 @@ $(".add-ingredient").click(e => {
 
   const ingredientName = $(".addIngredient").val();
   console.log(ingredientName);
-  $.get(`/api/meals/${userId}`)
-    .then(data => {
-      console.log(data);
-      mealId = data.id;
-      postIngredient(mealId);
-    })
-    .then(mealId => console.log(mealId));
+  $.get(`/api/meals/${userId}`).then(data => {
+    console.log(data);
+    mealId = data.id;
+    postIngredient(mealId);
 
-  const ingredientEl = $("<h6>");
-  const newIngredient = ingredientEl.text(ingredientName);
-  ingredientsList.append(newIngredient);
+    const ingredientEl = $("<h6>")
+      .addClass("title is-6")
+      .attr("data-meal", mealId)
+      .attr("data-name", ingredientName);
+
+    const watchlistBtn = $("<button>")
+      .text("Add to Watchlist")
+      .addClass("add-to-watch button is-info is-outlined");
+
+    const ingredientDelBtn = $("<button>")
+      .text("Delete")
+      .addClass("delete-ingredient button is-danger");
+
+    const newIngredient = ingredientEl
+      .text(ingredientName)
+      .append(watchlistBtn)
+      .append(ingredientDelBtn);
+
+    ingredientsList.append(newIngredient);
+  });
+  //.then(mealId => console.log(mealId));
 });
 
+// send ingredient to api route
 function postIngredient(mealId) {
   const ingredientName = $(".addIngredient")
     .val()
