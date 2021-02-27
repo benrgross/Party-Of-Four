@@ -1,30 +1,44 @@
 // dependencies
 const createMealBtn = document.getElementById("create-meal");
-// const addIngredientBtn = document.getElementsByClassName("add-ingredient");
-// --- date on the form
-// -- the time on the form
-// --- array of ingredients
-// --- IngredientsEl = document.querySelectorAll("data-ingredient")
-
-//When user clicks add ingredient button, a new input is added to the page with data-ingredient value.
-
-//grab the value of the date and store it in a variable
-//grab the value of the time and store it in a variable
-
-// user is able to input time date and ingredient
-// --- add ingredient one by one
-// -- when user clicks add ingredient it triggers api to findOrCreate   meal then meal.addIngredient.
-
-// Function
-const createMeal = event => {
-  event.preventDefault();
-  console.log("hello");
-};
-
-// const addIngredient = () => {
-//   console.log("hello");
-// };
+const addIngredientBtn = document.getElementsByClassName("add-ingredient");
+const ingredientEl = document
+  .querySelectorAll(".adIngredient")
+  .values.trim()
+  .toLowerCase();
 
 // Events
 createMealBtn.addEventListener("click", createMeal());
-// addIngredientBtn.addEventListener("click", addIngredient());
+addIngredientBtn.addEventListener("click", addIngredient());
+
+// get user id and create new meal with user assosiation
+const createMeal = () => {
+  $.get("/api/user_data").then(data => {
+    const newMeal = {
+      userId: data.id
+    };
+    fetch("/api/meals", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newMeal)
+    });
+  });
+};
+
+// get meal id and create new igredient to sent to API
+const addIngredient = () => {
+  $.get("/api/meals").then(data => {
+    const newIngredient = {
+      mealId: data.Meal.id,
+      name: ingredientEl
+    };
+    fetch("/api/ingredients", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newIngredient)
+    });
+  });
+};

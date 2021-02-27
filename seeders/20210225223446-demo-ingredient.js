@@ -4,19 +4,19 @@ module.exports = {
   up: queryInterface => {
     return queryInterface.bulkInsert("Ingredients", [
       {
-        name: "Cheese",
+        name: "cheese",
         inflammatory: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: "Celery",
+        name: "celery",
         inflammatory: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: "Chicken",
+        name: "chicken",
         inflammatory: false,
         createdAt: new Date(),
         updatedAt: new Date()
