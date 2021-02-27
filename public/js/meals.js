@@ -20,11 +20,21 @@ $(".add-ingredient").click(e => {
   e.preventDefault();
   console.log("click");
   console.log(userId);
+
   const ingredientName = $(".addIngredient").val();
   console.log(ingredientName);
-  //   $.get(`/api/meals/${userId}`).then(data => {
+  $.get(`/api/meals/${userId}`)
+    .then(data => {
+      console.log(data);
+      const mealId = data.Meal.id;
+      postIngredient(mealId);
+    })
+    .then(result => console.log(result));
+});
+
+function postIngredient(mealId) {
   $.post("/api/ingredients", {
-    id: 1,
+    id: mealId,
     name: ingredientName
   }).then(result => console.log(result));
-});
+}

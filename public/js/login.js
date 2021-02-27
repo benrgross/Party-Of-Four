@@ -35,7 +35,7 @@ $(document).ready(() => {
       .catch(handleLoginErr);
   }
 
-  function handleLoginErr(err) {
+  function handleLoginErr() {
     $("#alert .msg").text("Log In Failed");
     $("#alert").fadeIn(500);
   }
