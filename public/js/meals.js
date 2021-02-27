@@ -40,13 +40,20 @@ $(".add-ingredient").click(e => {
 
     const ingredientEl = $("<h6>")
       .addClass("title is-6")
-      .attr("data-meal", mealId);
+      .attr("data-meal", mealId)
+      .attr("data-name", ingredientName);
+
+    const watchlistBtn = $("<button>")
+      .text("Add to Watchlist")
+      .addClass("add-to-watch button is-info is-outlined");
+
     const ingredientDelBtn = $("<button>")
       .text("Delete")
       .addClass("delete-ingredient button is-danger");
 
     const newIngredient = ingredientEl
       .text(ingredientName)
+      .append(watchlistBtn)
       .append(ingredientDelBtn);
 
     ingredientsList.append(newIngredient);
