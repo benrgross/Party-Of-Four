@@ -66,11 +66,12 @@ Router.route("/api/meals").get((req, res) => {
 });
 
 Router.route("/api/meals/:userId").get((req, res) => {
+  console.log(req.params);
   db.Meal.findOne({
     where: {
       id: req.params.userId
-    }.then(mealId => res.json(mealId))
-  });
+    }
+  }).then(mealId => res.json(mealId));
 });
 
 // get query for MealIngredient list
@@ -97,22 +98,36 @@ Router.post("/api/meals", async (req, res) => {
 
 //associates input ingredient with meal id in meal ingredient table upon submitting ingredient input,
 Router.post("/api/ingredients", async (req, res) => {
-  const meal = await db.Meal.findOne({
+  console.log(req.body);
+  let meal = await db.Meal.findOne({
     where: {
       id: req.body.id
     }
   });
 
-  const ingredient = await db.Ingredient.findOrCreate({
+  let ingredient = await db.Ingredient.findOne({
     defaults: { name: req.body.name },
     where: { name: req.body.name }
   });
-  try {
-    const ingredientMeal = await meal.addIngredient(ingredient);
+  if (meal && ingredient) {
+    try {
+      const ingredientMeal = await meal.addIngredient(ingredient);
 
-    res.json(ingredientMeal);
-  } catch (err) {
-    throw new Error(err);
+      res.json(ingredientMeal);
+    } catch (err) {
+      throw new Error(err);
+    }
+  } else {
+    try {
+      meal = await db.Meal.create({});
+      ingredient = await db.Ingredient.create({
+        name: req.body.name
+      });
+      ingredientMeal = await meal.addIngredient(ingredient);
+      res.json(ingredientMeal);
+    } catch (err) {
+      throw new Error();
+    }
   }
 });
 
