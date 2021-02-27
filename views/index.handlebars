@@ -81,90 +81,96 @@
               </div>
 
               <!-- Input ingredients -->
+              <div class="container">
 
-              <div class="form-group mb-5">
-                <label for="autocomplete">Search Ingredient</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="autocomplete" placeholder="Search ingredients to add">
-                  <div class="input-group-append">
-                    <span class="input-group-text">
-                      <i class="fas fa-search"></i>
-                    </span>
-                  </div>
+                <div class="form-group mb-5">
+                  <form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
+                    <label for="autocomplete">Search Ingredient</label>
+                    <div class="input-group">
+                      <input name="q" type="text" class="form-control" id="autocomplete"
+                        placeholder="Search ingredients to add" autofocus>
+                      <button type="button"><i class="fas fa-microphone"></i></button>
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="fas fa-search"></i>
+                        </span>
+                  </form>
+                  <p class="info"></p>
                 </div>
               </div>
-
-              <!-- Table ingredients -->
-              <table class="table table-hover">
-                <tbody id="list_ingredients">
-
-                </tbody>
-              </table>
-
-              <!-- Submit Button -->
-              <button type="submit" id="submit" class="btn btn-primary float-right"> Add
-                Ingredient</button>
-              </li>
-
-
-            </form>
-            <div></div>
-            <a class="btn btn-primary float-right" href="/">Nutrition Info</a>
-
-
           </div>
-        </div>
 
-      </div>
-    </div>
+          <!-- Table ingredients -->
+          <table class="table table-hover">
+            <tbody id="list_ingredients">
 
-    <div class="modal" tabindex="-1" role="dialog" id="myModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-danger">Error!</h5>
-          </div>
-          <div class="modal-body">
-            <p class="text-danger">Please add the ingredients first.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
+            </tbody>
+          </table>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submit" class="btn btn-primary float-right"> Add
+            Ingredient</button>
+          </li>
+
+
+          </form>
+          <div></div>
+          <a class="btn btn-primary float-right" href="/">Nutrition Info</a>
+
+
         </div>
       </div>
+
     </div>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
-    <script src="/js/recipe.js"></script>
-    <script src="~bulma-calendar/dist/js/bulma-calendar.min.js"></script>
-    <script>
-      // Initialize all input of date type.
-      const calendars = bulmaCalendar.attach('[type="date"]', options);
-
-      // Loop on each calendar initialized
-      calendars.forEach(calendar => {
-        // Add listener to select event
-        calendar.on('select', date => {
-          console.log(date);
-        });
-      });
-
-      // To access to bulmaCalendar instance of an element
-      const element = document.querySelector('#my-element');
-      if (element) {
-        // bulmaCalendar instance is available as element.bulmaCalendar
-        element.bulmaCalendar.on('select', datepicker => {
-          console.log(datepicker.data.value());
-        });
-      }
-
-    </script>
-
   </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger">Error!</h5>
+        </div>
+        <div class="modal-body">
+          <p class="text-danger">Please add the ingredients first.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="/js/recipe.js"></script>
+  <script src="~bulma-calendar/dist/js/bulma-calendar.min.js"></script>
+  <script>
+    // Initialize all input of date type.
+    const calendars = bulmaCalendar.attach('[type="date"]', options);
+
+    // Loop on each calendar initialized
+    calendars.forEach(calendar => {
+      // Add listener to select event
+      calendar.on('select', date => {
+        console.log(date);
+      });
+    });
+
+    // To access to bulmaCalendar instance of an element
+    const element = document.querySelector('#my-element');
+    if (element) {
+      // bulmaCalendar instance is available as element.bulmaCalendar
+      element.bulmaCalendar.on('select', datepicker => {
+        console.log(datepicker.data.value());
+      });
+    }
+
+  </script>
+
+</div>
 </div>
 </div>
 </div>
@@ -227,6 +233,98 @@
   </div>
 </div>
 </div>
+<div class="container">
+  <form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
+    <input name="q" type="text" placeholder="Search Google..." autocomplete="off" autofocus>
+    <!-- <button type="button"><i class="fas fa-microphone"></i></button> -->
+  </form>
+  <p class="info"></p>
+</div>
+
+<script>
+  const searchForm = document.querySelector("#search-form");
+  const searchFormInput = searchForm.querySelector("input"); // <=> document.querySelector("#search-form input");
+  const info = document.querySelector(".info");
+
+  // The speech recognition interface lives on the browser’s window object
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
+
+  if (SpeechRecognition) {
+    console.log("Your Browser supports speech Recognition");
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    // recognition.lang = "en-US";
+
+    searchForm.insertAdjacentHTML("beforeend", '<button type="button"><i class="fas fa-microphone"></i></button>');
+    searchFormInput.style.paddingRight = "50px";
+
+    const micBtn = searchForm.querySelector("button");
+    const micIcon = micBtn.firstElementChild;
+
+    micBtn.addEventListener("click", micBtnClick);
+    function micBtnClick() {
+      if (micIcon.classList.contains("fa-microphone")) { // Start Voice Recognition
+        recognition.start(); // First time you have to allow access to mic!
+      }
+      else {
+        recognition.stop();
+      }
+    }
+
+    recognition.addEventListener("start", startSpeechRecognition); // <=> recognition.onstart = function() {...}
+    function startSpeechRecognition() {
+      micIcon.classList.remove("fa-microphone");
+      micIcon.classList.add("fa-microphone-slash");
+      searchFormInput.focus();
+      console.log("Voice activated, SPEAK");
+    }
+
+    recognition.addEventListener("end", endSpeechRecognition); // <=> recognition.onend = function() {...}
+    function endSpeechRecognition() {
+      micIcon.classList.remove("fa-microphone-slash");
+      micIcon.classList.add("fa-microphone");
+      searchFormInput.focus();
+      console.log("Speech recognition service disconnected");
+    }
+
+    recognition.addEventListener("result", resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
+    function resultOfSpeechRecognition(event) {
+      const current = event.resultIndex;
+      const transcript = event.results[current][0].transcript;
+
+      if (transcript.toLowerCase().trim() === "stop recording") {
+        recognition.stop();
+      }
+      else if (!searchFormInput.value) {
+        searchFormInput.value = transcript;
+      }
+      else {
+        if (transcript.toLowerCase().trim() === "go") {
+          searchForm.submit();
+        }
+        else if (transcript.toLowerCase().trim() === "reset input") {
+          searchFormInput.value = "";
+        }
+        else {
+          searchFormInput.value = transcript;
+        }
+      }
+      // searchFormInput.value = transcript;
+      // searchFormInput.focus();
+      // setTimeout(() => {
+      //   searchForm.submit();
+      // }, 500);
+    }
+
+    info.textContent = 'Voice Commands: "stop recording", "reset input", "go"';
+
+  }
+  else {
+    console.log("Your Browser does not support speech Recognition");
+    info.textContent = "Your Browser does not support Speech Recognition";
+  }
+</script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
