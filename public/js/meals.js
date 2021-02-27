@@ -11,17 +11,21 @@ $(document).ready(() => {
 });
 console.log(userId);
 
+// click event for creating a meal
 $("#create-meal").click(() => {
   console.log(userId);
   console.log("click");
   $.post("/api/meals", {
-    userId: userId
+    id: userId
   }).catch(error => {
     console.error("Error:", error);
     alert(error);
   });
 });
 
+let mealId;
+
+// click event for adding to list of ingredients
 $(".add-ingredient").click(e => {
   e.preventDefault();
   console.log("click");
@@ -32,16 +36,27 @@ $(".add-ingredient").click(e => {
   $.get(`/api/meals/${userId}`)
     .then(data => {
       console.log(data);
-      const mealId = data.id;
+      mealId = data.id;
       postIngredient(mealId);
     })
     .then(result => console.log(result));
 
-  const ingredientEl = $("<h6></h6>");
-  const newIngredient = ingredientEl.text(ingredientName);
+  const ingredientEl = $("<h6>")
+    .addClass("title is-6")
+    .attr("data-meal", mealId);
+
+  const ingredientDelBtn = $("<button>")
+    .text("Delete")
+    .addClass("delete-ingredient button is-danger");
+
+  const newIngredient = ingredientEl
+    .text(ingredientName)
+    .append(ingredientDelBtn);
+
   ingredientsList.append(newIngredient);
 });
 
+// send ingredient to api route
 function postIngredient(mealId) {
   const ingredientName = $(".addIngredient").val();
   console.log(ingredientName);
