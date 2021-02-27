@@ -14,7 +14,7 @@ console.log(userId);
 // click event for creating a meal
 $("#create-meal").click(() => {
   console.log(userId);
-  console.log("click");
+
   $.post("/api/meals", {
     id: userId
   }).catch(error => {
@@ -39,7 +39,7 @@ $(".add-ingredient").click(e => {
       mealId = data.id;
       postIngredient(mealId);
     })
-    .then(result => console.log(result));
+    .then(mealId => console.log(mealId));
 
   const ingredientEl = $("<h6>")
     .addClass("title is-6")
@@ -58,10 +58,30 @@ $(".add-ingredient").click(e => {
 
 // send ingredient to api route
 function postIngredient(mealId) {
-  const ingredientName = $(".addIngredient").val();
+  const ingredientName = $(".addIngredient")
+    .val()
+    .trim()
+    .toLowerCase();
   console.log(ingredientName);
   $.post("/api/ingredients", {
     id: mealId,
     name: ingredientName
-  }).then(result => console.log(result));
+  })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert(error);
+    });
 }
+
+// // $("delete-ingredient").click(() => {
+//   $.delete(`/api/deletefrommeal`, {
+//       le mealID = $(this).attr(data-mealId)
+//       let text = $(this).siblings(".text").val();
+//       deleteName = $(this).text()
+//       id: mealId,
+//       name:
+//   };
+// });
