@@ -166,29 +166,96 @@ Router.route("/api/user/meals").get((req, res) => {
 //       });
 //   });
 // });
+// get query for MealIngredient list
+Router.route("/api/meals").get((req, res) => {
+  db.Meal.findAll({
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
+  }).then(ingredient => {
+    return res.json(ingredient);
+  });
+});
 
+// creates a meal when user submits
 Router.post("/api/meals", async (req, res) => {
-  const meal = await db.Meal.findOrCreate({
+  const meal = await db.Meal.create({});
+
+  res.json(meal);
+});
+
+//associates input ingredient with meal id in meal ingredient table upon submitting ingredient input
+Router.post("/api/ingredients", async (req, res) => {
+  const meal = await db.Meal.findOne({
     where: {
-      date: req.body.date,
-      time: req.body.time
-    },
-    defaults: { date: req.body.date, time: req.body.time }
+      id: req.body.id
+    }
   });
 
-  const ingredient = await db.Ingredient.findOne({
-    // defaults: { name: req.body.name },
+  const ingredient = await db.Ingredient.findOrCreate({
+    defaults: { name: req.body.name },
     where: { name: req.body.name }
   });
   try {
-    console.log(ingredient);
-    console.log(meal);
     const ingredientMeal = await meal.addIngredient(ingredient);
-    console.log("hello", ingredientMeal);
-    res.json();
+
+    res.json(ingredientMeal);
   } catch (err) {
     throw new Error(err);
   }
 });
+
+// make route for adding meal to user
+
+//get query for WatchList
+Router.route("/api/watchlist").get((req, res) => {
+  db.User.findAll({
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
+  }).then(ingredient => {
+    return res.json(ingredient);
+  });
+});
+
+// route for adding an ingredient to watchlist
+Router.post("/api/watchlist", async (req, res) => {
+  const user = await db.User.findOne({
+    where: {
+      id: req.body.userId
+    }
+  });
+
+  const ingredient = await db.Ingredient.findOrCreate({
+    defaults: { name: req.body.name },
+    where: { name: req.body.name }
+  });
+  try {
+    const watchList = await user.addIngredient(ingredient);
+
+    res.json(watchList);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+// make route for deleting ingredient from watchlist
+
+Router.delete("/api/deletefromwatchlist", async (req, res) => {
+  const user = await db.User.findOne({
+    where: {
+      id: req.body.userId
+    }
+  });
+  const ingredient = await db.Ingredient.findOne({
+    where: {
+      name: req.body.name
+    }
+  });
+  try {
+    const deleteWatch = await user.removeIngredient(ingredient);
+    res.json(deleteWatch);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+// make route for deleting meal?
 
 module.exports = Router;
