@@ -12,6 +12,7 @@ addIngredientBtn.addEventListener("click", addIngredient());
 
 // get user id and create new meal with user assosiation
 const createMeal = () => {
+  console.log("hellooo");
   $.get("/api/user_data").then(data => {
     const newMeal = {
       userId: data.id
