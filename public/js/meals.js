@@ -27,17 +27,18 @@ $(".add-ingredient").click(e => {
 
   const ingredientName = $(".addIngredient").val();
   console.log(ingredientName);
-  $.get(`/api/meals/${userId}`)
-    .then(data => {
-      console.log(data);
-      const mealId = data.id;
-      postIngredient(mealId);
-    })
-    .then(result => console.log(result));
+  $.get(`/api/meals/${userId}`).then(data => {
+    console.log(data);
+    const mealId = data.id;
+    postIngredient(mealId);
+  });
 });
 
 function postIngredient(mealId) {
-  const ingredientName = $(".addIngredient").val();
+  const ingredientName = $(".addIngredient")
+    .val()
+    .trim()
+    .toLowerCase();
   console.log(ingredientName);
   $.post("/api/ingredients", {
     id: mealId,
