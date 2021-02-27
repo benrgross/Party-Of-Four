@@ -1,45 +1,42 @@
-// dependencies
-const createMealBtn = document.getElementById("create-meal");
-const addIngredientBtn = document.getElementsByClassName("add-ingredient");
-const ingredientEl = document
-  .querySelectorAll(".adIngredient")
-  .values.trim()
-  .toLowerCase();
+document.addEventListener("DOMContentLoaded", userId => {
+  console.log("DOM loaded! 🚀");
 
-// Events
-createMealBtn.addEventListener("click", createMeal());
-addIngredientBtn.addEventListener("click", addIngredient());
+  // dependencies
+  //   const createMealBtn = document.getElementById("create-meal");
+  //   const addIngredientBtn = document.getElementById("add-ingredient");
+  //   const ingredientEl = document.querySelectorAll(".addIngredient");
+  //   //   .value.trim()
+  //   .toLowerCase();
 
-// get user id and create new meal with user assosiation
-const createMeal = () => {
-  console.log("hellooo");
-  $.get("/api/user_data").then(data => {
-    const newMeal = {
-      userId: data.id
-    };
-    fetch("/api/meals", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newMeal)
+  // Events
+  //   createMealBtn.addEventListener("click", createMeal());
+  //   addIngredientBtn.addEventListener("click", addIngredient());
+  //   console.log(userId);
+
+  $("#create-meal").click(() => {
+    console.log(userId);
+    console.log("click");
+    $.get("/api/user_data").then(data => {
+      console.log(data);
+      const userId = data.id;
+      $.post("/api/meals", {
+        userId: userId
+      }).catch(error => {
+        console.error("Error:", error);
+        alert(error);
+      });
     });
   });
-};
 
-// get meal id and create new igredient to sent to API
-const addIngredient = () => {
-  $.get("/api/meals").then(data => {
-    const newIngredient = {
-      mealId: data.Meal.id,
-      name: ingredientEl
-    };
-    fetch("/api/ingredients", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newIngredient)
+  $(".add-ingredient").click(e => {
+    e.preventDefault();
+    console.log("click");
+    ingredientName = $("addIngredient");
+    $.get(`/api/meals/${userId}`).then(data => {
+      $.post("/api/ingredients", {
+        mealId: data.Meal.id,
+        name: ingredientName
+      });
     });
   });
-};
+});

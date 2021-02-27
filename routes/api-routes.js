@@ -28,7 +28,7 @@ Router.route("/api/signup").post((req, res) => {
       res.redirect(307, "/api/login");
     })
     .catch(err => {
-      res.status(401).json(err);
+      res.status(401).send(err);
     });
 });
 
@@ -54,141 +54,22 @@ Router.route("/api/user_data").get((req, res) => {
   }
 });
 
-// // Version1 - works (displays Users though)
-// // Route for getting a user's meals
-// Router.route("/api/user/meals").get((req, res) => {
-//   db.Meal.findAll({
-//     include: [db.User]
-//   }).then(meals => {
-//     return res.json(meals);
-//   });
-// });
-
-// V2 - works; only displays meals, with associated UserId
-// Route for getting a user's meals
-Router.route("/api/user/meals").get((req, res) => {
-  db.Meal.findAll({
-    include: [{ model: db.User, attributes: ["id", "email", "password"] }]
-  }).then(meals => {
-    return res.json(meals);
-  });
-});
-
-// // V3 - doesn't work
-// // Route for getting a user's meals
-// Router.route("/api/user/meals").get((req, res) => {
-//   db.Meal.findAll({
-//     where: {
-//       id: req.body.UserId
-//     }
-//   }).then(meals => {
-//     res.json(meals);
-//   });
-// });
-
-// Router.route("/api/meals").post((req, res) => {
-//   const ingredients = req.body.ingredients;
-//   for (let i = 0; i < ingredients.length; i++) {
-//     db.Ingredient.findOne({
-//       where: {
-//         name: ingredients[i]
-//       }
-//     }).then(ingredient => {
-//       ingredient
-//         .createMeal({
-//           date: req.body.date,
-//           time: req.body.time
-//         })
-//         .then(meal => {
-//           return meal;
-//         });
-//     });
-//   }
-//   res.json(meal);
-// });
-
-// Router.route("/api/meals").get((req, res) => {
-//   db.Meal.findAll({
-//     include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
-//   }).then(ingredient => {
-//     return res.json(ingredient);
-//   });
-// });
-
-// Router.route("/api/meals").post((req, res) => {
-//   console.log(req.body);
-
-//   db.Meal.create({
-//     date: req.body.date,
-//     time: req.body.time
-//   }).then(res => res.json(meal));
-//   .then(meal => {
-//     meal.setIngredient({
-//       where: {
-//         name: ingredients[0].name
-//       }
-//     });
-//   });
-// });
-
-//make an endpoint for submitting meal and creating list of ingredients
-// Router.route("/api/meal_data").post((req, res) => {
-//   db.Meal.create({
-//     date: req.body.date,
-//     time: req.body.time
-//   }).then(meal => {
-//     meal.setIngredient({
-//       ingredients.forEach(ingredient => {
-//         name: ingredient.name
-//       })
-//     })
-
-//   })
-
-// });
-
-// make an enpoint for submitting a meal
-// we are going to insert into meals a date and time
-// we are going to create a table via associations of meal date, time and ingredients.
-
-// working find one
-// Router.route("/api/meals").post((req, res) => {
-//   db.Ingredient.findOne({
-//     where: {
-//       name: req.body.name
-//     }
-//   }).then(ingredient => {
-//     ingredient
-//       .createMeal({
-//         date: req.body.date,
-//         time: req.body.time
-//       })
-//       .then(meal => {
-//         res.json(meal);
-//       });
-//   });
-// });
-
-// // Route for displaying all of a user's meals
-// Router.route("/api/user/meals").get((req, res) => {
-//   const query = {};
-//   if (req.query.MealId) {
-//     query.MealId = req.query.MealId;
-//   }
-//   db.User.findAll({
-//     where: req.query.UserId,
-//     include: [db.Meal]
-//   }).then(meals => {
-//     res.json(meals);
-//   });
-// });
-
 // get query for MealIngredient list
 Router.route("/api/meals").get((req, res) => {
+  console.log(res);
   db.Meal.findAll({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
   }).then(ingredient => {
+    console.log(ingredient);
     return res.json(ingredient);
+  });
+});
+
+Router.route("/api/meals/:userId").get((req, res) => {
+  db.Meal.findOne({
+    where: {
+      id: req.params.userId
+    }.then(mealId => res.json(mealId))
   });
 });
 
