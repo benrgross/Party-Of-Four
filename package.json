@@ -1,40 +1,33 @@
 {
-  "name": "1-Passport-Example",
+  "name": "node-handlebars-boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project 2 Starter",
   "main": "server.js",
   "scripts": {
-    "test": "npm run lint",
     "start": "node server.js",
-    "lint": "eslint --quiet .",
+    "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
-    "watch": "nodemon server.js"
+    "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "2.4.3",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.0",
-    "express-handlebars": "^5.2.1",
-    "express-session": "^1.16.1",
-    "handlebars": "^4.7.7",
-    "mysql2": "^2.2.5",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "sequelize": "^5.8.6"
+    "body-parser": "^1.18.3",
+    "bulma-calendar": "^6.0.9",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.5.3",
+    "nutrition-label-jquery-plugin": "^8.0.7",
+    "request": "^2.88.0",
+    "sequelize": "^4.38.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
-    "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
-    "nodemon": "^2.0.7",
-    "prettier": "^1.13.7",
-    "sequelize-cli": "^6.2.0"
+    "prettier": "^1.13.7"
   }
 }

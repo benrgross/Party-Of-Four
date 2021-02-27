@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('recipeIngredientMeas', {
 		id: {
 			type: DataTypes.INTEGER(11),
@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: false,
 			references: {
 				model: 'ingredients',
-				foreignKey: 'ingredient_id'
+				key: 'ingredient_id'
 			},
 			field: 'ingredients_ingredient_id'
 		},
@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: false,
 			references: {
 				model: 'measure',
-				foreignKey: 'measure_id'
+				key: 'measure_id'
 			},
 			field: 'measure_measure_id'
 		},
@@ -35,7 +35,7 @@ module.exports = function (sequelize, DataTypes) {
 			allowNull: false,
 			references: {
 				model: 'recipes',
-				foreignKey: 'recipe_id'
+				key: 'recipe_id'
 			},
 			field: 'recipes_recipe_id'
 		}

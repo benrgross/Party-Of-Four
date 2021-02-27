@@ -2,18 +2,18 @@
 var $autocomplete = $("#autocomplete");
 
 var IS = {
-  getIngredients: function (request, response) {
+  getIngredients: function(request, response) {
     return $.ajax({
       url: "/api/ingredientsList",
       method: "POST",
       data: { term: request.term },
       dataType: "jsonp",
-      success: function (data) {
+      success: function(data) {
         response(data);
       }
     });
   },
-  getMeasures: function (food_name) {
+  getMeasures: function(food_name) {
     return $.ajax({
       url: "/api/measures",
       method: "POST",
@@ -21,7 +21,7 @@ var IS = {
       dataType: "jsonp"
     });
   },
-  addIngredient: function (ingredient_name, ingredient_img) {
+  addIngredient: function(ingredient_name, ingredient_img) {
     return $.ajax({
       url: "/api/ingredient",
       method: "POST",
@@ -29,7 +29,7 @@ var IS = {
       dataType: "json"
     });
   },
-  addRecipe: function (newRecipe) {
+  addRecipe: function(newRecipe) {
     return $.ajax({
       url: "/api/recipes",
       method: "POST",
@@ -37,45 +37,45 @@ var IS = {
       dataType: "json"
     });
   },
-  addRecipeIngredients: function (ingredients) {
+  addRecipeIngredients: function(ingredients) {
     $.ajax({
       url: "/api/recipe_ingredients",
       method: "POST",
       data: { ingredients: JSON.stringify(ingredients) },
       dataType: "json"
-    }).then(function () {
+    }).then(function() {
       location.reload();
     });
   }
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
   //Autocomplete
   $autocomplete
     .autocomplete({
-      source: function (request, response) {
+      source: function(request, response) {
         IS.getIngredients(request, response);
       },
       minLength: 2,
-      select: function (event, ui) {
+      select: function(event, ui) {
         $(this).val(ui.item.food_name);
         renderIngredient(ui);
         return false;
       },
-      close: function () {
+      close: function() {
         $(this).val("");
       }
     })
-    .data("ui-autocomplete")._renderItem = function (ul, item) {
-      return $("<li></li>")
-        .data("item.autocomplete", item)
-        .append("<img src='" + item.photo + "' style='width:80px;height:70px'/>")
-        .append("<span>" + item.food_name + "</span>")
-        .appendTo(ul);
-    };
+    .data("ui-autocomplete")._renderItem = function(ul, item) {
+    return $("<li></li>")
+      .data("item.autocomplete", item)
+      .append("<img src='" + item.photo + "' style='width:80px;height:70px'/>")
+      .append("<span>" + item.food_name + "</span>")
+      .appendTo(ul);
+  };
 
   //Remove ingredients
-  $(document).on("click", ".fa-trash-alt", function () {
+  $(document).on("click", ".fa-trash-alt", function() {
     $(this)
       .parent()
       .parent()
@@ -84,10 +84,10 @@ $(document).ready(function () {
 });
 
 function renderIngredient(ui) {
-  IS.addIngredient(ui.item.food_name, ui.item.photo).then(function (
+  IS.addIngredient(ui.item.food_name, ui.item.photo).then(function(
     addedIngredient
   ) {
-    IS.getMeasures(ui.item.food_name).then(function (data) {
+    IS.getMeasures(ui.item.food_name).then(function(data) {
       var tr = $("<tr>").addClass("d-flex");
 
       var td_image = $("<td>").addClass("col-2");
@@ -144,7 +144,7 @@ function renderIngredient(ui) {
   });
 }
 
-$("#submit").on("click", function () {
+$("#submit").on("click", function() {
   event.preventDefault();
   if (checkValidity()) {
     var newRecipe = {
@@ -153,12 +153,12 @@ $("#submit").on("click", function () {
     };
 
     //Send the POST request.
-    IS.addRecipe(newRecipe).then(function (data) {
+    IS.addRecipe(newRecipe).then(function(data) {
       var ingredients = [];
 
       $(document)
         .find("tr")
-        .each(function () {
+        .each(function() {
           ingredients.push({
             quantity: $(this)
               .find(".ingredient_quantity")

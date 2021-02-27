@@ -1,0 +1,219 @@
+<nav style="background-color: #f0fbff" class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <img src="/images/logo.png" alt="">
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+<div style="margin-left: 25px;" class="columns">
+  <div class="column is-one-quarter">
+    <aside class="menu">
+      <ul class="menu-list">
+        <li><a>Home</a></li>
+        <p class="menu-label">Meals</p>
+        <li><a>Input Your Meals</a></li>
+        <li><a>Past Meals</a></li>
+      </ul>
+      <p class="menu-label">
+        Watchlist
+      </p>
+      <ul class="menu-list">
+        <ul>
+          <a>Healthy Choices</a>
+          <li><a class="is-active" href="/">Nutrition Info</a></li>
+          <li><a>Foods to Watchout for</a></li>
+          <li><a>Add a member</a></li>
+        </ul>
+    </aside>
+  </div>
+  <div style="margin-right: 100px;" class="column">
+
+    <h1 style="margin-bottom: 100px;">Welcome <span class="member-name"></span></h1>
+    <div class="field">
+      <label class="label">Breakfast Meal time: </label>
+      <div class="control">
+        <input class="input" type="breakfast" placeholder="e.g pancake">
+      </div>
+    </div>
+    <div class="field">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
+      <div id="home">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+          <div class="container">
+
+
+            {{!-- <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a> --}}
+            </li>
+            </ul>
+          </div>
+      </div>
+      </nav>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-8 offset-2">
+            <form class="needs-validation" novalidate>
+              <!-- Name -->
+              <div class="form-group mb-3 mt-3">
+                <label for="name">Recipe Name</label>
+                <input type="text" class="form-control" id="name" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid name is required.
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="form-group mb-3">
+                <label for="recipe-description">Recipe Description
+                  <span class="text-muted">(Optional)</span>
+                </label>
+                <textarea class="form-control" id="recipe-description" aria-describedby="recipe-description"
+                  placeholder="Enter Recipe Description"></textarea>
+              </div>
+
+              <!-- Input ingredients -->
+
+              <div class="form-group mb-5">
+                <label for="autocomplete">Search Ingredient</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="autocomplete" placeholder="Search ingredients to add">
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fas fa-search"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table ingredients -->
+              <table class="table table-hover">
+                <tbody id="list_ingredients">
+
+                </tbody>
+              </table>
+
+              <!-- Submit Button -->
+              <button type="submit" id="submit" class="btn btn-primary float-right">Add Recipe</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-danger">Error!</h5>
+          </div>
+          <div class="modal-body">
+            <p class="text-danger">Please add the ingredients first.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <script src="/js/recipe.js"></script>
+
+  </div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<div id="home">
+  {{!--
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-3">
+    <div class="container">
+      <img src="./images/banner.gif" class="logo"></img>
+      <h2 class="text-white">NutriRecipe</h2>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> --}}
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/recipe">New Recipe
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <hr>
+  <!-- LIST OF RECIPES -->
+  <h4 class="mb-3 text-success text-center">Recipe List</h4>
+  <hr>
+
+  <div class="table-responsive">
+    <table class="table table-hover" id="table_ingredients">
+      <thead>
+        <tr>
+          <th>Recipe Name</th>
+          <th>Recipe Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each recipes}}
+        <tr>
+          <td>
+            <a href="recipe/{{this.recipeId}}">{{this.recipeName}}</a>
+          </td>
+          <td>
+            <a href="recipe/{{this.recipeId}}">{{this.recipeDescription}}</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/js/index.js"></script>
+
+
+
+<script type="text/javascript" src="js/members.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/js/recipe.js"></script>

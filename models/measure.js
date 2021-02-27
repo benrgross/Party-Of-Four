@@ -1,8 +1,7 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('measure', {
 		measureId: {
 			type: DataTypes.INTEGER(11),
-			// type: DataTypes.UUID,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,

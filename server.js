@@ -1,38 +1,48 @@
-// Requiring necessary npm packages
 require("dotenv").config();
-const express = require("express");
-const app = express();
-const session = require("express-session");
-// Requiring passport as we've configured it
-const passport = require("./config/passport");
-// Setting up port and requiring models for syncing
-const PORT = process.env.PORT || 8080;
-const db = require("./models");
+var express = require("express");
+var bodyParser = require("body-parser");
+var exphbs = require("express-handlebars");
 
-//require handlebars
-const exphbs = require("express-handlebars");
+var db = require("./models");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-// Creating express app and configuring middleware needed for authentication
+var app = express();
+var PORT = process.env.PORT || 8080;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
-// We need to use sessions to keep track of our user's login status
-app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+
+// Handlebars
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
 );
-app.use(passport.initialize());
-app.use(passport.session());
+app.set("view engine", "handlebars");
 
-// Requiring our routes
-app.use(require("./routes/api-routes.js"));
-app.use(require("./routes/html-routes"));
+// Routes
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
-// Syncing our database and logging a message to the user upon success
-db.sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => {
-    console.log(`Your server is running on port ${PORT}`);
+var syncOptions = { force: true };
+
+// If running a test, set syncOptions.force to true
+// clearing the `testdb`
+if (process.env.NODE_ENV === "test") {
+  syncOptions.force = true;
+}
+
+// Starting the server, syncing our models ------------------------------------/
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
   });
 });
+
+module.exports = app;

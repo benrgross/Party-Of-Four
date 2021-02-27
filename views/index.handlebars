@@ -34,9 +34,9 @@
 
     <h1 style="margin-bottom: 100px;">Welcome <span class="member-name"></span></h1>
     <div class="field">
-      <label class="label">Breakfast Meal time: </label>
+      <label class="label">Meal time: </label>
       <div class="control">
-        <input class="input" type="breakfast" placeholder="e.g pancake">
+        <input type="time">
       </div>
     </div>
     <div class="field">
@@ -64,7 +64,7 @@
             <form class="needs-validation" novalidate>
               <!-- Name -->
               <div class="form-group mb-3 mt-3">
-                <label for="name">Recipe Name</label>
+                <label for="name">Meal Name</label>
                 <input type="text" class="form-control" id="name" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Valid name is required.
@@ -73,7 +73,7 @@
 
               <!-- Description -->
               <div class="form-group mb-3">
-                <label for="recipe-description">Recipe Description
+                <label for="recipe-description">Meal Description
                   <span class="text-muted">(Optional)</span>
                 </label>
                 <textarea class="form-control" id="recipe-description" aria-describedby="recipe-description"
@@ -140,6 +140,29 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
     <script src="/js/recipe.js"></script>
+    <script src="~bulma-calendar/dist/js/bulma-calendar.min.js"></script>
+    <script>
+      // Initialize all input of date type.
+      const calendars = bulmaCalendar.attach('[type="date"]', options);
+
+      // Loop on each calendar initialized
+      calendars.forEach(calendar => {
+        // Add listener to select event
+        calendar.on('select', date => {
+          console.log(date);
+        });
+      });
+
+      // To access to bulmaCalendar instance of an element
+      const element = document.querySelector('#my-element');
+      if (element) {
+        // bulmaCalendar instance is available as element.bulmaCalendar
+        element.bulmaCalendar.on('select', datepicker => {
+          console.log(datepicker.data.value());
+        });
+      }
+
+    </script>
 
   </div>
 </div>
@@ -150,49 +173,58 @@
 </div>
 
 <div id="home">
+  {{!--
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-3">
+    <div class="container">
+      <img src="./images/banner.gif" class="logo"></img>
+      <h2 class="text-white">NutriRecipe</h2>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> --}}
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/recipe">New Recipe
+              <span class="sr-only">(current)</span>
+            </a>
 
-  <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/recipe">New Recipe
-          <span class="sr-only">(current)</span>
-        </a>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    </ul>
+
+
+  <hr>
+  <!-- LIST OF RECIPES -->
+  <h4 style="color:blue; text-align: center;">Ingredient and Nutrition List</h4>
+  <h4 style="color:blue; text-align: center;"></h4>
+  <hr>
+
+  <div class="table-responsive">
+    <table class="table table-hover" id="table_ingredients">
+      <thead>
+        <tr>
+          <th>Recipe Name</th>
+          <th>Recipe Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each recipes}}
+        <tr>
+          <td>
+            <a href="recipe/{{this.recipeId}}">{{this.recipeName}}</a>
+          </td>
+          <td>
+            <a href="recipe/{{this.recipeId}}">{{this.recipeDescription}}</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
-</div>
-</nav>
-
-
-
-<hr>
-<!-- LIST OF RECIPES -->
-<h4 style="color:blue; text-align: center;">Ingredient and Nutrition List</h4>
-<h4 style="color:blue; text-align: center;"></h4>
-<hr>
-
-<div class="table-responsive">
-  <table class="table table-hover" id="table_ingredients">
-    <thead>
-      <tr>
-        <th>Recipe Name</th>
-        <th>Recipe Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each recipes}}
-      <tr>
-        <td>
-          <a href="recipe/{{this.recipeId}}">{{this.recipeName}}</a>
-        </td>
-        <td>
-          <a href="recipe/{{this.recipeId}}">{{this.recipeDescription}}</a>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
 </div>
 </div>
 
