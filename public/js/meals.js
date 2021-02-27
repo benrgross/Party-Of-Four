@@ -1,8 +1,14 @@
 // dependencies
+const createMealBtn = document.getElementById("create-meal");
+const addIngredientBtn = document.getElementsByClassName("add-ingredient");
 // --- date on the form
 // -- the time on the form
 // --- array of ingredients
 // --- IngredientsEl = document.querySelectorAll("data-ingredient")
+
+// Events
+createMealBtn.addEventListener("click", createMeal());
+addIngredientBtn.addEventListener("click", addIngredient());
 
 //When user clicks add ingredient button, a new input is added to the page with data-ingredient value.
 
@@ -12,3 +18,12 @@
 // user is able to input time date and ingredient
 // --- add ingredient one by one
 // -- when user clicks add ingredient it triggers api to findOrCreate   meal then meal.addIngredient.
+
+// Function
+const createMeal = () => {
+  console.log("hello");
+};
+
+const addIngredient = () => {
+  console.log("hello");
+};
