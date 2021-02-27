@@ -3,11 +3,15 @@ const ingredientsList = $(".ingredients");
 let userId;
 $(document).ready(() => {
   $.get("/api/user_data").then(data => {
+    console.log(data);
     userId = data.id;
+    console.log(userId);
+    return userId;
   });
 });
+console.log(userId);
 
-$("#create-meal").click(userId => {
+$("#create-meal").click(() => {
   console.log(userId);
   console.log("click");
   $.post("/api/meals", {
@@ -28,7 +32,7 @@ $(".add-ingredient").click(e => {
   $.get(`/api/meals/${userId}`)
     .then(data => {
       console.log(data);
-      const mealId = data.Meal.id;
+      const mealId = data.id;
       postIngredient(mealId);
     })
     .then(result => console.log(result));
@@ -38,6 +42,8 @@ $(".add-ingredient").click(e => {
 });
 
 function postIngredient(mealId) {
+  const ingredientName = $(".addIngredient").val();
+  console.log(ingredientName);
   $.post("/api/ingredients", {
     id: mealId,
     name: ingredientName
