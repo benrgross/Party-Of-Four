@@ -2,7 +2,7 @@
 const createMealBtn = document.getElementById("create-meal");
 const addIngredientBtn = document.getElementsByClassName("add-ingredient");
 const ingredientEl = document
-  .querySelectorAll(".adIngredient")
+  .querySelectorAll(".addIngredient")
   .values.trim()
   .toLowerCase();
 
