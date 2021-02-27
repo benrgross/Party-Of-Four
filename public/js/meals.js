@@ -33,27 +33,25 @@ $(".add-ingredient").click(e => {
 
   const ingredientName = $(".addIngredient").val();
   console.log(ingredientName);
-  $.get(`/api/meals/${userId}`)
-    .then(data => {
-      console.log(data);
-      mealId = data.id;
-      postIngredient(mealId);
-    })
-    .then(mealId => console.log(mealId));
+  $.get(`/api/meals/${userId}`).then(data => {
+    console.log(data);
+    mealId = data.id;
+    postIngredient(mealId);
 
-  const ingredientEl = $("<h6>")
-    .addClass("title is-6")
-    .attr("data-meal", mealId);
+    const ingredientEl = $("<h6>")
+      .addClass("title is-6")
+      .attr("data-meal", mealId);
+    const ingredientDelBtn = $("<button>")
+      .text("Delete")
+      .addClass("delete-ingredient button is-danger");
 
-  const ingredientDelBtn = $("<button>")
-    .text("Delete")
-    .addClass("delete-ingredient button is-danger");
+    const newIngredient = ingredientEl
+      .text(ingredientName)
+      .append(ingredientDelBtn);
 
-  const newIngredient = ingredientEl
-    .text(ingredientName)
-    .append(ingredientDelBtn);
-
-  ingredientsList.append(newIngredient);
+    ingredientsList.append(newIngredient);
+  });
+  //.then(mealId => console.log(mealId));
 });
 
 // send ingredient to api route
