@@ -85,7 +85,7 @@ Router.post("/api/meals", async (req, res) => {
   res.json(userMeal);
 });
 
-//associates input ingredient with meal id in meal ingredient table upon submitting ingredient input
+//associates input ingredient with meal id in meal ingredient table upon submitting ingredient input,
 Router.post("/api/ingredients", async (req, res) => {
   const meal = await db.Meal.findOne({
     where: {
