@@ -15,6 +15,9 @@ console.log(userId);
 $("#create-meal").click(() => {
   console.log(userId);
 
+  $(".addMeal").hide(500);
+  $(".ingredientAdd").show(500);
+
   $.post("/api/meals", {
     id: userId
   }).catch(error => {
@@ -45,7 +48,7 @@ $(".add-ingredient").click(e => {
 
     const watchlistBtn = $("<button>")
       .text("Add to Watchlist")
-      .addClass("add-to-watch button is-info is-outlined");
+      .addClass("add-to-watch button is-warning");
 
     const ingredientDelBtn = $("<button>")
       .text("Delete")
