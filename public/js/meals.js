@@ -13,7 +13,7 @@ console.log(userId);
 
 $("#create-meal").click(() => {
   console.log(userId);
-  console.log("click");
+
   $.post("/api/meals", {
     userId: userId
   }).catch(error => {
@@ -22,6 +22,7 @@ $("#create-meal").click(() => {
   });
 });
 
+let mealId;
 $(".add-ingredient").click(e => {
   e.preventDefault();
   console.log("click");
@@ -32,21 +33,41 @@ $(".add-ingredient").click(e => {
   $.get(`/api/meals/${userId}`)
     .then(data => {
       console.log(data);
-      const mealId = data.id;
+      mealId = data.id;
       postIngredient(mealId);
     })
-    .then(result => console.log(result));
+    .then(mealId => console.log(mealId));
 
-  const ingredientEl = $("<h6></h6>");
+  const ingredientEl = $("<h6>");
   const newIngredient = ingredientEl.text(ingredientName);
   ingredientsList.append(newIngredient);
 });
 
 function postIngredient(mealId) {
-  const ingredientName = $(".addIngredient").val();
+  const ingredientName = $(".addIngredient")
+    .val()
+    .trim()
+    .toLowerCase();
   console.log(ingredientName);
   $.post("/api/ingredients", {
     id: mealId,
     name: ingredientName
-  }).then(result => console.log(result));
+  })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert(error);
+    });
 }
+
+// // $("delete-ingredient").click(() => {
+//   $.delete(`/api/deletefrommeal`, {
+//       le mealID = $(this).attr(data-mealId)
+//       let text = $(this).siblings(".text").val();
+//       deleteName = $(this).text()
+//       id: mealId,
+//       name:
+//   };
+// });
