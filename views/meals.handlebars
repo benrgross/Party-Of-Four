@@ -73,28 +73,38 @@
       </div>
     </div>
       <br>
-      <form class="meal">
+     
         <div class="field">
           <p>Enter your last meal and some of its ingredients:</p>
-          <button class="button is-link is-light" id="create-meal">Add Meal</button>
+          <button class="button is-light" id="create-meal">Add Meal</button>
         </div>
-      </form>
+
       <br>
 
       <h1>Enter The Ingredients You'd Like To Track</h1>
       <div class="ingredients">
-        <div>Ingredient 1: Cheese<button class="button is-link is-outlined">Add</button></div>
-        <div>Ingredient 2: Celery<button class="button is-link is-outlined">Add</button></div>
-        <div>Ingredient 3: Chicken<button class="button is-link is-outlined">Add</button></div>
+        <input class="input addIngredient" type="input" ><button type="submit" class="button  is-outlined
+        add-ingredient">Add</button>
+        <div>Ingredient 1: Celery<button class="button is-link is-outlined add-ingredient">Add</button></div>
+        <div>Ingredient 1: Chicken<button class="button is-link is-outlined add-ingredient">Add</button></div>
       </div>
         <button class="button is-link is-light" id="add-ingredient">Add An Ingredient</button>
     </div>
   </div>
-
+ <div class="field">
+            <label for="exampleInputPassword1">Ingredient</label>
+            <input type="text" class="input" id="add-ingredient" placeholder="Password">
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <button type="submit" class="button  is-info">Sign Up</button>
+        </form>
 
 </div>
 
 
 
-<script type="text/javascript" src="js/members.js"></script>
+
 <script type="text/javascript" src="js/meals.js"></script>

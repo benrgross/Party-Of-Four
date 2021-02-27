@@ -32,8 +32,11 @@ $(document).ready(() => {
         window.location.replace("/members");
         // If there's an error, log the error
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(handleLoginErr);
+  }
+
+  function handleLoginErr() {
+    $("#alert .msg").text("Log In Failed");
+    $("#alert").fadeIn(500);
   }
 });
