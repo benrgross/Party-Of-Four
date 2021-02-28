@@ -47,7 +47,7 @@ function postIngredient(mealId) {
       id: mealId,
       name: ingredientName
     })
-      .then(result => console.log(result), (window.location.href = "/meals"))
+      .then(result => console.log(result))
       .then(() => {
         displayToPage(mealId);
       })
@@ -62,14 +62,20 @@ function postIngredient(mealId) {
 
 // get request for last meal array of ingredients
 $(document).ready(() => {
+  displayToPage();
+});
+
+const displayToPage = () => {
   $.get("/api/lastmeal").then(data => {
-    console.log("data", data);
+    //loop through array of ingredients and creat elements on the page
     for (let i = 0; i < data.Ingredients.length; i++) {
       const ingredientEl = $("<h6>").addClass("title is-6");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
-        .addClass("add-to-watch button is-info is-outlined");
+        .addClass("add-to-watch button is-info is-outlined")
+        .attr("data-meal", data.id)
+        .attr("data-name", data.Ingredients[i].name);
 
       const ingredientDelBtn = $("<button>")
         .text("Delete")
@@ -86,15 +92,16 @@ $(document).ready(() => {
       ingredientsList.append(newIngredient);
     }
   });
-});
+};
 
-$(".add-to-watch").click(() => {
-  console.log("click");
-});
+// $(".ingredients").click(".add-to-watch", e => {
+//   const watchIngredient = e.target.getAttribute("data-");
+// });
 
 $(".ingredients").on("click", ".delete-ingredient", e => {
   const mealID = e.target.getAttribute("data-meal");
   const deleteName = e.target.getAttribute("data-name");
+  $(this.ingredientsList).html();
   const deleteObject = {
     mealId: mealID,
     name: deleteName
@@ -107,7 +114,7 @@ $(".ingredients").on("click", ".delete-ingredient", e => {
     body: JSON.stringify(deleteObject)
   })
     .then(() => {
-      window.location.href = "/meals";
+      $(this).empty();
     })
     .catch(err => console.error(err));
 });
