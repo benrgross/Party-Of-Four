@@ -14,7 +14,10 @@ console.log(userId);
 // click event for creating a meal
 $("#create-meal").click(() => {
   console.log(userId);
-  $(".addMeal").toggle();
+
+  $(".addMeal").hide(500);
+  $(".ingredientAdd").show(500);
+
   $.post("/api/meals", {
     id: userId
   }).then(id => console.log(id));
