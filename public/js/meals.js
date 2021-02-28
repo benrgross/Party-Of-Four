@@ -48,7 +48,7 @@ function postIngredient(mealId) {
       id: mealId,
       name: ingredientName
     })
-      .then(result => console.log(result), (window.location.href = "/meals"))
+      .then(result => console.log(result))
       .then(() => {
         displayToPage(mealId);
       })
@@ -69,7 +69,7 @@ $(document).ready(() => {
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
-        .addClass("add-to-watch button is-info is-outlined");
+        .addClass("add-to-watch button is-warning");
 
       const ingredientDelBtn = $("<button>")
         .text("Delete")
