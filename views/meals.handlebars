@@ -9,50 +9,49 @@
     </a>
   </div>
 </nav>
-<div style="margin-left: 25px;" class="columns">
+<div class="columns">
   <div class="column is-one-quarter">
+    <h4 class="title is-4">What would you like to do?</h4>
     <aside class="menu">
       <ul class="menu-list">
-        <li><a>Home</a></li>
+        <li><a href="/members">Home</a></li>
         <p class="menu-label">Meals</p>
-        <li><a href="/meals">Input Your Meals</a></li>
-        <li><a>Past Meals</a></li>
+        <li><a class="is-active" href="/meals">Input Your Meals</a></li>
+        <li><a href="/past-meals">Past Meals</a></li>
       </ul>
       <p class="menu-label">
         Watchlist
       </p>
       <ul class="menu-list">
         <ul>
-          <a class="is-active">Healthy Choices</a>
+          <a>Healthy Choices</a>
           <li><a>Nutrition Info</a></li>
-          <li><a>Foods to Watchout for</a></li>
-          <li><a>Add a member</a></li>
+          <li><a href="/watchlist">Foods to Watchout for</a></li>
         </ul>
     </aside>
   </div>
 
-  <section class="column is-three-quarters">
-    <h1 style="margin-bottom: 100px;">Welcome <span class="title member-name"></span></h1>
-      <br>
+    <section class="column is-three-quarters">
       <div class="box addMeal">
-        <div class="field">
-          <h2 class="title">Enter your last meal and some of its ingredients:</h2>
-          <button class="button is-medium is-link is-light" id="create-meal">Add Meal</button>
+        <div class="field add-meal">
+          <h3 class="title is-3">What was your last meal?</h3>
+          <button class="button is-large is-link is-light" id="create-meal">Add Meal</button>
         </div>
       </div>
       <br>
       <div class= "box ingredientAdd" style="display: none">
-        <h2 class="title">Enter ingredients you'd like to track:</h2>
-            <div>
-              <input class="input addIngredient" type="input" placeholder="Enter an ingredient"><button type="submit" class="button is-link is-light add-ingredient">Add An Ingredient</button>
-            </div>
+        <h3 class="title is-3">Enter ingredients from it to track:</h3>
+            <form id="ingredients-form">
+              <input class="input addIngredient" type="input" placeholder="Enter an ingredient"><button type="submit" class="button is-medium is-link is-light add-ingredient">Add An Ingredient</button>
+            </form>
           </div>
+          <div class="box ingredients"></div>
       </div>
-      <div class="ingredients"></div>
-  </section>
+    </section>
 </div>
 
 
 
 
 <script type="text/javascript" src="js/meals.js"></script>
+<script type="text/javascript" src="js/members.js"></script>

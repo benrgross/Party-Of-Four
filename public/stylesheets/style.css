@@ -1,41 +1,107 @@
 * {
   box-sizing: border-box;
+  font-size: large;
 }
+
+/* body {
+  background-color:;
+} */
 
 form.signup,
 form.login {
-  margin-top: 50px;
+  margin-top: 5%;
+}
+
+#email-input,
+#login-input,
+#password-input {
+  width: 90%;
 }
 
 nav {
   background-color: #3298dc;
 }
 
+.navbar {
+  border-bottom: solid 2px #bf0a0a;
+  box-shadow: 2px 1px 15px gray;
+}
+
 .sign-up {
-  margin-top: 100px;
-  margin-bottom: 100px;
-  border: 5px solid #bf0a0b
+  /* margin-left: 15px; */
+  padding: 25px;
+  margin: 15% 5% 30% 5%;
+  border: 4px solid #bf0a0b;
+  border-radius: 5px;
+  box-shadow: 10px 10px 15px lightgray;
+}
+
+.login-link {
+  color: #369add;
+}
+
+h1 {
+  margin: 2%;
 }
 
 h6 {
+  text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+h4 {
+  text-align: center;
+}
+
+.is-three-quarters {
+  margin: auto;
 }
 
 .is-one-quarter {
+  margin-top: 2%;
+  margin-left: 2.5%;
   box-shadow: 2px 1px 15px lightgray;
   border-radius: 5px;
 }
 
+.past-meals {
+  margin-top: 2%;
+}
+
 .is-warning,
 .is-danger {
-  margin: 3px;
+  margin-top: 3px;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .box {
+  display: flex;
+  justify-content: center;
   margin: auto;
   width: 85%;
   padding: 10%;
+}
+
+.watchlist {
+  margin-top: 2%;
+}
+
+.addMeal {
+  margin-top: 2%;
+}
+
+.add-meal {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-items: center;
+}
+
+#create-meal {
+  margin-left: 20%;
+  width: 60%;
 }
 
 .add-ingredient {
@@ -46,3 +112,12 @@ h6 {
   width: 80%;
 } */
 
+.ingredientAdd {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+}

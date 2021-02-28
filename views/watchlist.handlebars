@@ -14,7 +14,7 @@
     <h4 class="title is-4">What would you like to do?</h4>
     <aside class="menu">
       <ul class="menu-list">
-        <li><a class="is-active" href="/members">Home</a></li>
+        <li><a href="/members">Home</a></li>
         <p class="menu-label">Meals</p>
         <li><a href="/meals">Input Your Meals</a></li>
         <li><a href="/past-meals">Past Meals</a></li>
@@ -26,19 +26,15 @@
         <ul>
           <a>Healthy Choices</a>
           <li><a>Nutrition Info</a></li>
-          <li><a href="/watchlist">Foods to Watchout for</a></li>
+          <li><a class="is-active" href="/watchlist">Foods to Watchout for</a></li>
         </ul>
     </aside>
   </div>
 
     <section class="column is-three-quarters">
-      <h1 class="title is-1">Welcome <span class="title member-name"></span></h1>
-
-      <div class="box">
-        <h2 class="title is-2">Latest Meal:</h2>
-          <div class="recent-meal"></div>
-      </div>
+      <div class="box" id="watchlist"></div>
     </section>
 </div>
 
+<script type="text/javascript" src="js/meals.js"></script>
 <script type="text/javascript" src="js/members.js"></script>
