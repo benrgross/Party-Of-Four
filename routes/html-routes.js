@@ -40,3 +40,7 @@ Router.get("/watchlist", isAuthenticated, (req, res) => {
 });
 
 module.exports = Router;
+
+Router.get("/watchlist", isAuthenticated, (req, res) => {
+  res.render("watchlist", res);
+});

@@ -4,8 +4,7 @@ const bcrypt = require("bcryptjs");
 module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define("User", {
     // The email cannot be null, and must be a proper email before creation
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
+
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,14 +21,9 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   User.associate = models => {
-    models.User.hasMany(models.Meal);
-  };
-
-  User.associate = models => {
     models.User.belongsToMany(models.Ingredient, {
       through: {
         model: "WatchList",
-        as: "userWatchList",
         unique: false
       },
       constraints: false,

@@ -84,6 +84,17 @@ Router.route("/api/lastmeal").get((req, res) => {
   });
 });
 
+// get query for MealIngredient list
+Router.route("/api/allmeals").get((req, res) => {
+  console.log(res);
+  db.Meal.findAll({
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
+    order: [["createdAt", "DESC"]]
+  }).then(ingredient => {
+    return res.json(ingredient);
+  });
+});
+
 // user id from params.
 Router.route("/api/meals/:userId").get((req, res) => {
   console.log(req.params);
@@ -159,8 +170,8 @@ Router.post("/api/ingredients", async (req, res) => {
 
 //get query for WatchList
 Router.route("/api/watchlist").get((req, res) => {
-  db.User.findAll({
-    include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
+  db.Ingredient.findAll({
+    include: [{ model: db.User, attributes: ["id"] }]
   }).then(ingredient => {
     return res.json(ingredient);
   });
@@ -180,12 +191,11 @@ Router.post("/api/watchlist", async (req, res) => {
     }
   });
 
-  const ingredient = await db.Ingredient.findOrCreate({
+  const ingredient = await db.Ingredient.findOne({
     where: { name: req.body.name }
   });
   try {
-    const watchList = await user.addIngredient(ingredient);
-
+    const watchList = await ingredient.addUser(user);
     res.json(watchList);
   } catch (err) {
     throw new Error(err);

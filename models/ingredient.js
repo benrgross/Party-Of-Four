@@ -20,18 +20,17 @@ module.exports = (sequelize, DataTypes) => {
       constraints: false,
       foreignKey: "IngredientId"
     });
-
-    Ingredient.associate = models => {
-      models.Ingredient.belongsToMany(models.User, {
-        through: {
-          model: "WatchList",
-          as: "userWatchList",
-          unique: false
-        },
-        constraints: false,
-        foreignKey: "IngredientId"
-      });
-    };
   };
+  Ingredient.associate = models => {
+    models.Ingredient.belongsToMany(models.User, {
+      through: {
+        model: "WatchList",
+        unique: false
+      },
+      constraints: false,
+      foreignKey: "IngredientId"
+    });
+  };
+
   return Ingredient;
 };

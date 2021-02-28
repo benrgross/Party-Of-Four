@@ -1,12 +1,5 @@
 module.exports = sequelize => {
-  const Meal = sequelize.define("Meal", {
-    // date: {
-    //   type: DataTypes.INTEGER
-    // },
-    // time: {
-    //   type: DataTypes.INTEGER
-    // }
-  });
+  const Meal = sequelize.define("Meal", {});
   Meal.associate = models => {
     models.Meal.belongsTo(models.User);
   };
