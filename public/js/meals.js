@@ -33,6 +33,7 @@ $(".add-ingredient").click(e => {
     const mealId = data.id;
     console.log(data);
     postIngredient(mealId);
+    document.getElementById("ingredients-form").reset();
   });
 });
 
