@@ -82,7 +82,7 @@ const displayToPage = () => {
       const ingredientDelBtn = $("<button>")
         .text("Delete")
         .attr("id", "deleteBtn")
-        .addClass("delete-ingredient button is-danger")
+        .addClass("delete-ingredient button is-danger is-outlined")
         .attr("data-meal", data.id)
         .attr("data-name", data.Ingredients[i].name);
 
