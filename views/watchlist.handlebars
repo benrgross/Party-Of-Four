@@ -1,16 +1,40 @@
-<h1 id="watchlist">Wtachlist</h1>
+<nav style="background-color: #f0fbff" class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <img src="/images/logo.png" alt="">
 
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+<div class="columns">
+  <div class="column is-one-quarter">
+    <h4 class="title is-4">What would you like to do?</h4>
+    <aside class="menu">
+      <ul class="menu-list">
+        <li><a href="/members">Home</a></li>
+        <p class="menu-label">Meals</p>
+        <li><a href="/meals">Input Your Meals</a></li>
+        <li><a href="/past-meals">Past Meals</a></li>
+      </ul>
+      <p class="menu-label">
+        Watchlist
+      </p>
+      <ul class="menu-list">
+        <ul>
+          <a>Healthy Choices</a>
+          <li><a>Nutrition Info</a></li>
+          <li><a class="is-active" href="/watchlist">Foods to Watchout for</a></li>
+        </ul>
+    </aside>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
+    <section class="column is-three-quarters">
+      <div class="box" id="watchlist"></div>
+    </section>
+</div>
 
 <script type="text/javascript" src="js/watchlist.js"></script>
+

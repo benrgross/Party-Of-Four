@@ -33,6 +33,7 @@ $(".add-ingredient").click(e => {
     const mealId = data.id;
     console.log(data);
     postIngredient(mealId);
+    document.getElementById("ingredients-form").reset();
   });
 });
 
@@ -82,7 +83,7 @@ const displayToPage = () => {
       const ingredientDelBtn = $("<button>")
         .text("Delete")
         .attr("id", "deleteBtn")
-        .addClass("delete-ingredient button is-danger")
+        .addClass("delete-ingredient button is-danger is-outlined")
         .attr("data-meal", data.id)
         .attr("data-name", data.Ingredients[i].name);
 
