@@ -42,6 +42,11 @@ h6 {
   margin-top: 10px;
 }
 
+.ingredients {
+  float: right;
+  margin-right: 2%;
+}
+
 /* .addIngredient {
   width: 80%;
 } */
