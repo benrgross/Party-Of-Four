@@ -9,11 +9,12 @@
     </a>
   </div>
 </nav>
-<div style="margin-left: 25px;" class="columns">
+<div class="columns">
   <div class="column is-one-quarter">
+    <h4 class="title is-4">What would you like to do?</h4>
     <aside class="menu">
       <ul class="menu-list">
-        <li><a>Home</a></li>
+        <li><a class="is-active" href="/members">Home</a></li>
         <p class="menu-label">Meals</p>
         <li><a href="/meals">Input Your Meals</a></li>
         <li><a>Past Meals</a></li>
@@ -23,60 +24,22 @@
       </p>
       <ul class="menu-list">
         <ul>
-          <a class="is-active">Healthy Choices</a>
+          <a>Healthy Choices</a>
           <li><a>Nutrition Info</a></li>
           <li><a>Foods to Watchout for</a></li>
           <li><a>Add a member</a></li>
         </ul>
     </aside>
   </div>
-  <div style="margin-right: 100px;" class="column">
 
-    <h1 style="margin-bottom: 100px;">Welcome <span class="member-name"></span></h1>
-    <div class="field">
-      <label class="label">Breakfast Meal time: </label>
-      <div class="control">
-        <input class="input" type="breakfast" placeholder="e.g pancake">
+    <section class="column is-three-quarters">
+      <h1 class="title is-1">Welcome <span class="title member-name"></span></h1>
+
+      <div class="box">
+        <h2 class="title is-2">Latest Meal:</h2>
+          <div class="recent-meal"></div>
       </div>
-    </div>
-    <div class="field">
-      <label class="label">Lunch Meal time: </label>
-      <div class="control">
-        <input class="input" type="lunch" placeholder="e.g sandwich">
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Dinner Meal time: </label>
-      <div class="control">
-        <input class="input" type="dinner" placeholder="e.g pancake">
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Ingredient1: </label>
-      <div class="control">
-        <input class="input" type="ingredient" placeholder="e.g pancake">
-      </div>
-
-      <div class="field">
-        <label class="label">Ingredient2: </label>
-        <div class="control">
-          <input class="input" type="ingredient" placeholder="e.g pancake">
-        </div>
-
-        <div class="field">
-          <label class="label">Ingredient3: </label>
-          <div class="control">
-            <input class="input" type="ingredient" placeholder="e.g pancake">
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
+    </section>
 </div>
-
-
 
 <script type="text/javascript" src="js/members.js"></script>

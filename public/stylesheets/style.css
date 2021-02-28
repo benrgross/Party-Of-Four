@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+body {
+  margin: 0;
+}
 
 form.signup,
 form.login {
@@ -11,10 +14,19 @@ nav {
   background-color: #3298dc;
 }
 
+.navbar {
+  border-bottom: solid 2px #bf0a0a;
+  box-shadow: 2px 1px 15px gray;
+}
+
 .sign-up {
   margin-top: 100px;
   margin-bottom: 100px;
   border: 5px solid #bf0a0b
+}
+
+h1 {
+  margin: 2%;
 }
 
 h6 {
@@ -22,7 +34,17 @@ h6 {
   justify-content: center;
 }
 
+h4 {
+  text-align: center;
+}
+
+.is-three-quarters {
+  margin: auto;
+}
+
 .is-one-quarter {
+  margin-top: 2%;
+  margin-left: 2%;
   box-shadow: 2px 1px 15px lightgray;
   border-radius: 5px;
 }
@@ -33,21 +55,22 @@ h6 {
 }
 
 .box {
+  display: flex;
+  justify-content: center;
   margin: auto;
   width: 85%;
   padding: 10%;
+}
+
+.addMeal {
+  margin-top: 2%;
 }
 
 .add-ingredient {
   margin-top: 10px;
 }
 
-.ingredients {
-  float: right;
-  margin-right: 2%;
-}
-
-/* .addIngredient {
+.addIngredient {
   width: 80%;
-} */
+}
 
