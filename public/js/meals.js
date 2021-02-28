@@ -28,9 +28,7 @@ $(".add-ingredient").click(e => {
   e.preventDefault();
   console.log("click");
   console.log(userId);
-
-  const ingredientName = $(".addIngredient").val();
-  console.log(ingredientName);
+  // get request for most current meal id
   $.get("api/mealId").then(data => {
     const mealId = data.id;
     console.log(data);
@@ -38,6 +36,7 @@ $(".add-ingredient").click(e => {
   });
 });
 
+// post the ingredient name
 function postIngredient(mealId) {
   const ingredientName = $(".addIngredient")
     .val()
@@ -61,6 +60,7 @@ function postIngredient(mealId) {
   }
 }
 
+// get request for last meal array of ingredients
 $(document).ready(() => {
   $.get("/api/lastmeal").then(data => {
     console.log("data", data);
