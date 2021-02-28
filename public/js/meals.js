@@ -74,7 +74,7 @@ const displayToPage = () => {
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
-        .addClass("add-to-watch button is-info is-outlined")
+        .addClass("add-to-watch button is-warning")
         .attr("data-meal", data.id)
         .attr("data-name", data.Ingredients[i].name);
 
