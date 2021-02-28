@@ -30,4 +30,13 @@ Router.get("/members", isAuthenticated, (req, res) => {
 Router.get("/meals", isAuthenticated, (req, res) => {
   res.render("meals", res);
 });
+
+Router.get("/past-meals", isAuthenticated, (req, res) => {
+  res.render("past-meals", res);
+});
+
+Router.get("/watchlist", isAuthenticated, (req, res) => {
+  res.render("watchlist", res);
+});
+
 module.exports = Router;
