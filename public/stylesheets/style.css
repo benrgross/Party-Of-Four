@@ -9,7 +9,13 @@
 
 form.signup,
 form.login {
-  margin-top: 50px;
+  margin-top: 5%;
+}
+
+#email-input,
+#login-input,
+#password-input {
+  width: 90%;
 }
 
 nav {
@@ -22,6 +28,7 @@ nav {
 }
 
 .sign-up {
+  /* margin-left: 15px; */
   padding: 25px;
   margin: 15% 5% 30% 5%;
   border: 4px solid #bf0a0b;
