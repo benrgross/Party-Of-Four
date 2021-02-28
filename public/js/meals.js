@@ -65,6 +65,7 @@ $(document).ready(() => {
   displayToPage();
 });
 
+//function to ingredient to meal list page
 const displayToPage = () => {
   $(".ingredients").empty();
   $.get("/api/lastmeal").then(data => {
@@ -95,9 +96,16 @@ const displayToPage = () => {
   });
 };
 
-// $(".ingredients").click(".add-to-watch", e => {
-//   const watchIngredient = e.target.getAttribute("data-");
-// });
+// adds ingredient to watch list
+$(".ingredients").click(".add-to-watch", e => {
+  $.get("/api/user_data").then(data => {
+    const watchIngredient = e.target.getAttribute("data-name");
+    $.post("/api/watchlist", {
+      userId: data.id,
+      name: watchIngredient
+    }).then(result => console.log(result));
+  });
+});
 
 $(".ingredients").on("click", ".delete-ingredient", e => {
   const mealID = e.target.getAttribute("data-meal");
