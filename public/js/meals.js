@@ -66,6 +66,7 @@ $(document).ready(() => {
 });
 
 const displayToPage = () => {
+  $(".ingredients").empty();
   $.get("/api/lastmeal").then(data => {
     //loop through array of ingredients and creat elements on the page
     for (let i = 0; i < data.Ingredients.length; i++) {
@@ -101,7 +102,7 @@ const displayToPage = () => {
 $(".ingredients").on("click", ".delete-ingredient", e => {
   const mealID = e.target.getAttribute("data-meal");
   const deleteName = e.target.getAttribute("data-name");
-  $(this.ingredientsList).html();
+
   const deleteObject = {
     mealId: mealID,
     name: deleteName
@@ -114,7 +115,7 @@ $(".ingredients").on("click", ".delete-ingredient", e => {
     body: JSON.stringify(deleteObject)
   })
     .then(() => {
-      $(this).empty();
+      displayToPage();
     })
     .catch(err => console.error(err));
 });

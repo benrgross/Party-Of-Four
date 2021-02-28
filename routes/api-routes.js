@@ -139,7 +139,11 @@ Router.post("/api/ingredients", async (req, res) => {
     }
   } else {
     try {
-      meal = await db.Meal.create({});
+      meal = await db.Meal.findOne({
+        where: {
+          id: req.body.id
+        }
+      });
       ingredient = await db.Ingredient.create({
         name: req.body.name
       });
