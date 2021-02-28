@@ -4,7 +4,7 @@ module.exports = {
   development: {
     username: "root",
     password: process.env.DB_PASS,
-    database: "passport_demo",
+    database: "pipe_db",
     host: "127.0.0.1",
     dialect: "mysql"
   },
