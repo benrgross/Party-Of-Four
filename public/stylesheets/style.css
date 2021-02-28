@@ -89,10 +89,6 @@ h4 {
   padding: 10%;
 }
 
-.watchlist {
-  margin-top: 2%;
-}
-
 .addMeal {
   margin-top: 2%;
 }
@@ -107,6 +103,13 @@ h4 {
 #create-meal {
   margin-left: 20%;
   width: 60%;
+}
+
+#watchlist {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-items: center;
 }
 
 .add-ingredient {
