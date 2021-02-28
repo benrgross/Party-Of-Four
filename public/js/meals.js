@@ -106,8 +106,10 @@ $(".ingredients").click(".add-to-watch", e => {
       name: watchIngredient
     }).then(result => console.log(result));
   });
+  alert("Ingredient added to your Watch List");
 });
 
+// deletes item from ingredient list
 $(".ingredients").on("click", ".delete-ingredient", e => {
   const mealID = e.target.getAttribute("data-meal");
   const deleteName = e.target.getAttribute("data-name");

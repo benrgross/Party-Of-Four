@@ -30,7 +30,7 @@ nav {
 .sign-up {
   /* margin-left: 15px; */
   padding: 25px;
-  margin: 15% 5% 30% 5%;
+  margin: 10% 5% 30% 5%;
   border: 4px solid #bf0a0b;
   border-radius: 5px;
   box-shadow: 10px 10px 15px lightgray;
@@ -45,6 +45,7 @@ h1 {
 }
 
 h6 {
+  margin: 2px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -52,6 +53,10 @@ h6 {
 
 h4 {
   text-align: center;
+}
+
+.menu-title {
+  margin-top: 2%;
 }
 
 .is-three-quarters {
@@ -71,7 +76,7 @@ h4 {
 
 .is-warning,
 .is-danger {
-  margin-top: 3px;
+  margin-top: 2%;
   margin-left: 15%;
   margin-right: 15%;
 }
