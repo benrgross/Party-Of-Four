@@ -98,7 +98,7 @@ const displayToPage = () => {
 };
 
 // adds ingredient to watch list
-$(".ingredients").click(".add-to-watch", e => {
+$(".ingredients").on("click", ".add-to-watch", e => {
   $.get("/api/user_data").then(data => {
     const watchIngredient = e.target.getAttribute("data-name");
     $.post("/api/watchlist", {
@@ -106,7 +106,7 @@ $(".ingredients").click(".add-to-watch", e => {
       name: watchIngredient
     }).then(result => console.log(result));
   });
-  alert("Ingredient added to your Watch List");
+  alert("Ingredient added to your Watch List!");
 });
 
 // deletes item from ingredient list
