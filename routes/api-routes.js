@@ -84,6 +84,17 @@ Router.route("/api/lastmeal").get((req, res) => {
   });
 });
 
+// get query for MealIngredient list
+Router.route("/api/allmeals").get((req, res) => {
+  console.log(res);
+  db.Meal.findAll({
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
+    order: [["createdAt", "DESC"]]
+  }).then(ingredient => {
+    return res.json(ingredient);
+  });
+});
+
 // user id from params.
 Router.route("/api/meals/:userId").get((req, res) => {
   console.log(req.params);
