@@ -14,7 +14,9 @@ console.log(userId);
 // click event for creating a meal
 $("#create-meal").click(() => {
   console.log(userId);
+
   $(".addMeal").toggle();
+
   $.post("/api/meals", {
     id: userId
   }).then(id => console.log(id));
@@ -32,6 +34,27 @@ $(".add-ingredient").click(e => {
     const mealId = data.id;
     console.log(data);
     postIngredient(mealId);
+
+    const ingredientEl = $("<h6>")
+      .addClass("title is-6")
+      .attr("data-meal", mealId)
+      .attr("data-name", ingredientName);
+
+    const watchlistBtn = $("<button>")
+      .text("Add to Watchlist")
+      .addClass("add-to-watch button is-warning");
+
+    const ingredientDelBtn = $("<button>")
+      .text("Delete")
+      .addClass("delete-ingredient button is-danger");
+
+    const newIngredient = ingredientEl
+      .text(ingredientName)
+      .append(watchlistBtn)
+      .append(ingredientDelBtn);
+
+    ingredientsList.append(newIngredient);
+
   });
 });
 
