@@ -20,13 +20,8 @@ $("#create-meal").click(() => {
 
   $.post("/api/meals", {
     id: userId
-  }).catch(error => {
-    console.error("Error:", error);
-    alert(error);
-  });
+  }).then(id => console.log(id));
 });
-
-let mealId;
 
 // click event for adding to list of ingredients
 $(".add-ingredient").click(e => {
@@ -36,60 +31,87 @@ $(".add-ingredient").click(e => {
 
   const ingredientName = $(".addIngredient").val();
   console.log(ingredientName);
-  $.get(`/api/meals/${userId}`).then(data => {
+  $.get("api/mealId").then(data => {
+    const mealId = data.id;
     console.log(data);
-    mealId = data.id;
     postIngredient(mealId);
-
-    const ingredientEl = $("<h6>")
-      .addClass("title is-6")
-      .attr("data-meal", mealId)
-      .attr("data-name", ingredientName);
-
-    const watchlistBtn = $("<button>")
-      .text("Add to Watchlist")
-      .addClass("add-to-watch button is-warning");
-
-    const ingredientDelBtn = $("<button>")
-      .text("Delete")
-      .addClass("delete-ingredient button is-danger");
-
-    const newIngredient = ingredientEl
-      .text(ingredientName)
-      .append(watchlistBtn)
-      .append(ingredientDelBtn);
-
-    ingredientsList.append(newIngredient);
   });
-  //.then(mealId => console.log(mealId));
 });
 
-// send ingredient to api route
 function postIngredient(mealId) {
   const ingredientName = $(".addIngredient")
     .val()
     .trim()
     .toLowerCase();
-  console.log(ingredientName);
-  $.post("/api/ingredients", {
-    id: mealId,
-    name: ingredientName
-  })
-    .then(data => {
-      console.log(data);
+  if (ingredientName !== "") {
+    $.post("/api/ingredients", {
+      id: mealId,
+      name: ingredientName
     })
-    .catch(error => {
-      console.error("Error:", error);
-      alert(error);
-    });
+      .then(result => console.log(result), (window.location.href = "/meals"))
+      .then(() => {
+        displayToPage(mealId);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert(error);
+      });
+  } else {
+    alert("please input an ingredient");
+  }
 }
 
-// // $("delete-ingredient").click(() => {
-//   $.delete(`/api/deletefrommeal`, {
-//       le mealID = $(this).attr(data-mealId)
-//       let text = $(this).siblings(".text").val();
-//       deleteName = $(this).text()
-//       id: mealId,
-//       name:
-//   };
-// });
+$(document).ready(() => {
+  $.get("/api/lastmeal").then(data => {
+    console.log("data", data);
+    for (let i = 0; i < data.Ingredients.length; i++) {
+      const ingredientEl = $("<h6>").addClass("title is-6");
+
+      const watchlistBtn = $("<button>")
+        .text("Add to Watchlist")
+        .addClass("add-to-watch button is-info is-outlined");
+
+      const ingredientDelBtn = $("<button>")
+        .text("Delete")
+        .attr("id", "deleteBtn")
+        .addClass("delete-ingredient button is-danger")
+        .attr("data-meal", data.id)
+        .attr("data-name", data.Ingredients[i].name);
+
+      const newIngredient = ingredientEl
+        .text(data.Ingredients[i].name)
+        .append(watchlistBtn)
+        .append(ingredientDelBtn);
+
+      ingredientsList.append(newIngredient);
+    }
+  });
+});
+
+$(".add-to-watch").click(() => {
+  console.log("click");
+});
+
+$(".ingredients").on("click", ".delete-ingredient", e => {
+  const mealID = e.target.getAttribute("data-meal");
+  const deleteName = e.target.getAttribute("data-name");
+  const deleteObject = {
+    mealId: mealID,
+    name: deleteName
+  };
+  fetch("/api/deletefrommeal", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(deleteObject)
+  })
+    .then(() => {
+      window.location.href = "/meals";
+    })
+    .catch(err => console.error(err));
+});
+
+// when you load the page you see your last meal
+// when you click add ingredient, the div empties.
+//the new ingredient is
