@@ -177,7 +177,6 @@ Router.post("/api/watchlist", async (req, res) => {
   });
 
   const ingredient = await db.Ingredient.findOrCreate({
-    defaults: { name: req.body.name },
     where: { name: req.body.name }
   });
   try {
