@@ -80,7 +80,7 @@ $(document).ready(() => {
       getTime3.push("pm");
     } else {
       hour = getTime3[0];
-      getTime3.push("pm");
+      getTime3.push("am");
     }
 
     const time3 = hour + ":" + getTime3[1] + getTime3[3];
