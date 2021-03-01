@@ -33,7 +33,7 @@ $(document).ready(() => {
           dateArr1.push(dateArr1.shift());
           const date1 = dateArr1.join("/");
 
-          const watchlistItem = $("<h6>").addClass("title is-6 ");
+          const watchlistItem = $("<h4>").addClass("title is-4 ");
           const date = $("<h4>")
             .addClass("title is-4")
             .text(date1);

@@ -98,7 +98,7 @@ const displayToPage = () => {
 
     console.log("data", data);
     for (let i = 0; i < data.Ingredients.length; i++) {
-      const ingredientEl = $("<h6>").addClass("title is-6");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
