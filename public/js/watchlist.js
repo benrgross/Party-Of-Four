@@ -47,9 +47,7 @@ $(document).ready(() => {
 
           watchlistItem
             .text(
-              `
-              ${ingredient.name.charAt(0).toUpperCase() +
-                ingredient.name.slice(1)}   `
+              ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1)
             )
             .append(date, ingredientDelBtn);
 
