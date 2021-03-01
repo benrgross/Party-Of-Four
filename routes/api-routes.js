@@ -215,7 +215,7 @@ Router.delete("/api/deletefromwatchlist", async (req, res) => {
     }
   });
   try {
-    const deleteWatch = await user.removeIngredient(ingredient);
+    const deleteWatch = await ingredient.removeUser(user);
     res.json(deleteWatch);
   } catch (err) {
     throw new Error(err);

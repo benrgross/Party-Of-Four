@@ -41,30 +41,6 @@ $(document).ready(() => {
       });
     });
 
-  // function to add ingredient to watchlist page
-  const displayToPage = () => {
-    $("#watchlist").empty();
-    $.get("/api/watchlist").then(data => {
-      //loop through array of ingredients and creat elements on the page
-      for (let i = 0; i < data.Ingredients.length; i++) {
-        const ingredientEl = $("<h6>").addClass("title is-6");
-
-        const ingredientDelBtn = $("<button>")
-          .text("Delete")
-          .attr("id", "deleteBtn")
-          .addClass("delete-ingredient button is-danger is-outlined")
-          .attr("data-user", data.id)
-          .attr("data-name", data.Ingredients[i].name);
-
-        const newIngredient = ingredientEl
-          .text(data.Ingredients[i].name)
-          .append(ingredientDelBtn);
-
-        ingredientsList.append(newIngredient);
-      }
-    });
-  };
-
   // deletes item from watchlist
   $("#watchlist").on("click", ".delete-ingredient", e => {
     const userID = e.target.getAttribute("data-user");
@@ -82,7 +58,7 @@ $(document).ready(() => {
       body: JSON.stringify(deleteObject)
     })
       .then(() => {
-        displayToPage();
+        location.reload("/watchlist");
       })
       .catch(err => console.error(err));
   });
