@@ -1,3 +1,5 @@
+let offset = 0;
+
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
@@ -9,6 +11,8 @@ $(document).ready(() => {
     const meal3 = last3.slice(2, 3);
 
     const dataDate1 = meal1[0].createdAt;
+    console.log("created", dataDate1);
+
     const orderDate1 = dataDate1.substr(0, 10);
     const dateArr1 = orderDate1.split("-");
     dateArr1.push(dateArr1.shift());
@@ -20,12 +24,12 @@ $(document).ready(() => {
       .split(":");
 
     let hour;
-    if (Number(getTime1[0]) > 12) {
-      hour = (Number(getTime1[0]) - 12).toString();
+    if (Number(getTime1[0] - 5) > 12) {
+      hour = (Number(getTime1[0] - 5) - 12).toString();
       getTime1.push("pm");
     } else {
-      hour = getTime1[0];
-      getTime1.push("pm");
+      hour = getTime1[0] - 5;
+      getTime1.push("am");
     }
 
     const time1 = hour + ":" + getTime1[1] + getTime1[3];
@@ -48,12 +52,12 @@ $(document).ready(() => {
       .slice(0, 8)
       .split(":");
 
-    if (Number(getTime2[0]) > 12) {
-      hour = (Number(getTime2[0]) - 12).toString();
+    if (Number(getTime2[0] - 5) > 12) {
+      hour = (Number(getTime2[0] - 5) - 12).toString();
       getTime2.push("pm");
     } else {
-      hour = getTime2[0];
-      getTime2.push("pm");
+      hour = getTime2[0] - 5;
+      getTime2.push("am");
     }
 
     const time2 = hour + ":" + getTime2[1] + getTime2[3];
@@ -75,12 +79,12 @@ $(document).ready(() => {
       .slice(0, 8)
       .split(":");
 
-    if (Number(getTime3[0]) > 12) {
-      hour = (Number(getTime3[0]) - 12).toString();
+    if (Number(getTime3[0] - 5) > 12) {
+      hour = (Number(getTime3[0] - 5) - 12).toString();
       getTime3.push("pm");
     } else {
-      hour = getTime3[0];
-      getTime3.push("pm");
+      hour = getTime3[0] - 5;
+      getTime3.push("am");
     }
 
     const time3 = hour + ":" + getTime3[1] + getTime3[3];
@@ -201,4 +205,9 @@ $(".past-meals").on("click", ".delete-ingredient", e => {
       location.reload();
     })
     .catch(err => console.error(err));
+});
+
+$("#next-three").click(() => {
+  offset -= 3;
+  a$.get(`/api/allmeals/${offset}`).then(data => console.log(data));
 });
