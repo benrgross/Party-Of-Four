@@ -2,20 +2,49 @@ $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   $.get("/api/allmeals").then(data => {
-    console.log(data);
     const last3 = data.slice(0, 3);
-    console.log("last3", last3);
 
-    console.log(data[0].Ingredients[0].name);
     const meal1 = last3.slice(0, 1);
     const meal2 = last3.slice(1, 2);
     const meal3 = last3.slice(2, 3);
 
-    console.log("meall1", meal3);
+    // for (let i = 0; i < last3[0])
+    const dataDate1 = meal1[0].createdAt;
+    const orderDate1 = dataDate1.substr(0, 10);
+    const dateArr1 = orderDate1.split("-");
+    dateArr1.push(dateArr1.shift());
+    const date1 = dateArr1.join("/");
+
+    const dateEl1 = $("<h2>")
+      .addClass("title is-6")
+      .text(date1);
+    $("#meal-1").append(dateEl1);
+
+    const dataDate2 = meal2[0].createdAt;
+    const orderDate2 = dataDate2.substr(0, 10);
+    const dateArr2 = orderDate2.split("-");
+    dateArr2.push(dateArr2.shift());
+    const date2 = dateArr2.join("/");
+    console.log("date2", date2);
+
+    const dateEl2 = $("<h2> ")
+      .addClass("title is-6")
+      .text(date2);
+    $("#meal-2").append(dateEl2);
+
+    const dataDate3 = meal3[0].createdAt;
+    const orderDate3 = dataDate3.substr(0, 10);
+    const dateArr3 = orderDate3.split("-");
+    dateArr3.push(dateArr3.shift());
+    const date3 = dateArr3.join("/");
+
+    const dateEl3 = $("<h2>")
+      .addClass("title is-6")
+      .text(date3);
+    $("#meal-3").append(dateEl3);
 
     console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
-      console.log("is this it", meal1[0].Ingredients[i].name);
       const ingredientEl = $("<h6>").addClass("title is-6");
 
       const watchlistBtn = $("<button>")
