@@ -40,8 +40,25 @@ nav {
   color: #369add;
 }
 
+img {
+  border-radius: 45px;
+  margin-top: 5%;
+  margin-left: 5%;
+  transition: all .3s ease-in-out;
+}
+
+img:hover {
+  margin: 2%;
+  box-shadow: 2px 1px 15px gray;
+  transform: scale(1.1);
+}
+
 h1 {
   margin: 2%;
+}
+
+h4 {
+  text-align: center;
 }
 
 h6 {
@@ -51,21 +68,30 @@ h6 {
   flex-direction: column;
 }
 
-h4 {
-  text-align: center;
-}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2%;
+  background-color: #f0fbff;
+  border-top: solid 2px #bf0a0a;
+  box-shadow: 2px 1px 10px gray;
+  }
 
 .menu-title {
   margin-top: 2%;
 }
 
 .is-three-quarters {
-  margin: auto;
+  /* margin: auto; */
+  margin-bottom: 10%;
 }
 
 .is-one-quarter {
   margin-top: 2%;
   margin-left: 2.5%;
+  margin-bottom: 10%;
   box-shadow: 2px 1px 15px lightgray;
   border-radius: 5px;
 }
@@ -106,6 +132,7 @@ h4 {
 }
 
 #watchlist {
+  margin-top: 2%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
