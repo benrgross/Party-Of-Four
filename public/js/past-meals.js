@@ -2,7 +2,6 @@ $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   $.get("/api/allmeals").then(data => {
-    let time;
     const last3 = data.slice(0, 3);
 
     const meal1 = last3.slice(0, 1);
