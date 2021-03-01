@@ -88,7 +88,8 @@ h6 {
   box-shadow: 2px 1px 10px gray;
   }
 
-.menu-title {
+.menu-title,
+.past-meals {
   margin-top: 2%;
 }
 
@@ -103,10 +104,6 @@ h6 {
   margin-bottom: 10%;
   box-shadow: 2px 1px 15px lightgray;
   border-radius: 5px;
-}
-
-.past-meals {
-  margin-top: 2%;
 }
 
 .is-warning,
@@ -139,9 +136,14 @@ h6 {
   justify-items: center;
 }
 
+.last-meal {
+  text-align: center;
+}
+
 #meal-1,
 #meal-2,
-#meal-3 {
+#meal-3,
+#latest-meal {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
