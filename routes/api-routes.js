@@ -183,6 +183,7 @@ Router.route("/api/watchlist").get((req, res) => {
 //     include: [{ model: db.Ingredient, attributes: ["name"] }]
 //   }).then(ingredient => res.json(ingredient));
 // });
+
 // route for adding an ingredient to watchlist
 Router.post("/api/watchlist", async (req, res) => {
   const user = await db.User.findOne({

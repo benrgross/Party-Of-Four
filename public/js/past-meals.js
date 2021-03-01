@@ -93,6 +93,20 @@ $(document).ready(() => {
   });
 });
 
+// adds ingredient to watch list
+$(".past-meals").on("click", ".add-to-watch", e => {
+  $.get("/api/user_data").then(data => {
+    const watchIngredient = e.target.getAttribute("data-name");
+    $.post("/api/watchlist", {
+      userId: data.id,
+      name: watchIngredient
+    }).then(result => {
+      console.log(result);
+      alert(watchIngredient + " added to your Watchlist!");
+    });
+  });
+});
+
 // deletes item from past-meals list
 $(".past-meals").on("click", ".delete-ingredient", e => {
   const mealID = e.target.getAttribute("data-meal");
