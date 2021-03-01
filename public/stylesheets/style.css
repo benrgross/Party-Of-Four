@@ -116,6 +116,10 @@ h6 {
   margin-right: 15%;
 }
 
+.is-danger {
+  margin-bottom: 5%;
+}
+
 .box {
   display: flex;
   justify-content: center;

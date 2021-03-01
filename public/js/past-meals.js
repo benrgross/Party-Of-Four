@@ -92,3 +92,39 @@ $(document).ready(() => {
     }
   });
 });
+
+// adds ingredient to watch list
+$(".past-meals").on("click", ".add-to-watch", e => {
+  $.get("/api/user_data").then(data => {
+    const watchIngredient = e.target.getAttribute("data-name");
+    $.post("/api/watchlist", {
+      userId: data.id,
+      name: watchIngredient
+    }).then(result => {
+      console.log(result);
+      alert(watchIngredient + " added to your Watchlist!");
+    });
+  });
+});
+
+// deletes item from past-meals list
+$(".past-meals").on("click", ".delete-ingredient", e => {
+  const mealID = e.target.getAttribute("data-meal");
+  const deleteName = e.target.getAttribute("data-name");
+
+  const deleteObject = {
+    mealId: mealID,
+    name: deleteName
+  };
+  fetch("/api/deletefrommeal", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(deleteObject)
+  })
+    .then(() => {
+      location.reload();
+    })
+    .catch(err => console.error(err));
+});

@@ -57,7 +57,7 @@ function postIngredient(mealId) {
         alert(error);
       });
   } else {
-    alert("please input an ingredient");
+    alert("Please input an ingredient");
   }
 }
 
@@ -66,7 +66,7 @@ $(document).ready(() => {
   displayToPage();
 });
 
-//function to ingredient to meal list page
+//function to add ingredient to meal list page
 const displayToPage = () => {
   $(".ingredients").empty();
   $.get("/api/lastmeal").then(data => {
@@ -104,9 +104,11 @@ $(".ingredients").on("click", ".add-to-watch", e => {
     $.post("/api/watchlist", {
       userId: data.id,
       name: watchIngredient
-    }).then(result => console.log(result));
+    }).then(result => {
+      console.log(result);
+      alert(watchIngredient + " added to your Watchlist!");
+    });
   });
-  alert("Ingredient added to your Watchlist!");
 });
 
 // deletes item from ingredient list

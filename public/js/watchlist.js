@@ -40,4 +40,26 @@ $(document).ready(() => {
         });
       });
     });
+
+  // deletes item from watchlist
+  $("#watchlist").on("click", ".delete-ingredient", e => {
+    const userID = e.target.getAttribute("data-user");
+    const deleteName = e.target.getAttribute("data-name");
+
+    const deleteObject = {
+      userId: userID,
+      name: deleteName
+    };
+    fetch("/api/deletefromwatchlist", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(deleteObject)
+    })
+      .then(() => {
+        location.reload("/watchlist");
+      })
+      .catch(err => console.error(err));
+  });
 });
