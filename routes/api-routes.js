@@ -74,7 +74,6 @@ Router.route("/api/meals").get((req, res) => {
 
 // find last meal
 Router.route("/api/lastmeal").get((req, res) => {
-  console.log(res);
   db.Meal.findOne({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
     order: [["createdAt", "DESC"]]
