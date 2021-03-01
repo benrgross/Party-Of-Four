@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     inflammatory: {
       allowNull: true,
       type: DataTypes.BOOLEAN
+    },
+    ingredientImg: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   });
 
