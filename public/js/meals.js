@@ -72,7 +72,7 @@ const displayToPage = () => {
   $.get("/api/lastmeal").then(data => {
     //loop through array of ingredients and creat elements on the page
     for (let i = 0; i < data.Ingredients.length; i++) {
-      const ingredientEl = $("<h5>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
