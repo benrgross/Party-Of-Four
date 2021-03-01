@@ -27,6 +27,10 @@ nav {
   box-shadow: 2px 1px 15px gray;
 }
 
+.menu-list a.is-active {
+  background-color: #5facc4;
+}
+
 .sign-up {
   /* margin-left: 15px; */
   padding: 25px;
@@ -144,7 +148,8 @@ h6 {
   background-color: #D4ECF3;
 }
 .button.is-link.is-light:hover {
-  color: black;
+  color: white;
+  border-color: white;
   background-color: #5facc4;
 }
 
