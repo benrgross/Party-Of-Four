@@ -41,7 +41,7 @@ nav {
 }
 
 .login-link {
-  color: #369add;
+  color: #7dbacc;
 }
 
 img {
@@ -55,6 +55,10 @@ img:hover {
   margin: 2%;
   box-shadow: 2px 1px 15px gray;
   transform: scale(1.1);
+}
+
+a {
+ color: #7dbacc; 
 }
 
 h1 {
@@ -106,11 +110,42 @@ h6 {
   border-radius: 5px;
 }
 
-.is-warning,
-.is-danger {
+/* .button.is-warning {
+  background-color: #D4ECF3;
+  border-color: transparent;
+  color: rgba(0,0,0,.7);
+}
+
+.button.is-warning:hover {
+  background-color: #5facc4;
+} */
+
+.is-danger,
+.add-to-watch {
   margin-top: 2%;
   margin-left: 15%;
   margin-right: 15%;
+}
+
+.button.is-link.is-outlined {
+  background-color: transparent;
+  border-color: #7dbacc;
+  color: #7dbacc;
+}
+
+.button.is-link.is-outlined:hover {
+  background-color: #5facc4;
+  border-color: transparent;
+  color: white;
+}
+
+.button.is-link.is-light {
+  color: black;
+  background-color: #D4ECF3;
+}
+.button.is-link.is-light:hover {
+  color: black;
+  background-color: #5facc4;
 }
 
 .is-danger {

@@ -100,7 +100,7 @@ $(document).ready(() => {
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
-        .addClass("add-to-watch button is-warning")
+        .addClass("add-to-watch button is-link is-light")
         .attr("data-meal", meal1[0].Ingredients[i].MealIngredients.MealId)
         .attr("data-name", meal1[0].Ingredients[i].name);
 
@@ -125,7 +125,7 @@ $(document).ready(() => {
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
-        .addClass("add-to-watch button is-warning")
+        .addClass("add-to-watch button is-link is-light")
         .attr("data-meal", meal2[0].Ingredients[i].MealIngredients.MealId)
         .attr("data-name", meal2[0].Ingredients[i].name);
 
@@ -150,7 +150,7 @@ $(document).ready(() => {
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
-        .addClass("add-to-watch button is-warning")
+        .addClass("add-to-watch button is-link is-light")
         .attr("data-meal", meal3[0].Ingredients[i].MealIngredients.MealId)
         .attr("data-name", meal3[0].Ingredients[i].name);
 
