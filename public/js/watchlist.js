@@ -30,7 +30,7 @@ $(document).ready(() => {
           const ingredientDelBtn = $("<button>")
             .text("Delete")
             .attr("id", "deleteBtn")
-            .addClass("delete-ingredient button is-danger")
+            .addClass("delete-ingredient button is-danger is-outlined")
             .attr("data-user", userId)
             .attr("data-name", ingredient.name);
 
