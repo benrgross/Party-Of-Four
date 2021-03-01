@@ -96,7 +96,7 @@ $(document).ready(() => {
 
     console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
-      const ingredientEl = $("<h6>").addClass("title is-6");
+      const ingredientEl = $("<h5>").addClass("title is-5");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -121,7 +121,7 @@ $(document).ready(() => {
 
     for (let i = 0; i < meal2[0].Ingredients.length; i++) {
       console.log("is this it", meal2[0].Ingredients[i].name);
-      const ingredientEl = $("<h6>").addClass("title is-6");
+      const ingredientEl = $("<h5>").addClass("title is-5");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -146,7 +146,7 @@ $(document).ready(() => {
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
       console.log("is this it", meal3[0].Ingredients[i].name);
-      const ingredientEl = $("<h6>").addClass("title is-6");
+      const ingredientEl = $("<h5>").addClass("title is-5");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")

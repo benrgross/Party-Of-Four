@@ -1,11 +1,16 @@
 * {
   box-sizing: border-box;
   font-size: large;
+  font-family: 'Rufina', serif;
 }
 
 /* body {
   background-color:;
 } */
+
+button {
+  font-family: 'Rufina', serif;
+}
 
 form.signup,
 form.login {
@@ -73,7 +78,7 @@ h4 {
   text-align: center;
 }
 
-h6 {
+h5 {
   margin: 2px;
   margin-bottom: 2px;
   text-align: center;
@@ -162,7 +167,7 @@ h6 {
   justify-content: center;
   margin: auto;
   width: 85%;
-  padding: 10%;
+  padding: 5%;
 }
 
 .addMeal {
