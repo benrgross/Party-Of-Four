@@ -88,7 +88,10 @@ const displayToPage = () => {
         .attr("data-name", data.Ingredients[i].name);
 
       const newIngredient = ingredientEl
-        .text(data.Ingredients[i].name)
+        .text(
+          data.Ingredients[i].name.charAt(0).toUpperCase() +
+            data.Ingredients[i].name.slice(1)
+        )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
 

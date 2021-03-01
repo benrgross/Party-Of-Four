@@ -34,7 +34,11 @@ $(document).ready(() => {
             .attr("data-user", userId)
             .attr("data-name", ingredient.name);
 
-          watchlistItem.text(ingredient.name).append(ingredientDelBtn);
+          watchlistItem
+            .text(
+              ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1)
+            )
+            .append(ingredientDelBtn);
 
           $("#watchlist").append(watchlistItem);
         });

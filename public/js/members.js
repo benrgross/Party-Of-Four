@@ -17,7 +17,10 @@ $(document).ready(() => {
     for (let i = 0; i < meal[0].Ingredients.length; i++) {
       console.log("is this it", meal[0].Ingredients[i].name);
       const ingredientEl = $("<h4>").addClass("title is-4");
-      const newIngredient = ingredientEl.text(meal[0].Ingredients[i].name);
+      const newIngredient = ingredientEl.text(
+        meal[0].Ingredients[i].name.charAt(0).toUpperCase() +
+          meal[0].Ingredients[i].name.slice(1)
+      );
 
       $("#latest-meal").append(newIngredient);
     }

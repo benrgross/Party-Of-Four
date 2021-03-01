@@ -112,7 +112,10 @@ $(document).ready(() => {
         .attr("data-name", meal1[0].Ingredients[i].name);
 
       const newIngredient = ingredientEl
-        .text(meal1[0].Ingredients[i].name)
+        .text(
+          meal1[0].Ingredients[i].name.charAt(0).toUpperCase() +
+            meal2[0].Ingredients[i].name.slice(1)
+        )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
 
@@ -137,7 +140,10 @@ $(document).ready(() => {
         .attr("data-name", meal2[0].Ingredients[i].name);
 
       const newIngredient = ingredientEl
-        .text(meal2[0].Ingredients[i].name)
+        .text(
+          meal2[0].Ingredients[i].name.charAt(0).toUpperCase() +
+            meal2[0].Ingredients[i].name.slice(1)
+        )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
 
@@ -162,7 +168,10 @@ $(document).ready(() => {
         .attr("data-name", meal3[0].Ingredients[i].name);
 
       const newIngredient = ingredientEl
-        .text(meal3[0].Ingredients[i].name)
+        .text(
+          meal3[0].Ingredients[i].name.charAt(0).toUpperCase() +
+            meal3[0].Ingredients[i].name.slice(1)
+        )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
 
