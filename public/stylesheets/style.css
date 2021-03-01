@@ -126,6 +126,15 @@ h6 {
   justify-items: center;
 }
 
+#meal-1,
+#meal-2,
+#meal-3 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-items: center;
+}
+
 #create-meal {
   margin-left: 20%;
   width: 60%;
