@@ -74,7 +74,6 @@ Router.route("/api/meals").get((req, res) => {
 
 // find last meal
 Router.route("/api/lastmeal").get((req, res) => {
-  console.log(res);
   db.Meal.findOne({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
     order: [["createdAt", "DESC"]]
@@ -183,6 +182,7 @@ Router.route("/api/watchlist").get((req, res) => {
 //     include: [{ model: db.Ingredient, attributes: ["name"] }]
 //   }).then(ingredient => res.json(ingredient));
 // });
+
 // route for adding an ingredient to watchlist
 Router.post("/api/watchlist", async (req, res) => {
   const user = await db.User.findOne({
@@ -215,7 +215,7 @@ Router.delete("/api/deletefromwatchlist", async (req, res) => {
     }
   });
   try {
-    const deleteWatch = await user.removeIngredient(ingredient);
+    const deleteWatch = await ingredient.removeUser(user);
     res.json(deleteWatch);
   } catch (err) {
     throw new Error(err);

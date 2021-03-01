@@ -1,6 +1,6 @@
 <nav style="background-color: #f0fbff" class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <img src="/images/logo.png" alt="">
+    <a href="/members"><img src="/images/logo.png" alt="Pipe Cleaner Logo"></img></a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
@@ -11,7 +11,7 @@
 </nav>
 <div class="columns">
   <div class="column is-one-quarter">
-    <h4 class="title is-4">What would you like to do?</h4>
+    <h4 class="title is-4 menu-title">What would you like to do?</h4>
     <aside class="menu">
       <ul class="menu-list">
         <li><a href="/members">Home</a></li>
@@ -34,13 +34,13 @@
     <section class="column is-three-quarters">
       <div class="box addMeal">
         <div class="field add-meal">
-          <h3 class="title is-3">What was your last meal?</h3>
+          <h3 class="title is-3">What was in your last meal?</h3>
           <button class="button is-large is-link is-light" id="create-meal">Add Meal</button>
         </div>
       </div>
       <br>
       <div class= "box ingredientAdd" style="display: none">
-        <h3 class="title is-3">Enter ingredients from it to track:</h3>
+        <h3 class="title is-3">Enter ingredients to track:</h3>
             <form id="ingredients-form">
               <input class="input addIngredient" type="input" placeholder="Enter an ingredient"><button type="submit" class="button is-medium is-link is-light add-ingredient">Add An Ingredient</button>
             </form>
@@ -50,8 +50,7 @@
     </section>
 </div>
 
-
-
+<div class="footer"></div>
 
 <script type="text/javascript" src="js/meals.js"></script>
 <script type="text/javascript" src="js/members.js"></script>
