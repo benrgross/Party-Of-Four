@@ -2,6 +2,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const Router = require("express").Router();
+const request = require("request");
 
 // Using the passport.authenticate middleware with our local strategy.
 // If the user has valid login credentials, send them to the members page.
@@ -242,143 +243,141 @@ Router.delete("/api/deletefrommeal", async (req, res) => {
   }
 });
 
-
 // make route for deleting meal?
 
 //adding recipe:
-Router.get("/api/all_recipes", function (req, res) {
-  db.recipes.findAll().then(function (dbRecipe) {
+Router.get("/api/all_recipes", (req, res) => {
+  db.recipes.findAll().then(dbRecipe => {
     res.json(dbRecipe);
   });
 });
 
 // Get one recipe
-Router.get("/api/recipes/:id", function (req, res) {
-  db.recipes.findOne({ where: { id: req.params.id } }).then(function (dbRecipe) {
+Router.get("/api/recipes/:id", (req, res) => {
+  db.recipes.findOne({ where: { id: req.params.id } }).then(dbRecipe => {
     res.json(dbRecipe);
   });
 });
 
 // Create a new recipe
-Router.post("/api/recipes", function (req, res) {
-  db.recipes.create(req.body)
-    .then(function (dbRecipe) {
-      res.json(dbRecipe);
-    });
+Router.post("/api/recipes", (req, res) => {
+  db.recipes.create(req.body).then(dbRecipe => {
+    res.json(dbRecipe);
+  });
 });
 
 // Create a recipe ingredients
-Router.post("/api/recipe_ingredients", function (req, res) {
-  var temp = [];
-  var array = JSON.parse(req.body.ingredients);
+Router.post("/api/recipe_ingredients", (req, res) => {
+  const temp = [];
+  const array = JSON.parse(req.body.ingredients);
 
   array.forEach(element => {
     temp.push(element);
   });
 
   //------------------------------------------------------------------------------------------------------------------------------
-  db.recipeIngredientMeas.bulkCreate(temp)
-    .then(function (dbRecipeIngredient) {
-      res.json(dbRecipeIngredient);
-    });
+  db.recipeIngredientMeas.bulkCreate(temp).then(dbRecipeIngredient => {
+    res.json(dbRecipeIngredient);
+  });
 });
 
-Router.post("/api/nutrition_facts", function (req, res) {
-  var options = {
-    method: 'POST',
-    url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-    headers:
-    {
-      'x-Router-key': '9c7352952e4f2e99216dc39377db47d8',
-      'x-Router-id': '95128c41',
-      'Content-Type': 'Routerlication/json'
+Router.post("/api/nutrition_facts", (req, res) => {
+  const options = {
+    method: "POST",
+    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+    headers: {
+      "x-Router-key": "9c7352952e4f2e99216dc39377db47d8",
+      "x-Router-id": "95128c41",
+      "Content-Type": "Routerlication/json"
     },
-    body:
-    {
+    body: {
       query: req.body.query,
       line_delimited: false,
-      timezone: 'US/Eastern',
+      timezone: "US/Eastern",
       use_raw_foods: false,
       use_branded_foods: false,
-      locale: 'en_US'
+      locale: "en_US"
     },
     json: true
   };
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
+  request(options, (error, response, body) => {
+    if (error) {
+      throw new Error(error);
+    }
 
     res.json(body.foods[0]);
-  })
+  });
 });
 
-
 // PUT route update a recipe
-Router.put("/api/recipes", function (req, res) {
-  db.recipes.update(
-    req.body,
-    {
+Router.put("/api/recipes", (req, res) => {
+  db.recipes
+    .update(req.body, {
       where: {
         id: req.body.id
       }
-    }).then(function (dbRecipe) {
+    })
+    .then(dbRecipe => {
       res.json(dbRecipe);
     });
 });
 
 // Delete a recipe by id
-Router.delete("/api/recipes/:id", function (req, res) {
-  db.recipes.destroy({ where: { id: req.params.id } }).then(function (dbRecipe) {
+Router.delete("/api/recipes/:id", (req, res) => {
+  db.recipes.destroy({ where: { id: req.params.id } }).then(dbRecipe => {
     res.json(dbRecipe);
   });
 });
 
-
 // Create a new Ingredient
-Router.post("/api/ingredient", function (req, res) {
-
-  db.ingredients.findAll({
-    where: {
-      ingredientName: req.body.ingredientName
-    }
-  }).then(function (insertIngre) {
-    if (insertIngre.length > 0) {
-      //Do nothing ingredient exists
-      res.json(insertIngre[0]);
-    } else {
-      //Add Ingredient
-      db.ingredients.create(req.body).then(function (dbIngredient) {
-        res.json(dbIngredient);
-      });
-    }
-  })
+Router.post("/api/ingredient", (req, res) => {
+  db.ingredients
+    .findAll({
+      where: {
+        ingredientName: req.body.ingredientName
+      }
+    })
+    .then(insertIngre => {
+      if (insertIngre.length > 0) {
+        //Do nothing ingredient exists
+        res.json(insertIngre[0]);
+      } else {
+        //Add Ingredient
+        db.ingredients.create(req.body).then(dbIngredient => {
+          res.json(dbIngredient);
+        });
+      }
+    });
 });
 
-
 // Get ingredients
-Router.post("/api/ingredientsList", function (req, res) {
-
-  var options = {
-    method: 'GET',
-    url: 'https://trackapi.nutritionix.com/v2/search/instant',
-    qs: { query: req.body.term, branded: 'false', locale: 'en_US' },
-    headers:
-    {
-      'x-app-key': '9c7352952e4f2e99216dc39377db47d8',
-      'x-app-id': '95128c41'
+Router.post("/api/ingredientsList", (req, res) => {
+  const options = {
+    method: "GET",
+    url: "https://trackapi.nutritionix.com/v2/search/instant",
+    qs: { query: req.body.term, branded: "false", locale: "en_US" },
+    headers: {
+      "x-app-key": "9c7352952e4f2e99216dc39377db47d8",
+      "x-app-id": "95128c41"
     }
   };
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
+  request(options, (error, response, body) => {
+    if (error) {
+      throw new Error(error);
+    }
 
-    var matchIngredients = [];
+    const matchIngredients = [];
 
     JSON.parse(body).common.forEach(element => {
-      var ingredient = {
+      const ingredient = {
         food_name: element.food_name,
-        photo: element.photo.thumb !== null ? element.photo.thumb : "http://placehold.it/50x50"
-      }
+        photo:
+          element.photo.thumb !== null
+            ? element.photo.thumb
+            : "http://placehold.it/50x50"
+      };
       matchIngredients.push(ingredient);
     });
 
@@ -387,34 +386,33 @@ Router.post("/api/ingredientsList", function (req, res) {
 });
 
 // Get meals. avaliables
-Router.post("/api/measures", function (req, res) {
-
-  var options = {
-    method: 'POST',
-    url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-    headers:
-    {
-      'x-app-key': '9c7352952e4f2e99216dc39377db47d8',
-      'x-app-id': '95128c41',
-      'Content-Type': 'application/json'
+Router.post("/api/measures", (req, res) => {
+  const options = {
+    method: "POST",
+    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+    headers: {
+      "x-app-key": "9c7352952e4f2e99216dc39377db47d8",
+      "x-app-id": "95128c41",
+      "Content-Type": "application/json"
     },
-    body:
-    {
+    body: {
       query: req.body.food_name,
       line_delimited: false,
-      timezone: 'US/Eastern',
+      timezone: "US/Eastern",
       use_raw_foods: false,
       use_branded_foods: false,
-      locale: 'en_US'
+      locale: "en_US"
     },
     json: true
   };
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
+  request(options, (error, response, body) => {
+    if (error) {
+      throw new Error(error);
+    }
 
-    var avaliableMeas = [];
-    var meas = [];
+    const avaliableMeas = [];
+    const meas = [];
 
     body.foods[0].alt_measures.forEach(element => {
       //avoid duplicates checking if the value exists
@@ -426,61 +424,63 @@ Router.post("/api/measures", function (req, res) {
       }
     });
 
-    db.measure.findAll({
-      where: {
-        measure_name: {
-          $in: meas
+    db.measure
+      .findAll({
+        where: {
+          measure_name: {
+            $in: meas
+          }
         }
-      }
-    }).then(function (insertMeas) {
-      if (insertMeas.length < avaliableMeas.length) {
-        var temp = [];
+      })
+      .then(insertMeas => {
+        if (insertMeas.length < avaliableMeas.length) {
+          const temp = [];
 
-        meas.forEach(element => {
-          temp.push(element);
-        });
+          meas.forEach(element => {
+            temp.push(element);
+          });
 
-        for (let index = 0; index < insertMeas.length; index++) {
-          var name = insertMeas[index].dataValues.measureName;
-          var existing = temp.indexOf(name);
-          temp.splice(existing, 1)
-          avaliableMeas.splice(existing, 1)
-        }
+          for (let index = 0; index < insertMeas.length; index++) {
+            const name = insertMeas[index].dataValues.measureName;
+            const existing = temp.indexOf(name);
+            temp.splice(existing, 1);
+            avaliableMeas.splice(existing, 1);
+          }
 
-        db.measure.bulkCreate(avaliableMeas)
-          .then(function (measIn) {
-            db.measure.findAll({
-              where: {
-                measure_name: {
-                  $in: meas
+          db.measure.bulkCreate(avaliableMeas).then(measIn => {
+            db.measure
+              .findAll({
+                where: {
+                  measure_name: {
+                    $in: meas
+                  }
                 }
-              }
-            }).then(function (result) {
-              var finalArray = [];
+              })
+              .then(result => {
+                const finalArray = [];
 
-              result.forEach(element => {
-                finalArray.push({
-                  measureId: element.dataValues.measureId,
-                  measureName: element.dataValues.measureName
+                result.forEach(element => {
+                  finalArray.push({
+                    measureId: element.dataValues.measureId,
+                    measureName: element.dataValues.measureName
+                  });
                 });
+                res.jsonp(finalArray);
               });
-              res.jsonp(finalArray);
-            })
           });
-      } else {
-        var finalArray = [];
+        } else {
+          const finalArray = [];
 
-        insertMeas.forEach(element => {
-          finalArray.push({
-            measureId: element.dataValues.measureId,
-            measureName: element.dataValues.measureName
+          insertMeas.forEach(element => {
+            finalArray.push({
+              measureId: element.dataValues.measureId,
+              measureName: element.dataValues.measureName
+            });
           });
-        });
-        res.jsonp(finalArray);
-      }
-    })
+          res.jsonp(finalArray);
+        }
+      });
   });
 });
-
 
 module.exports = Router;

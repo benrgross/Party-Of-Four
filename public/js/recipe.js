@@ -1,19 +1,35 @@
 // Get references for the search
-var $autocomplete = $("#autocomplete");
+const $autocomplete = $("#autocomplete");
 
-var IS = {
-  getIngredients: function(request, response) {
+let IS = {
+  getIngredients: function (request, response) {
     return $.ajax({
       url: "/api/ingredientsList",
       method: "POST",
       data: { term: request.term },
       dataType: "jsonp",
-      success: function(data) {
+      success: function (data) {
         response(data);
+
+
+
       }
+
+
+
     });
   },
-  getMeasures: function(food_name) {
+
+
+  nutritionFacts: function (query) {
+    return $.ajax({
+      url: "/api/nutrition_facts",
+      method: "POST",
+      data: { query: query },
+      dataType: "json"
+    });
+  },
+  getMeasures: function (food_name) {
     return $.ajax({
       url: "/api/measures",
       method: "POST",
@@ -21,7 +37,7 @@ var IS = {
       dataType: "jsonp"
     });
   },
-  addIngredient: function(ingredient_name, ingredient_img) {
+  addIngredient: function (ingredient_name, ingredient_img) {
     return $.ajax({
       url: "/api/ingredient",
       method: "POST",
@@ -29,7 +45,7 @@ var IS = {
       dataType: "json"
     });
   },
-  addRecipe: function(newRecipe) {
+  addRecipe: function (newRecipe) {
     return $.ajax({
       url: "/api/recipes",
       method: "POST",
@@ -37,36 +53,35 @@ var IS = {
       dataType: "json"
     });
   },
-  addRecipeIngredients: function(ingredients) {
+  addRecipeIngredients: function (ingredients) {
     $.ajax({
       url: "/api/recipe_ingredients",
       method: "POST",
       data: { ingredients: JSON.stringify(ingredients) },
       dataType: "json"
-    }).then(function() {
+    }).then(() => {
       location.reload();
     });
   }
 };
 
-$(document).ready(function() {
-  //Autocomplete
-  $autocomplete
-    .autocomplete({
-      source: function(request, response) {
-        IS.getIngredients(request, response);
-      },
-      minLength: 2,
-      select: function(event, ui) {
-        $(this).val(ui.item.food_name);
-        renderIngredient(ui);
-        return false;
-      },
-      close: function() {
-        $(this).val("");
-      }
-    })
-    .data("ui-autocomplete")._renderItem = function(ul, item) {
+//Autocomplete
+$autocomplete
+  .autocomplete({
+    source: function (request, response) {
+      IS.getIngredients(request, response);
+    },
+    minLength: 2,
+    select: function (event, ui) {
+      $(this).val(ui.item.food_name);
+      renderIngredient(ui);
+      return false;
+    },
+    close: function () {
+      $(this).val("");
+    }
+  })
+  .data("ui-autocomplete")._renderItem = function (ul, item) {
     return $("<li></li>")
       .data("item.autocomplete", item)
       .append("<img src='" + item.photo + "' style='width:80px;height:70px'/>")
@@ -74,23 +89,20 @@ $(document).ready(function() {
       .appendTo(ul);
   };
 
-  //Remove ingredients
-  $(document).on("click", ".fa-trash-alt", function() {
-    $(this)
-      .parent()
-      .parent()
-      .empty();
-  });
+//Remove ingredients
+$(document).on("click", ".fa-trash-alt", function () {
+  $(this)
+    .parent()
+    .parent()
+    .empty();
 });
 
 function renderIngredient(ui) {
-  IS.addIngredient(ui.item.food_name, ui.item.photo).then(function(
-    addedIngredient
-  ) {
-    IS.getMeasures(ui.item.food_name).then(function(data) {
-      var tr = $("<tr>").addClass("d-flex");
+  IS.addIngredient(ui.item.food_name, ui.item.photo).then(addedIngredient => {
+    IS.getMeasures(ui.item.food_name).then(data => {
+      const tr = $("<tr>").addClass("d-flex");
 
-      var td_image = $("<td>").addClass("col-2");
+      const td_image = $("<td>").addClass("col-2");
       td_image.append(
         $("<img>")
           .addClass("img-fluid rounded")
@@ -98,12 +110,12 @@ function renderIngredient(ui) {
           .attr("alt", "(:)")
       );
 
-      var td_ingredient = $("<td>")
+      const td_ingredient = $("<td>")
         .addClass("col-4 ingredient_name")
         .attr("data-ingredient", addedIngredient.ingredientId)
         .text(addedIngredient.ingredientName);
 
-      var td_quantity = $("<td>").addClass("col-2");
+      const td_quantity = $("<td>").addClass("col-2");
       td_quantity.append(
         $("<input required>")
           .addClass("form-control ingredient_quantity")
@@ -112,8 +124,8 @@ function renderIngredient(ui) {
           .attr("placeholder", "0")
       );
 
-      var td_meas = $("<td>").addClass("col-3");
-      var select = $("<select>")
+      const td_meas = $("<td>").addClass("col-3");
+      const select = $("<select>")
         .addClass("custom-select d-block")
         .attr("id", "measure1");
 
@@ -130,7 +142,7 @@ function renderIngredient(ui) {
 
       td_meas.append(select);
 
-      var td_removes = $("<td>").addClass("col-1");
+      const td_removes = $("<td>").addClass("col-1");
       td_removes.append($("<i>").addClass("fas fa-trash-alt btn align-middle"));
 
       tr.append(td_image);
@@ -144,21 +156,21 @@ function renderIngredient(ui) {
   });
 }
 
-$("#submit").on("click", function() {
+$("#submit").on("click", () => {
   event.preventDefault();
   if (checkValidity()) {
-    var newRecipe = {
+    const newRecipe = {
       recipeName: $("#name").val(),
       recipeDescription: $("#recipe-description").val()
     };
 
     //Send the POST request.
-    IS.addRecipe(newRecipe).then(function(data) {
-      var ingredients = [];
+    IS.addRecipe(newRecipe).then(data => {
+      const ingredients = [];
 
       $(document)
         .find("tr")
-        .each(function() {
+        .each(function () {
           ingredients.push({
             quantity: $(this)
               .find(".ingredient_quantity")
@@ -184,8 +196,8 @@ function checkValidity() {
       $("#name").removeClass("is-invalid");
     }
     if ($(document).find(".ingredient_quantity").length > 0) {
-      var invalidElements = 0;
-      var quantities = $(document)
+      let invalidElements = 0;
+      const quantities = $(document)
         .find(".ingredient_quantity")
         .toArray();
       quantities.forEach(element => {
@@ -199,9 +211,8 @@ function checkValidity() {
         }
       });
       return invalidElements === 0;
-    } else {
-      $("#myModal").modal("show");
     }
+    $("#myModal").modal("show");
   } else {
     $("#name").addClass("is-invalid");
   }

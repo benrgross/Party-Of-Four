@@ -1,6 +1,6 @@
 <nav style="background-color: #f0fbff" class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <img src="/images/logo.png" alt="">
+    <a href="/members"><img src="/images/logo.png" alt="Pipe Cleaner Logo"></img></a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
@@ -9,14 +9,15 @@
     </a>
   </div>
 </nav>
-<div style="margin-left: 25px;" class="columns">
+<div class="columns">
   <div class="column is-one-quarter">
+    <h4 class="title is-4 menu-title">What would you like to do?</h4>
     <aside class="menu">
       <ul class="menu-list">
-        <li><a>Home</a></li>
+        <li><a class="is-active" href="/members">Home</a></li>
         <p class="menu-label">Meals</p>
-        <li><a>Input Your Meals</a></li>
-        <li><a>Past Meals</a></li>
+        <li><a href="/meals">Input Your Meals</a></li>
+        <li><a href="/past-meals">Past Meals</a></li>
       </ul>
       <p class="menu-label">
         Watchlist
@@ -24,21 +25,22 @@
       <ul class="menu-list">
         <ul>
           <a>Healthy Choices</a>
-          <li><a class="is-active" href="/">Nutrition Info</a></li>
-          <li><a>Foods to Watchout for</a></li>
-          <li><a>Add a member</a></li>
+          <li><a href="/recipe">Nutrition Info</a></li>
+          <li><a href="/watchlist">Foods to Watchout for</a></li>
         </ul>
     </aside>
   </div>
-  <div style="margin-right: 100px;" class="column">
+
+  <section class="column is-three-quarters">
+    <h1 class="title is-1">Welcome <span class="title member-name"></span></h1>
 
     <h1 style="margin-bottom: 100px;">Welcome <span class="member-name"></span></h1>
-    <div class="field">
+    {{!-- <div class="field">
       <label class="label">Meal time: </label>
       <div class="control">
         <input type="time">
       </div>
-    </div>
+    </div> --}}
     <div class="field">
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
@@ -143,6 +145,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
     <script src="/js/recipe.js"></script>
+    {{!--
     <script src="~bulma-calendar/dist/js/bulma-calendar.min.js"></script>
     <script>
       // Initialize all input of date type.
@@ -165,9 +168,9 @@
         });
       }
 
-    </script>
+    </script> --}}
 
-  </div>
+</div>
 </div>
 </div>
 </div>
@@ -319,11 +322,12 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/js/index.js"></script>
+<script src="js/index.js"></script>
 
-<script src="recipe_details.js"></script>
+<script src="/js/recipe_details.js"></script>
 
-<script type="text/javascript" src="js/members.js"></script>
+{{!--
+<script type="text/javascript" src="js/members.js"></script> --}}
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
