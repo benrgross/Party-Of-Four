@@ -106,7 +106,7 @@ $(".ingredients").on("click", ".add-to-watch", e => {
       name: watchIngredient
     }).then(result => console.log(result));
   });
-  alert("Ingredient added to your Watch List!");
+  alert("Ingredient added to your Watchlist!");
 });
 
 // deletes item from ingredient list
