@@ -31,8 +31,8 @@ $(document).ready(() => {
     const time1 = hour + ":" + getTime1[1] + getTime1[3];
     console.log(time1);
 
-    const dateEl1 = $("<h2>")
-      .addClass("title is-6")
+    const dateEl1 = $("<h3>")
+      .addClass("title is-3")
       .text(date1 + "  " + time1);
     $("#meal-1").append(dateEl1);
 
@@ -59,8 +59,8 @@ $(document).ready(() => {
     const time2 = hour + ":" + getTime2[1] + getTime2[3];
     console.log(time2);
 
-    const dateEl2 = $("<h2> ")
-      .addClass("title is-6")
+    const dateEl2 = $("<h3> ")
+      .addClass("title is-3")
       .text(date2 + "  " + time2);
     $("#meal-2").append(dateEl2);
 
@@ -85,8 +85,8 @@ $(document).ready(() => {
 
     const time3 = hour + ":" + getTime3[1] + getTime3[3];
 
-    const dateEl3 = $("<h2>")
-      .addClass("title is-6")
+    const dateEl3 = $("<h3>")
+      .addClass("title is-3")
       .text(date3 + "  " + time3);
     $("#meal-3").append(dateEl3);
 

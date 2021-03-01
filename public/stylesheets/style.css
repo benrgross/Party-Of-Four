@@ -148,6 +148,7 @@ h6 {
   flex-wrap: wrap;
   flex-direction: column;
   justify-items: center;
+  text-align: center;
 }
 
 #create-meal {
