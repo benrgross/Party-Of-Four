@@ -5,7 +5,6 @@ $(document).ready(() => {
   $.get("/api/user_data").then(data => {
     console.log(data);
     userId = data.id;
-    console.log(userId);
     return userId;
   });
 });
@@ -13,8 +12,6 @@ console.log(userId);
 
 // click event for creating a meal
 $("#create-meal").click(() => {
-  console.log(userId);
-
   $(".addMeal").hide(500);
   $(".ingredientAdd").show(500);
 
@@ -26,8 +23,6 @@ $("#create-meal").click(() => {
 // click event for adding to list of ingredients
 $(".add-ingredient").click(e => {
   e.preventDefault();
-  console.log("click");
-  console.log(userId);
   // get request for most current meal id
   $.get("api/mealId").then(data => {
     const mealId = data.id;
@@ -70,7 +65,38 @@ $(document).ready(() => {
 const displayToPage = () => {
   $(".ingredients").empty();
   $.get("/api/lastmeal").then(data => {
+    const dataDate1 = data.createdAt;
+    console.log("created", dataDate1);
+
+    const orderDate1 = dataDate1.substr(0, 10);
+    const dateArr1 = orderDate1.split("-");
+    dateArr1.push(dateArr1.shift());
+    const date1 = dateArr1.join("/");
+
+    const getTime1 = dataDate1
+      .substr(11)
+      .slice(0, 8)
+      .split(":");
+
+    let hour;
+    if (Number(getTime1[0] - 5) > 12) {
+      hour = (Number(getTime1[0] - 5) - 12).toString();
+      getTime1.push("pm");
+    } else {
+      hour = getTime1[0] - 5;
+      getTime1.push("am");
+    }
+
+    const time1 = hour + ":" + getTime1[1] + getTime1[3];
+    console.log(time1);
+
+    const dateEl1 = $("<h3>")
+      .addClass("title is-3")
+      .text(`Your Meal From ${date1} at ${time1}`);
+    $(ingredientsList).append(dateEl1);
     //loop through array of ingredients and creat elements on the page
+
+    console.log("data", data);
     for (let i = 0; i < data.Ingredients.length; i++) {
       const ingredientEl = $("<h6>").addClass("title is-6");
 

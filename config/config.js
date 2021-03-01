@@ -16,7 +16,7 @@ module.exports = {
     dialect: "mysql"
   },
   production: {
-    use_env_variable: "JAWSDB_URL", // eslint-disable-line
+    use_env_variable: "mysql://txq5e0fapw2s4khu:xq48v3fmasrp60yh@d6rii63wp64rsfb5.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ki470gq65ly41s5", // eslint-disable-line
     dialect: "mysql"
   }
 };

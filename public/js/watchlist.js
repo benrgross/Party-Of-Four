@@ -25,7 +25,18 @@ $(document).ready(() => {
         console.log("watchlists", watchlists);
 
         watchlists.forEach(ingredient => {
-          const watchlistItem = $("<h6>").addClass("title is-6");
+          const dataDate1 = ingredient.createdAt;
+          console.log("created", dataDate1);
+
+          const orderDate1 = dataDate1.substr(0, 10);
+          const dateArr1 = orderDate1.split("-");
+          dateArr1.push(dateArr1.shift());
+          const date1 = dateArr1.join("/");
+
+          const watchlistItem = $("<h6>").addClass("title is-6 ");
+          const date = $("<h4>")
+            .addClass("title is-4")
+            .text(date1);
 
           const ingredientDelBtn = $("<button>")
             .text("Delete")
@@ -36,9 +47,11 @@ $(document).ready(() => {
 
           watchlistItem
             .text(
-              ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1)
+              `
+              ${ingredient.name.charAt(0).toUpperCase() +
+                ingredient.name.slice(1)}   `
             )
-            .append(ingredientDelBtn);
+            .append(date, ingredientDelBtn);
 
           $("#watchlist").append(watchlistItem);
         });

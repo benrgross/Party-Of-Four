@@ -37,7 +37,7 @@ $(document).ready(() => {
 
     const dateEl1 = $("<h3>")
       .addClass("title is-3")
-      .text(date1 + "  " + time1);
+      .text(`Your Meal From ${date1} at ${time1}`);
     $("#meal-1").append(dateEl1);
 
     const dataDate2 = meal2[0].createdAt;
@@ -65,7 +65,7 @@ $(document).ready(() => {
 
     const dateEl2 = $("<h3> ")
       .addClass("title is-3")
-      .text(date2 + "  " + time2);
+      .text(`Your Meal From ${date2} at ${time2}`);
     $("#meal-2").append(dateEl2);
 
     const dataDate3 = meal3[0].createdAt;
@@ -91,7 +91,7 @@ $(document).ready(() => {
 
     const dateEl3 = $("<h3>")
       .addClass("title is-3")
-      .text(date3 + "  " + time3);
+      .text(`Your Meal From ${date3} at ${time3}`);
     $("#meal-3").append(dateEl3);
 
     console.log(meal1[0].Ingredients.length);
