@@ -36,6 +36,10 @@ nav {
   box-shadow: 10px 10px 15px lightgray;
 }
 
+.submit-btn {
+  margin-top: 1%;
+}
+
 .login-link {
   color: #369add;
 }
