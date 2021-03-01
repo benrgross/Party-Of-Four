@@ -25,7 +25,7 @@ $(document).ready(() => {
         console.log("watchlists", watchlists);
 
         watchlists.forEach(ingredient => {
-          const watchlistItem = $("<h6>").addClass("title is-6");
+          const watchlistItem = $("<h4>").addClass("title is-4");
 
           const ingredientDelBtn = $("<button>")
             .text("Delete")

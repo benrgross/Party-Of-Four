@@ -24,19 +24,19 @@ $(document).ready(() => {
       .split(":");
 
     let hour;
-    if (Number(getTime1[0] - 5) > 12) {
-      hour = (Number(getTime1[0] - 5) - 12).toString();
+    if (Number(getTime1[0] - 4) > 12) {
+      hour = (Number(getTime1[0] - 4) - 12).toString();
       getTime1.push("pm");
     } else {
-      hour = getTime1[0] - 5;
+      hour = getTime1[0] - 4;
       getTime1.push("am");
     }
 
     const time1 = hour + ":" + getTime1[1] + getTime1[3];
     console.log(time1);
 
-    const dateEl1 = $("<h3>")
-      .addClass("title is-3")
+    const dateEl1 = $("<h2>")
+      .addClass("title is-2")
       .text(date1 + "  " + time1);
     $("#meal-1").append(dateEl1);
 
@@ -52,19 +52,19 @@ $(document).ready(() => {
       .slice(0, 8)
       .split(":");
 
-    if (Number(getTime2[0] - 5) > 12) {
-      hour = (Number(getTime2[0] - 5) - 12).toString();
+    if (Number(getTime2[0] - 4) > 12) {
+      hour = (Number(getTime2[0] - 4) - 12).toString();
       getTime2.push("pm");
     } else {
-      hour = getTime2[0] - 5;
+      hour = getTime2[0] - 4;
       getTime2.push("am");
     }
 
     const time2 = hour + ":" + getTime2[1] + getTime2[3];
     console.log(time2);
 
-    const dateEl2 = $("<h3> ")
-      .addClass("title is-3")
+    const dateEl2 = $("<h2> ")
+      .addClass("title is-2")
       .text(date2 + "  " + time2);
     $("#meal-2").append(dateEl2);
 
@@ -79,24 +79,24 @@ $(document).ready(() => {
       .slice(0, 8)
       .split(":");
 
-    if (Number(getTime3[0] - 5) > 12) {
-      hour = (Number(getTime3[0] - 5) - 12).toString();
+    if (Number(getTime3[0] - 4) > 12) {
+      hour = (Number(getTime3[0] - 4) - 12).toString();
       getTime3.push("pm");
     } else {
-      hour = getTime3[0] - 5;
+      hour = getTime3[0] - 4;
       getTime3.push("am");
     }
 
     const time3 = hour + ":" + getTime3[1] + getTime3[3];
 
-    const dateEl3 = $("<h3>")
-      .addClass("title is-3")
+    const dateEl3 = $("<h2>")
+      .addClass("title is-2")
       .text(date3 + "  " + time3);
     $("#meal-3").append(dateEl3);
 
     console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
-      const ingredientEl = $("<h6>").addClass("title is-6");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -121,7 +121,7 @@ $(document).ready(() => {
 
     for (let i = 0; i < meal2[0].Ingredients.length; i++) {
       console.log("is this it", meal2[0].Ingredients[i].name);
-      const ingredientEl = $("<h6>").addClass("title is-6");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -146,7 +146,7 @@ $(document).ready(() => {
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
       console.log("is this it", meal3[0].Ingredients[i].name);
-      const ingredientEl = $("<h6>").addClass("title is-6");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")

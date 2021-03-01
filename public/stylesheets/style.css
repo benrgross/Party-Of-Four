@@ -1,11 +1,16 @@
 * {
   box-sizing: border-box;
   font-size: large;
+  font-family: 'Rufina', serif;
 }
 
 /* body {
   background-color:;
 } */
+
+button {
+  font-family: 'Rufina', serif;
+}
 
 form.signup,
 form.login {
@@ -48,15 +53,32 @@ nav {
   color: #7dbacc;
 }
 
-img {
-  border-radius: 45px;
+.pipe-logo {
+  border-radius: 8px;
   margin-top: 5%;
   margin-left: 5%;
   transition: all .3s ease-in-out;
 }
 
-img:hover {
+.pipe-logo:hover {
   margin: 2%;
+  margin-top: 7%;
+  margin-left: 7%;
+  box-shadow: 2px 1px 15px gray;
+  transform: scale(1.1);
+}
+
+.pipe-p {
+  margin: 0.1%;
+  margin-left: 0.4%;
+  height: 5%;
+  width: 5%;
+  border-radius: 8px;
+  transition: all .3s ease-in-out;
+}
+
+.pipe-p:hover {
+  margin: 0.25%;
   box-shadow: 2px 1px 15px gray;
   transform: scale(1.1);
 }
@@ -73,7 +95,7 @@ h4 {
   text-align: center;
 }
 
-h6 {
+h4 {
   margin: 2px;
   margin-bottom: 2px;
   text-align: center;
@@ -90,7 +112,7 @@ h6 {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 2%;
+  padding: 0.5%;
   background-color: #f0fbff;
   border-top: solid 2px #bf0a0a;
   box-shadow: 2px 1px 10px gray;
@@ -162,7 +184,7 @@ h6 {
   justify-content: center;
   margin: auto;
   width: 85%;
-  padding: 10%;
+  padding: 5%;
 }
 
 .addMeal {
