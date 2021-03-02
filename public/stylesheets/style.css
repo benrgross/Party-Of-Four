@@ -4,10 +4,6 @@
   font-family: 'Rufina', serif;
 }
 
-/* body {
-  background-color:;
-} */
-
 button {
   font-family: 'Rufina', serif;
 }
@@ -69,8 +65,9 @@ nav {
 }
 
 .pipe-p {
-  margin: 0.1%;
-  margin-left: 0.4%;
+  margin-top: 0.5%;
+  margin-left: 0.5%;
+  margin-bottom: 0;
   height: 5%;
   width: 5%;
   border-radius: 8px;
@@ -78,7 +75,10 @@ nav {
 }
 
 .pipe-p:hover {
-  margin: 0.25%;
+  /* margin: 0.25%; */
+  margin-top: 0.7%;
+  margin-left: 0.7%;
+  margin-bottom: 0.2%;
   box-shadow: 2px 1px 15px gray;
   transform: scale(1.1);
 }
@@ -146,11 +146,18 @@ h4 {
   background-color: #5facc4;
 } */
 
+/* .is-danger,
+.add-to-watch,
+.button.is-link.is-outlined,
+.button.is-link.is-light {
+  
+} */
+
 .is-danger,
 .add-to-watch {
   margin-top: 2%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .button.is-link.is-outlined {
@@ -207,7 +214,6 @@ h4 {
 #meal-3,
 #latest-meal {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   justify-items: center;
   text-align: center;
@@ -221,7 +227,6 @@ h4 {
 #watchlist {
   margin-top: 2%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   justify-items: center;
 }
