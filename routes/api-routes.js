@@ -7,17 +7,13 @@ const Router = require("express").Router();
 // If the user has valid login credentials, send them to the members page.
 // Otherwise the user will be sent an error
 Router.route("/api/login").post(passport.authenticate("local"), (req, res) => {
-  // Sending back a password, even a hashed password, isn't a good idea
-  console.log(req.user.email);
   res.json({
     email: req.user.email,
     id: req.user.id
   });
 });
 
-// Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-// how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-// otherwise send back an error
+// Route for signing up a user.
 Router.route("/api/signup").post((req, res) => {
   console.log(req.body.email);
   db.User.create({
