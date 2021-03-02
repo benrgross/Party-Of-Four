@@ -94,6 +94,19 @@ Router.route("/api/allmeals").get((req, res) => {
   });
 });
 
+// get query for MealIngredient list
+Router.route("/api/allmeals/:offset").get((req, res) => {
+  console.log(res);
+  db.Meal.findAll({
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
+    order: [["createdAt", "DESC"]],
+    limit: 3,
+    offset: Number(req.params.offset)
+  }).then(ingredient => {
+    return res.json(ingredient);
+  });
+});
+
 // user id from params.
 Router.route("/api/meals/:userId").get((req, res) => {
   console.log(req.params);
@@ -108,6 +121,15 @@ Router.route("/api/meals/:userId").get((req, res) => {
 Router.route("/api/usermeal").get((req, res) => {
   db.User.findAll({
     include: [{ model: db.Meal, attributes: ["createdAt", "id"] }]
+  }).then(ingredient => {
+    res.json(ingredient);
+  });
+});
+
+//find all users and associated watchlsit items
+Router.route("/api/usermeal").get((req, res) => {
+  db.User.findAll({
+    include: [{ model: db.Ingredient, attributes: ["createdAt", "id", "name"] }]
   }).then(ingredient => {
     res.json(ingredient);
   });
@@ -175,13 +197,6 @@ Router.route("/api/watchlist").get((req, res) => {
     return res.json(ingredient);
   });
 });
-// get meals from meal id
-// Router.route("/api/mealGet").get((req, res) => {
-//   console.log("myid", req.params.mealId);
-//   db.Meal.findAll({
-//     include: [{ model: db.Ingredient, attributes: ["name"] }]
-//   }).then(ingredient => res.json(ingredient));
-// });
 
 // route for adding an ingredient to watchlist
 Router.post("/api/watchlist", async (req, res) => {

@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       constraints: false,
       foreignKey: "IngredientId"
     });
-  };
-  Ingredient.associate = models => {
+
     models.Ingredient.belongsToMany(models.User, {
       through: {
         model: "WatchList",
+        as: "WatchList",
         unique: false
       },
       constraints: false,
