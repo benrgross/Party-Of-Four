@@ -63,6 +63,8 @@ $(document).ready(() => {
         hour = getTime2[0] - 4;
         getTime2.push("am");
       }
+      console.log("hour", hour);
+      console.log("getTime2", getTime2);
 
       const time2 = hour + ":" + getTime2[1] + getTime2[3];
       console.log(time2);
@@ -277,6 +279,7 @@ $("#next-three").click(() => {
         .substr(11)
         .slice(0, 8)
         .split(":");
+      console.log("getTime2", getTime2);
 
       if (Number(getTime2[0] - 4) > 12) {
         hour = (Number(getTime2[0] - 4) - 12).toString();
