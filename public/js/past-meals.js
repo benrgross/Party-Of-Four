@@ -26,11 +26,11 @@ $(document).ready(() => {
         .split(":");
 
       let hour;
-      if (Number(getTime1[0] - 5) > 12) {
-        hour = (Number(getTime1[0] - 5) - 12).toString();
+      if (Number(getTime1[0] - 4) > 12) {
+        hour = (Number(getTime1[0] - 4) - 12).toString();
         getTime1.push("pm");
       } else {
-        hour = getTime1[0] - 5;
+        hour = getTime1[0] - 4;
         getTime1.push("am");
       }
 
@@ -56,11 +56,11 @@ $(document).ready(() => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime2[0] - 5) > 12) {
-        hour = (Number(getTime2[0] - 5) - 12).toString();
+      if (Number(getTime2[0] - 4) > 12) {
+        hour = (Number(getTime2[0] - 4) - 12).toString();
         getTime2.push("pm");
       } else {
-        hour = getTime2[0] - 5;
+        hour = getTime2[0] - 4;
         getTime2.push("am");
       }
       console.log("hour", hour);
@@ -87,11 +87,11 @@ $(document).ready(() => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime3[0] - 5) > 12) {
-        hour = (Number(getTime3[0] - 5) - 12).toString();
+      if (Number(getTime3[0] - 4) > 12) {
+        hour = (Number(getTime3[0] - 4) - 12).toString();
         getTime3.push("pm");
       } else {
-        hour = getTime3[0] - 5;
+        hour = getTime3[0] - 4;
         getTime3.push("am");
       }
 
@@ -105,7 +105,7 @@ $(document).ready(() => {
 
     console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -133,7 +133,7 @@ $(document).ready(() => {
 
     for (let i = 0; i < meal2[0].Ingredients.length; i++) {
       console.log("is this it", meal2[0].Ingredients[i].name);
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -161,7 +161,7 @@ $(document).ready(() => {
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
       console.log("is this it", meal3[0].Ingredients[i].name);
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -255,11 +255,11 @@ $("#next-three").click(() => {
         .split(":");
 
       let hour;
-      if (Number(getTime1[0] - 5) > 12) {
-        hour = (Number(getTime1[0] - 5) - 12).toString();
+      if (Number(getTime1[0] - 4) > 12) {
+        hour = (Number(getTime1[0] - 4) - 12).toString();
         getTime1.push("pm");
       } else {
-        hour = getTime1[0] - 5;
+        hour = getTime1[0] - 4;
         getTime1.push("am");
       }
 
@@ -286,11 +286,11 @@ $("#next-three").click(() => {
         .split(":");
       console.log("getTime2", getTime2);
 
-      if (Number(getTime2[0] - 5) > 12) {
-        hour = (Number(getTime2[0] - 5) - 12).toString();
+      if (Number(getTime2[0] - 4) > 12) {
+        hour = (Number(getTime2[0] - 4) - 12).toString();
         getTime2.push("pm");
       } else {
-        hour = getTime2[0] - 5;
+        hour = getTime2[0] - 4;
         getTime2.push("am");
       }
 
@@ -315,11 +315,11 @@ $("#next-three").click(() => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime3[0] - 5) > 12) {
-        hour = (Number(getTime3[0] - 5) - 12).toString();
+      if (Number(getTime3[0] - 4) > 12) {
+        hour = (Number(getTime3[0] - 4) - 12).toString();
         getTime3.push("pm");
       } else {
-        hour = getTime3[0] - 5;
+        hour = getTime3[0] - 4;
         getTime3.push("am");
       }
 
@@ -333,7 +333,7 @@ $("#next-three").click(() => {
 
     console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -361,7 +361,7 @@ $("#next-three").click(() => {
 
     for (let i = 0; i < meal2[0].Ingredients.length; i++) {
       console.log("is this it", meal2[0].Ingredients[i].name);
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -389,7 +389,7 @@ $("#next-three").click(() => {
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
       console.log("is this it", meal3[0].Ingredients[i].name);
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -449,11 +449,11 @@ $("#past-three").click(() => {
         .split(":");
 
       let hour;
-      if (Number(getTime1[0] - 5) > 12) {
-        hour = (Number(getTime1[0] - 5) - 12).toString();
+      if (Number(getTime1[0] - 4) > 12) {
+        hour = (Number(getTime1[0] - 4) - 12).toString();
         getTime1.push("pm");
       } else {
-        hour = getTime1[0] - 5;
+        hour = getTime1[0] - 4;
         getTime1.push("am");
       }
 
@@ -479,11 +479,11 @@ $("#past-three").click(() => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime2[0] - 5) > 12) {
-        hour = (Number(getTime2[0] - 5) - 12).toString();
+      if (Number(getTime2[0] - 4) > 12) {
+        hour = (Number(getTime2[0] - 4) - 12).toString();
         getTime2.push("pm");
       } else {
-        hour = getTime2[0] - 5;
+        hour = getTime2[0] - 4;
         getTime2.push("am");
       }
 
@@ -508,11 +508,11 @@ $("#past-three").click(() => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime3[0] - 5) > 12) {
-        hour = (Number(getTime3[0] - 5) - 12).toString();
+      if (Number(getTime3[0] - 4) > 12) {
+        hour = (Number(getTime3[0] - 4) - 12).toString();
         getTime3.push("pm");
       } else {
-        hour = getTime3[0] - 5;
+        hour = getTime3[0] - 4;
         getTime3.push("am");
       }
 
@@ -526,7 +526,7 @@ $("#past-three").click(() => {
 
     console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -553,7 +553,7 @@ $("#past-three").click(() => {
     }
     for (let i = 0; i < meal2[0].Ingredients.length; i++) {
       console.log("is this it", meal2[0].Ingredients[i].name);
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
@@ -581,7 +581,7 @@ $("#past-three").click(() => {
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
       console.log("is this it", meal3[0].Ingredients[i].name);
-      const ingredientEl = $("<h4>").addClass("title is-5");
+      const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
         .text("Add to Watchlist")
