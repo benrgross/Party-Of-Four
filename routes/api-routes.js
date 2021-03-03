@@ -15,7 +15,6 @@ Router.route("/api/login").post(passport.authenticate("local"), (req, res) => {
 
 // Route for signing up a user.
 Router.route("/api/signup").post((req, res) => {
-  console.log(req.body.email);
   db.User.create({
     email: req.body.email,
     password: req.body.password
@@ -57,13 +56,21 @@ Router.route("/api/mealId").get((req, res) => {
   }).then(result => res.json(result));
 });
 
+//find one meal from id params
+Router.get("/api/meal/:mealId", (req, res) => {
+  db.Meal.findOne({
+    where: {
+      id: req.params.mealId
+    },
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
+  }).then(result => res.json(result));
+});
+
 // get query for MealIngredient list
 Router.route("/api/meals").get((req, res) => {
-  console.log(res);
   db.Meal.findAll({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
   }).then(ingredient => {
-    console.log(ingredient);
     return res.json(ingredient);
   });
 });
@@ -74,14 +81,12 @@ Router.route("/api/lastmeal").get((req, res) => {
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
     order: [["createdAt", "DESC"]]
   }).then(ingredient => {
-    console.log(ingredient);
     return res.json(ingredient);
   });
 });
 
 // get query for MealIngredient list
 Router.route("/api/allmeals").get((req, res) => {
-  console.log(res);
   db.Meal.findAll({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
     order: [["createdAt", "DESC"]]
@@ -90,9 +95,8 @@ Router.route("/api/allmeals").get((req, res) => {
   });
 });
 
-// get query for MealIngredient list
+// get query last three meals by offset for pastmeals page
 Router.route("/api/allmeals/:offset").get((req, res) => {
-  console.log(res);
   db.Meal.findAll({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
     order: [["createdAt", "DESC"]],
@@ -105,7 +109,6 @@ Router.route("/api/allmeals/:offset").get((req, res) => {
 
 // user id from params.
 Router.route("/api/meals/:userId").get((req, res) => {
-  console.log(req.params);
   db.Meal.findOne({
     where: {
       id: req.params.userId
@@ -146,7 +149,6 @@ Router.post("/api/meals", async (req, res) => {
 
 //associates input ingredient with meal id in meal ingredient table upon submitting ingredient input,
 Router.post("/api/ingredients", async (req, res) => {
-  console.log(req.body);
   let meal = await db.Meal.findOne({
     where: {
       id: req.body.id
@@ -253,6 +255,15 @@ Router.delete("/api/deletefrommeal", async (req, res) => {
   }
 });
 
-// make route for deleting meal?
+//route for deleting meal
+Router.delete("/api/deletemeal", async (req, res) => {
+  console.log(req.body);
+  const meal = await db.Meal.destroy({
+    where: {
+      id: req.body.mealId
+    }
+  });
+  res.json(meal);
+});
 
 module.exports = Router;

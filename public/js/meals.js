@@ -8,7 +8,6 @@ $(document).ready(() => {
     return userId;
   });
 });
-console.log(userId);
 
 // click event for creating a meal
 $("#create-meal").click(() => {
@@ -26,7 +25,6 @@ $(".add-ingredient").click(e => {
   // get request for most current meal id
   $.get("api/mealId").then(data => {
     const mealId = data.id;
-    console.log(data);
     postIngredient(mealId);
     document.getElementById("ingredients-form").reset();
   });
@@ -66,7 +64,6 @@ const displayToPage = () => {
   $(".ingredients").empty();
   $.get("/api/lastmeal").then(data => {
     const dataDate1 = data.createdAt;
-    console.log("created", dataDate1);
 
     const orderDate1 = dataDate1.substr(0, 10);
     const dateArr1 = orderDate1.split("-");
@@ -88,7 +85,6 @@ const displayToPage = () => {
     }
 
     const time1 = hour + ":" + getTime1[1] + getTime1[3];
-    console.log(time1);
 
     const dateEl1 = $("<h3>")
       .addClass("title is-3")
@@ -96,7 +92,6 @@ const displayToPage = () => {
     $(ingredientsList).append(dateEl1);
     //loop through array of ingredients and creat elements on the page
 
-    console.log("data", data);
     for (let i = 0; i < data.Ingredients.length; i++) {
       const ingredientEl = $("<h4>").addClass("title is-4");
 
