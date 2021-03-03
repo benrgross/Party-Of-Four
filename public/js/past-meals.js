@@ -86,11 +86,11 @@ const displayThree = offset => {
         .split(":");
 
       let hour;
-      if (Number(getTime1[0] - 4) > 12) {
-        hour = (Number(getTime1[0] - 4) - 12).toString();
+      if (Number(getTime1[0] - 5) > 12) {
+        hour = (Number(getTime1[0] - 5) - 12).toString();
         getTime1.push("pm");
       } else {
-        hour = getTime1[0] - 4;
+        hour = getTime1[0] - 5;
         getTime1.push("am");
       }
 
@@ -114,11 +114,11 @@ const displayThree = offset => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime2[0] - 4) > 12) {
-        hour = (Number(getTime2[0] - 4) - 12).toString();
+      if (Number(getTime2[0] - 5) > 12) {
+        hour = (Number(getTime2[0] - 5) - 12).toString();
         getTime2.push("pm");
       } else {
-        hour = getTime2[0] - 4;
+        hour = getTime2[0] - 5;
         getTime2.push("am");
       }
 
@@ -142,11 +142,11 @@ const displayThree = offset => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime3[0] - 4) > 12) {
-        hour = (Number(getTime3[0] - 4) - 12).toString();
+      if (Number(getTime3[0] - 5) > 12) {
+        hour = (Number(getTime3[0] - 5) - 12).toString();
         getTime3.push("pm");
       } else {
-        hour = getTime3[0] - 4;
+        hour = getTime3[0] - 5;
         getTime3.push("am");
       }
 
