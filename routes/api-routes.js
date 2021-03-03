@@ -56,6 +56,16 @@ Router.route("/api/mealId").get((req, res) => {
   }).then(result => res.json(result));
 });
 
+//find one meal from id params
+Router.get("/api/meal/:mealId", (req, res) => {
+  db.Meal.findOne({
+    where: {
+      id: req.params.mealId
+    },
+    include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
+  }).then(result => res.json(result));
+});
+
 // get query for MealIngredient list
 Router.route("/api/meals").get((req, res) => {
   db.Meal.findAll({
@@ -85,7 +95,7 @@ Router.route("/api/allmeals").get((req, res) => {
   });
 });
 
-// get query for MealIngredient list
+// get query last three meals by offset for pastmeals page
 Router.route("/api/allmeals/:offset").get((req, res) => {
   db.Meal.findAll({
     include: [{ model: db.Ingredient, attributes: ["id", "name"] }],
@@ -256,12 +266,4 @@ Router.delete("/api/deletemeal", async (req, res) => {
   res.json(meal);
 });
 
-Router.get("/api/meal/:mealId", (req, res) => {
-  db.Meal.findOne({
-    where: {
-      id: req.params.mealId
-    },
-    include: [{ model: db.Ingredient, attributes: ["id", "name"] }]
-  }).then(result => res.json(result));
-});
 module.exports = Router;

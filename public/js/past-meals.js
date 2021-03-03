@@ -35,10 +35,9 @@ $(".past-meals").on("click", ".delete-ingredient", e => {
     },
     body: JSON.stringify(deleteObject)
   })
-    .then(data => {
-      console.log("data", data);
+    .then(() => {
+      location.reload();
     })
-
     .catch(err => console.error(err));
 });
 
@@ -75,7 +74,6 @@ const displayThree = offset => {
 
     if (meal1[0]) {
       const dataDate1 = meal1[0].createdAt;
-      console.log("created", dataDate1);
 
       const orderDate1 = dataDate1.substr(0, 10);
       const dateArr1 = orderDate1.split("-");
@@ -97,7 +95,6 @@ const displayThree = offset => {
       }
 
       const time1 = hour + ":" + getTime1[1] + getTime1[3];
-      console.log(time1);
 
       const dateEl1 = $("<h2>")
         .addClass("title is-2")
@@ -111,13 +108,11 @@ const displayThree = offset => {
       const dateArr2 = orderDate2.split("-");
       dateArr2.push(dateArr2.shift());
       const date2 = dateArr2.join("/");
-      console.log("date2", date2);
 
       const getTime2 = dataDate2
         .substr(11)
         .slice(0, 8)
         .split(":");
-      console.log("getTime2", getTime2);
 
       if (Number(getTime2[0] - 4) > 12) {
         hour = (Number(getTime2[0] - 4) - 12).toString();
@@ -128,7 +123,6 @@ const displayThree = offset => {
       }
 
       const time2 = hour + ":" + getTime2[1] + getTime2[3];
-      console.log(time2);
 
       const dateEl2 = $("<h2> ")
         .addClass("title is-2")
@@ -164,7 +158,6 @@ const displayThree = offset => {
       $("#meal-3").append(dateEl3);
     }
 
-    console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
       const ingredientEl = $("<h4>").addClass("title is-4");
 
@@ -221,7 +214,6 @@ const displayThree = offset => {
     }
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
-      console.log("is this it", meal3[0].Ingredients[i].name);
       const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
@@ -246,28 +238,6 @@ const displayThree = offset => {
         .append(ingredientDelBtn);
 
       $("#meal-3").append(newIngredient);
-    }
-  });
-};
-
-const deleteMeal = mealID => {
-  $.get(`/api/meal/${mealID}`).then(data => {
-    console.log(data);
-    if (data === null) {
-      console.log("it works");
-      console.log(mealID);
-      const deleteMeal = {
-        id: mealID
-      };
-      fetch("/api/deletemeal", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(deleteMeal)
-      });
-    } else {
-      console.log(error);
     }
   });
 };
