@@ -5,11 +5,7 @@ $(document).ready(() => {
       return userId;
     })
     .then(userId => {
-      console.log(userId);
       $.get("/api/watchlist").then(data => {
-        console.log(data);
-        console.log(userId);
-
         const users = [];
         for (let i = 0; i < data.length; i++) {
           if (data[i].Users[0]) {
@@ -22,11 +18,9 @@ $(document).ready(() => {
         const watchlists = users.filter(user => {
           return user.Users[0].id === userId;
         });
-        console.log("watchlists", watchlists);
 
         watchlists.forEach(ingredient => {
           const dataDate1 = ingredient.createdAt;
-          console.log("created", dataDate1);
 
           const orderDate1 = dataDate1.substr(0, 10);
           const dateArr1 = orderDate1.split("-");
