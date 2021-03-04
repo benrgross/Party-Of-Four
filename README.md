@@ -2,7 +2,17 @@
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 ## Description
-Keep track of your meals and their ingredients with Pipe Cleaner! This is an app for logging what you eat to keep track of how it affects your gastrointestinal system.
+Keep track of your meals and their ingredients with Pipe Cleaner! This is an app for logging what you eat in order to analyze how it affects your gastrointestinal system.
+
+Log your meals via `Enter Your Meals`.
+
+If an ingredient in a meal seems to be having a negative effect on your digestive health, add it to your `Watchlist`.
+
+Observe anything you may have eaten within the last few days with `Past Meals`.
+
+Observe your `Watchlist` via the `Foods to Watchout for` tab.
+
+You may also `Delete` a food time at any given time.
 
 ## Table of Contents
 * [Installation](#installation)
