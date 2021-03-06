@@ -250,13 +250,14 @@ Router.delete("/api/deletemeal", async (req, res) => {
   console.log(req.body);
   const meal = await db.Meal.destroy({
     where: {
-      id: req.body.mealId
+      id: req.body.id
     }
   });
   res.json(meal);
 });
 
 Router.get("/api/meal/:mealId", (req, res) => {
+  console.log("hello");
   db.Meal.findOne({
     where: {
       id: req.params.mealId

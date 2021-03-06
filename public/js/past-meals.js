@@ -19,29 +19,6 @@ $(".past-meals").on("click", ".add-to-watch", e => {
   });
 });
 
-// deletes item from past-meals list
-$(".past-meals").on("click", ".delete-ingredient", e => {
-  const mealID = e.target.getAttribute("data-meal");
-  const deleteName = e.target.getAttribute("data-name");
-
-  const deleteObject = {
-    mealId: mealID,
-    name: deleteName
-  };
-  fetch("/api/deletefrommeal", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(deleteObject)
-  })
-    .then(data => {
-      console.log("data", data);
-    })
-
-    .catch(err => console.error(err));
-});
-
 $("#next-three").click(() => {
   offset += 3;
   if (offset >= 3) {
@@ -250,12 +227,34 @@ const displayThree = offset => {
   });
 };
 
+// deletes item from past-meals list
+$(".past-meals").on("click", ".delete-ingredient", e => {
+  const mealID = e.target.getAttribute("data-meal");
+  const deleteName = e.target.getAttribute("data-name");
+
+  const deleteObject = {
+    mealId: mealID,
+    name: deleteName
+  };
+  fetch("/api/deletefrommeal", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(deleteObject)
+  })
+    .then(data => {
+      console.log(data);
+      deleteMeal(mealID);
+    })
+
+    .catch(err => console.error(err));
+});
+
 const deleteMeal = mealID => {
+  console.log("delteMealID", mealID);
   $.get(`/api/meal/${mealID}`).then(data => {
-    console.log(data);
-    if (data === null) {
-      console.log("it works");
-      console.log(mealID);
+    if (data.Ingredients.length === 0) {
       const deleteMeal = {
         id: mealID
       };
@@ -265,9 +264,9 @@ const deleteMeal = mealID => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(deleteMeal)
-      });
+      }).then(location.reload());
     } else {
-      console.log(error);
+      location.reload();
     }
   });
 };
