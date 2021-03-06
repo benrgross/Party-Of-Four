@@ -19,31 +19,6 @@ $(".past-meals").on("click", ".add-to-watch", e => {
   });
 });
 
-<<<<<<< HEAD
-=======
-// deletes item from past-meals list
-$(".past-meals").on("click", ".delete-ingredient", e => {
-  const mealID = e.target.getAttribute("data-meal");
-  const deleteName = e.target.getAttribute("data-name");
-
-  const deleteObject = {
-    mealId: mealID,
-    name: deleteName
-  };
-  fetch("/api/deletefrommeal", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(deleteObject)
-  })
-    .then(() => {
-      location.reload();
-    })
-    .catch(err => console.error(err));
-});
-
->>>>>>> main
 $("#next-three").click(() => {
   offset += 3;
   if (offset >= 3) {
@@ -244,7 +219,6 @@ const displayThree = offset => {
     }
   });
 };
-<<<<<<< HEAD
 
 // deletes item from past-meals list
 $(".past-meals").on("click", ".delete-ingredient", e => {
@@ -289,5 +263,3 @@ const deleteMeal = mealID => {
     }
   });
 };
-=======
->>>>>>> main
