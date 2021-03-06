@@ -19,6 +19,31 @@ $(".past-meals").on("click", ".add-to-watch", e => {
   });
 });
 
+<<<<<<< HEAD
+=======
+// deletes item from past-meals list
+$(".past-meals").on("click", ".delete-ingredient", e => {
+  const mealID = e.target.getAttribute("data-meal");
+  const deleteName = e.target.getAttribute("data-name");
+
+  const deleteObject = {
+    mealId: mealID,
+    name: deleteName
+  };
+  fetch("/api/deletefrommeal", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(deleteObject)
+  })
+    .then(() => {
+      location.reload();
+    })
+    .catch(err => console.error(err));
+});
+
+>>>>>>> main
 $("#next-three").click(() => {
   offset += 3;
   if (offset >= 3) {
@@ -52,7 +77,6 @@ const displayThree = offset => {
 
     if (meal1[0]) {
       const dataDate1 = meal1[0].createdAt;
-      console.log("created", dataDate1);
 
       const orderDate1 = dataDate1.substr(0, 10);
       const dateArr1 = orderDate1.split("-");
@@ -65,16 +89,15 @@ const displayThree = offset => {
         .split(":");
 
       let hour;
-      if (Number(getTime1[0] - 4) > 12) {
-        hour = (Number(getTime1[0] - 4) - 12).toString();
+      if (Number(getTime1[0] - 5) > 12) {
+        hour = (Number(getTime1[0] - 5) - 12).toString();
         getTime1.push("pm");
       } else {
-        hour = getTime1[0] - 4;
+        hour = getTime1[0] - 5;
         getTime1.push("am");
       }
 
       const time1 = hour + ":" + getTime1[1] + getTime1[3];
-      console.log(time1);
 
       const dateEl1 = $("<h2>")
         .addClass("title is-2")
@@ -88,24 +111,21 @@ const displayThree = offset => {
       const dateArr2 = orderDate2.split("-");
       dateArr2.push(dateArr2.shift());
       const date2 = dateArr2.join("/");
-      console.log("date2", date2);
 
       const getTime2 = dataDate2
         .substr(11)
         .slice(0, 8)
         .split(":");
-      console.log("getTime2", getTime2);
 
-      if (Number(getTime2[0] - 4) > 12) {
-        hour = (Number(getTime2[0] - 4) - 12).toString();
+      if (Number(getTime2[0] - 5) > 12) {
+        hour = (Number(getTime2[0] - 5) - 12).toString();
         getTime2.push("pm");
       } else {
-        hour = getTime2[0] - 4;
+        hour = getTime2[0] - 5;
         getTime2.push("am");
       }
 
       const time2 = hour + ":" + getTime2[1] + getTime2[3];
-      console.log(time2);
 
       const dateEl2 = $("<h2> ")
         .addClass("title is-2")
@@ -125,11 +145,11 @@ const displayThree = offset => {
         .slice(0, 8)
         .split(":");
 
-      if (Number(getTime3[0] - 4) > 12) {
-        hour = (Number(getTime3[0] - 4) - 12).toString();
+      if (Number(getTime3[0] - 5) > 12) {
+        hour = (Number(getTime3[0] - 5) - 12).toString();
         getTime3.push("pm");
       } else {
-        hour = getTime3[0] - 4;
+        hour = getTime3[0] - 5;
         getTime3.push("am");
       }
 
@@ -141,7 +161,6 @@ const displayThree = offset => {
       $("#meal-3").append(dateEl3);
     }
 
-    console.log(meal1[0].Ingredients.length);
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
       const ingredientEl = $("<h4>").addClass("title is-4");
 
@@ -198,7 +217,6 @@ const displayThree = offset => {
     }
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
-      console.log("is this it", meal3[0].Ingredients[i].name);
       const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
@@ -226,6 +244,7 @@ const displayThree = offset => {
     }
   });
 };
+<<<<<<< HEAD
 
 // deletes item from past-meals list
 $(".past-meals").on("click", ".delete-ingredient", e => {
@@ -270,3 +289,5 @@ const deleteMeal = mealID => {
     }
   });
 };
+=======
+>>>>>>> main
