@@ -165,7 +165,7 @@ const displayThree = offset => {
       $("#meal-1").append(newIngredient);
       dataMeal = meal1[0].Ingredients[i].MealIngredients.MealId;
     }
-    const addIngredientBtn = $("<button>")
+    let addIngredientBtn = $("<button>")
       .text("Add Ingredient")
       .attr("id", "addBtn")
       .addClass("add-ingredient button is-danger is-outlined")
@@ -199,6 +199,12 @@ const displayThree = offset => {
 
       $("#meal-2").append(newIngredient);
     }
+    addIngredientBtn = $("<button>")
+      .text("Add Ingredient")
+      .attr("id", "addBtn")
+      .addClass("add-ingredient button is-danger is-outlined")
+      .attr("data-meal", dataMeal);
+    $("#meal-2").append(addIngredientBtn);
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
       const ingredientEl = $("<h4>").addClass("title is-4");
@@ -226,6 +232,12 @@ const displayThree = offset => {
 
       $("#meal-3").append(newIngredient);
     }
+    addIngredientBtn = $("<button>")
+      .text("Add Ingredient")
+      .attr("id", "addBtn")
+      .addClass("add-ingredient button is-danger is-outlined")
+      .attr("data-meal", dataMeal);
+    $("#meal-3").append(addIngredientBtn);
   });
 };
 
@@ -281,8 +293,6 @@ $(".past-meals").on("click", ".add-ingredient", e => {
     .parent()
     .attr("id");
   console.log(divId);
-  // const mealID = e.target.getAttribute("data-meal");
-  // $(`#${divId}`).empty();
 
   const addIngredientEl = $("<form>")
     .attr("id", "ingredient-form")
