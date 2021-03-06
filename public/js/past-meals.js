@@ -1,4 +1,5 @@
 let offset = 0;
+let dataMeal;
 
 $(document).ready(() => {
   $("#past-three").hide();
@@ -43,6 +44,7 @@ $("#past-three").click(() => {
 
 const displayThree = offset => {
   $.get(`/api/allmeals/${offset}`).then(data => {
+    console.log(data);
     $("#meal-1").empty();
     $("#meal-2").empty();
     $("#meal-3").empty();
@@ -161,7 +163,14 @@ const displayThree = offset => {
         .append(ingredientDelBtn);
 
       $("#meal-1").append(newIngredient);
+      dataMeal = meal1[0].Ingredients[i].MealIngredients.MealId;
     }
+    const addIngredientBtn = $("<button>")
+      .text("Add Ingredient")
+      .attr("id", "addBtn")
+      .addClass("add-ingredient button is-danger is-outlined")
+      .attr("data-meal", dataMeal);
+    $("#meal-1").append(addIngredientBtn);
 
     for (let i = 0; i < meal2[0].Ingredients.length; i++) {
       console.log("is this it", meal2[0].Ingredients[i].name);
@@ -182,8 +191,8 @@ const displayThree = offset => {
 
       const newIngredient = ingredientEl
         .text(
-          meal2[0].Ingredients[i].name.charAt(0).toUpperCase() +
-            meal2[0].Ingredients[i].name.slice(1)
+          meal1[0].Ingredients[i].name.charAt(0).toUpperCase() +
+            meal1[0].Ingredients[i].name.slice(1)
         )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
@@ -209,8 +218,8 @@ const displayThree = offset => {
 
       const newIngredient = ingredientEl
         .text(
-          meal3[0].Ingredients[i].name.charAt(0).toUpperCase() +
-            meal3[0].Ingredients[i].name.slice(1)
+          meal1[0].Ingredients[i].name.charAt(0).toUpperCase() +
+            meal1[0].Ingredients[i].name.slice(1)
         )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
@@ -257,9 +266,73 @@ const deleteMeal = mealID => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(deleteMeal)
-      }).then(location.reload());
+      }).then(displayThree(offset));
     } else {
-      location.reload();
+      displayThree(offset);
     }
   });
 };
+
+// function to update meal
+$(".past-meals").on("click", ".add-ingredient", e => {
+  const mealID = e.target.getAttribute("data-meal");
+  console.log(mealID);
+  const divId = $(e.target)
+    .parent()
+    .attr("id");
+  console.log(divId);
+  // const mealID = e.target.getAttribute("data-meal");
+  // $(`#${divId}`).empty();
+
+  const addIngredientEl = $("<form>")
+    .attr("id", "ingredient-form")
+    .append($("<h3/>").text("Add Ingredient:"))
+    .append(
+      $("<input/>", {
+        class: "input addIngredient",
+        type: "input"
+      })
+    )
+    .append(
+      $("<button/>", {
+        type: "submit",
+        class: "button is-medium is-link is-light update-meal",
+        text: "Update Meal",
+        id: `${mealID}`
+      })
+    );
+
+  $(`#${divId}`).append(addIngredientEl);
+});
+
+$(".past-meals").on("click", ".update-meal", e => {
+  e.preventDefault();
+  const mealID = Number(e.target.getAttribute("id"));
+  console.log("final", mealID);
+
+  const ingredientName = $(".addIngredient")
+    .val()
+    .trim()
+    .toLowerCase();
+  console.log(ingredientName);
+  if (ingredientName !== "") {
+    $.post("/api/ingredients", {
+      id: mealID,
+      name: ingredientName
+    })
+      .then(result => {
+        console.log(result);
+        displayThree(offset);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  } else {
+    alert("Please input an ingredient");
+  }
+});
+
+// when add ingredient is pressed --> empty div
+// display input field with submit button
+// when hit submit get mealID --> put request
+// location reload
