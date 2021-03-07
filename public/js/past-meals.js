@@ -316,6 +316,7 @@ $(".past-meals").on("click", ".add-ingredient", e => {
   $(`#${divId}`).append(addIngredientEl);
 });
 
+//update meal when update button clicked
 $(".past-meals").on("click", ".update-meal", e => {
   e.preventDefault();
   const mealID = Number(e.target.getAttribute("id"));
@@ -342,8 +343,3 @@ $(".past-meals").on("click", ".update-meal", e => {
     alert("Please input an ingredient");
   }
 });
-
-// when add ingredient is pressed --> empty div
-// display input field with submit button
-// when hit submit get mealID --> put request
-// location reload
