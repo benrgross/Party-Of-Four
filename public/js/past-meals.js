@@ -293,8 +293,7 @@ $(".past-meals").on("click", ".add-ingredient", e => {
   const divId = $(e.target)
     .parent()
     .attr("id");
-  console.log(divId);
-
+  $(e.target).remove();
   const addIngredientEl = $("<form>")
     .attr("id", "ingredient-form")
     .append($("<h3/>").text("Add Ingredient:"))
@@ -309,7 +308,8 @@ $(".past-meals").on("click", ".add-ingredient", e => {
         type: "submit",
         class: "button is-medium is-link is-light update-meal",
         text: "Update Meal",
-        id: `${mealID}`
+        id: `${mealID}`,
+        style: "margin-top: 20px"
       })
     );
 
