@@ -1,5 +1,4 @@
 let offset = 0;
-let dataMeal;
 
 $(document).ready(() => {
   $("#past-three").hide();
@@ -163,13 +162,15 @@ const displayThree = offset => {
         .append(ingredientDelBtn);
 
       $("#meal-1").append(newIngredient);
-      dataMeal = meal1[0].Ingredients[i].MealIngredients.MealId;
     }
     let addIngredientBtn = $("<button>")
       .text("Add Ingredient")
       .attr("id", "addBtn")
       .addClass("add-ingredient button is-danger is-outlined")
-      .attr("data-meal", dataMeal);
+      .attr(
+        "data-meal",
+        (dataMeal1 = meal1[0].Ingredients[0].MealIngredients.MealId)
+      );
     $("#meal-1").append(addIngredientBtn);
 
     for (let i = 0; i < meal2[0].Ingredients.length; i++) {
@@ -191,19 +192,19 @@ const displayThree = offset => {
 
       const newIngredient = ingredientEl
         .text(
-          meal1[0].Ingredients[i].name.charAt(0).toUpperCase() +
-            meal1[0].Ingredients[i].name.slice(1)
+          meal2[0].Ingredients[i].name.charAt(0).toUpperCase() +
+            meal2[0].Ingredients[i].name.slice(1)
         )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
 
       $("#meal-2").append(newIngredient);
     }
+
     addIngredientBtn = $("<button>")
       .text("Add Ingredient")
-      .attr("id", "addBtn")
       .addClass("add-ingredient button is-danger is-outlined")
-      .attr("data-meal", dataMeal);
+      .attr("data-meal", meal2[0].Ingredients[0].MealIngredients.MealId);
     $("#meal-2").append(addIngredientBtn);
 
     for (let i = 0; i < meal3[0].Ingredients.length; i++) {
@@ -224,8 +225,8 @@ const displayThree = offset => {
 
       const newIngredient = ingredientEl
         .text(
-          meal1[0].Ingredients[i].name.charAt(0).toUpperCase() +
-            meal1[0].Ingredients[i].name.slice(1)
+          meal3[0].Ingredients[i].name.charAt(0).toUpperCase() +
+            meal3[0].Ingredients[i].name.slice(1)
         )
         .append(watchlistBtn)
         .append(ingredientDelBtn);
@@ -236,7 +237,7 @@ const displayThree = offset => {
       .text("Add Ingredient")
       .attr("id", "addBtn")
       .addClass("add-ingredient button is-danger is-outlined")
-      .attr("data-meal", dataMeal);
+      .attr("data-meal", meal3[0].Ingredients[0].MealIngredients.MealId);
     $("#meal-3").append(addIngredientBtn);
   });
 };
