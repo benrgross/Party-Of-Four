@@ -52,92 +52,38 @@ const displayThree = offset => {
     const meal3 = data.slice(2, 3);
 
     if (meal1[0]) {
-      const dataDate1 = meal1[0].createdAt;
-
-      const orderDate1 = dataDate1.substr(0, 10);
-      const dateArr1 = orderDate1.split("-");
-      dateArr1.push(dateArr1.shift());
-      const date1 = dateArr1.join("/");
-
-      const getTime1 = dataDate1
-        .substr(11)
-        .slice(0, 8)
-        .split(":");
-
-      let hour;
-      if (Number(getTime1[0] - 5) > 12) {
-        hour = (Number(getTime1[0] - 5) - 12).toString();
-        getTime1.push("pm");
-      } else {
-        hour = getTime1[0] - 5;
-        getTime1.push("am");
-      }
-
-      const time1 = hour + ":" + getTime1[1] + getTime1[3];
+      const date1 = meal1[0].createdAt.slice(0, 10);
+      const time1 = meal1[0].createdAt.slice(11, 17);
+      console.log("date", time1, date1);
 
       const dateEl1 = $("<h2>")
         .addClass("title is-2")
-        .text(date1 + "  " + time1);
+        .text(`meal from ${date1} at ${time1}`);
       $("#meal-1").append(dateEl1);
     }
 
     if (meal2[0]) {
-      const dataDate2 = meal2[0].createdAt;
-      const orderDate2 = dataDate2.substr(0, 10);
-      const dateArr2 = orderDate2.split("-");
-      dateArr2.push(dateArr2.shift());
-      const date2 = dateArr2.join("/");
-
-      const getTime2 = dataDate2
-        .substr(11)
-        .slice(0, 8)
-        .split(":");
-
-      if (Number(getTime2[0] - 5) > 12) {
-        hour = (Number(getTime2[0] - 5) - 12).toString();
-        getTime2.push("pm");
-      } else {
-        hour = getTime2[0] - 5;
-        getTime2.push("am");
-      }
-
-      const time2 = hour + ":" + getTime2[1] + getTime2[3];
+      const date2 = meal2[0].createdAt.slice(0, 10);
+      const time2 = meal2[0].createdAt.slice(11, 17);
 
       const dateEl2 = $("<h2> ")
         .addClass("title is-2")
-        .text(date2 + "  " + time2);
+        .text(`meal from ${date2} at ${time2}`);
       $("#meal-2").append(dateEl2);
     }
 
     if (meal3[0]) {
-      const dataDate3 = meal3[0].createdAt;
-      const orderDate3 = dataDate3.substr(0, 10);
-      const dateArr3 = orderDate3.split("-");
-      dateArr3.push(dateArr3.shift());
-      const date3 = dateArr3.join("/");
+      const date3 = meal3[0].createdAt.slice(0, 10);
+      const time3 = meal3[0].createdAt.slice(11, 17);
 
-      const getTime3 = dataDate3
-        .substr(11)
-        .slice(0, 8)
-        .split(":");
-
-      if (Number(getTime3[0] - 5) > 12) {
-        hour = (Number(getTime3[0] - 5) - 12).toString();
-        getTime3.push("pm");
-      } else {
-        hour = getTime3[0] - 5;
-        getTime3.push("am");
-      }
-
-      const time3 = hour + ":" + getTime3[1] + getTime3[3];
-
-      const dateEl3 = $("<h2>")
+      const dateEl3 = $("<h2> ")
         .addClass("title is-2")
-        .text(date3 + "  " + time3);
+        .text(`meal from ${date3} at ${time3}`);
       $("#meal-3").append(dateEl3);
     }
 
     for (let i = 0; i < meal1[0].Ingredients.length; i++) {
+      console.log("meal1", meal1);
       const ingredientEl = $("<h4>").addClass("title is-4");
 
       const watchlistBtn = $("<button>")
