@@ -5,6 +5,8 @@ const app = express();
 const session = require("express-session");
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
+const compression = require("compression");
+
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
@@ -15,6 +17,18 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // Creating express app and configuring middleware needed for authentication
+
+app.use(compression({ filter: shouldCompress }));
+
+function shouldCompress(req, res) {
+  if (req.headers["x-no-compression"]) {
+    // don't compress responses with this request header
+    return false;
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res);
+}
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
