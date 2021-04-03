@@ -63,28 +63,9 @@ $(document).ready(() => {
 const displayToPage = () => {
   $(".ingredients").empty();
   $.get("/api/lastmeal").then(data => {
-    const dataDate1 = data.createdAt;
-
-    const orderDate1 = dataDate1.substr(0, 10);
-    const dateArr1 = orderDate1.split("-");
-    dateArr1.push(dateArr1.shift());
-    const date1 = dateArr1.join("/");
-
-    const getTime1 = dataDate1
-      .substr(11)
-      .slice(0, 8)
-      .split(":");
-
-    let hour;
-    if (Number(getTime1[0] - 5) > 12) {
-      hour = (Number(getTime1[0] - 5) - 12).toString();
-      getTime1.push("pm");
-    } else {
-      hour = getTime1[0] - 5;
-      getTime1.push("am");
-    }
-
-    const time1 = hour + ":" + getTime1[1] + getTime1[3];
+    const date1 = data.createdAt.slice(0, 10);
+    const time1 = data.createdAt.slice(11, 17);
+    console.log("date", time1, date1);
 
     const dateEl1 = $("<h3>")
       .addClass("title is-3")
