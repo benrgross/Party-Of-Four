@@ -37,6 +37,14 @@ Router.get("/watchlist", isAuthenticated, (req, res) => {
   res.render("watchlist", res);
 });
 
+Router.get("/healthychoices", isAuthenticated, (req, res) => {
+  res.render("healthychoices", res);
+});
+
+Router.get("/nutrition", isAuthenticated, (req, res) => {
+  res.render("nutrition", res);
+});
+
 module.exports = Router;
 
 Router.get("/watchlist", isAuthenticated, (req, res) => {

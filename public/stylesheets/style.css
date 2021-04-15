@@ -6,6 +6,11 @@
   font-family: "Noto Sans JP", sans-serif;
 }
 
+article {
+  margin-top: 2%;
+  width: 80%;
+}
+
 button {
   font-family: "Rufina", serif;
 }
