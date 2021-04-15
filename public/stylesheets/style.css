@@ -56,6 +56,16 @@ nav {
   color: #7dbacc;
 }
 
+#logOut {
+  color: #bf0a0b;
+  background-color: #f0fbff;
+}
+
+#logOut:hover {
+  color: #ee2b2b;
+  background-color: #f0fbff;
+}
+
 .pipe-logo {
   border-radius: 8px;
   margin-top: 5%;
