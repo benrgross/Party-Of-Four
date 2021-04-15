@@ -9,11 +9,10 @@
 article {
   margin-top: 2%;
   width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-/* button {
-  font-family: "Rufina", serif;
-} */
 
 form.signup,
 form.login {
