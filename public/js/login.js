@@ -39,4 +39,8 @@ $(document).ready(() => {
     $("#alert .msg").text("Log In Failed");
     $("#alert").fadeIn(500);
   }
+
+  $(".logOut").on("click", () => {
+    $.get("/logout").then(console.log("logout successful"));
+  });
 });

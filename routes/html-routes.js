@@ -21,6 +21,11 @@ Router.get("/login", (req, res) => {
   res.render("login", req.user);
 });
 
+Router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
 Router.get("/members", isAuthenticated, (req, res) => {
   res.render("members");
 });
