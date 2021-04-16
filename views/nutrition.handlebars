@@ -1,6 +1,6 @@
 <nav style="background-color: #f0fbff" class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a href="/members"><img src="/images/pipe-logo.png" alt="Pipe Cleaner Logo"></img></a>
+    <a href="/members"><img src="/images/pipe-logo.png" alt="Pipe Cleaner Logo" class="pipe-logo"></img></a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
@@ -8,7 +8,7 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
-   {{!-- <div class="navbar-end">
+  {{!-- <div class="navbar-end">
   <a id="logOut" style="margin-right: 50%;
     margin-top: 40%;" class="navbar-item" href="/">
         Log Out 
@@ -23,7 +23,7 @@
         <li><a href="/members">Home</a></li>
         <p class="menu-label">Meals</p>
         <li><a href="/meals">Enter Your Meals</a></li>
-        <li><a class="is-active" href="/past-meals">Past Meals</a></li>
+        <li><a href="/past-meals">Past Meals</a></li>
       </ul>
       <p class="menu-label">
         Watchlist
@@ -31,28 +31,24 @@
       <ul class="menu-list">
         <ul>
           <li><a href="/healthychoices">Healthy Choices</a></li>
-          <li><a href="/nutrition">Nutrition Info</a></li>
+          <li><a class="is-active" href="/nutrition">Nutrition Info</a></li>
           <li><a href="/watchlist">Foods to Watchout for</a></li>
         </ul>
     </aside>
   </div>
 
-  <section class="past-meals column is-three-quarters">
-    <div id="meal-1" class="box"> </div>
-    <div id="meal-2" class="box"></div>
-    <div id="meal-3" class="box"></div>
+    <section class="column is-three-quarters">
+      <article class="message is-warning">
+        <div class="message-header">
+          <p><i class="fas fa-exclamation-triangle"></i> Page not available</p>
+        </div>
+        <div class="message-body">
+          We're sorry, but this page is still under construction!
+        </div>
+      </article>
+    </section>
+</div>
 
-    <div class="columns is-centered">
-    <div class="column is-half">
-      <button id="past-three" class="button is-link is-light is-pulled-right"><i class="fas fa-backward"></i></button>
-    </div>
-    <div class="column is-half">
-      <button id="next-three" class="button is-link is-light is-pulled-left"><i class="fas fa-forward"></i></button>
-    </div>
-  </div>
-  </section>
- 
+<div class="footer"><a href="/members"><img class="pipe-p" src="/images/pipe-p.png" alt="Pipe Cleaner P"></img></a></div>
 
-<div class="footer"><a href="/past-meals"><img class="pipe-p" src="/images/pipe-p.png" alt="Pipe Cleaner P"></img></a></div>
-
-<script type="text/javascript" src="js/past-meals.js"></script>
+<script type="text/javascript" src="js/members.js"></script>
