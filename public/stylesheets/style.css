@@ -1,11 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+
 * {
   box-sizing: border-box;
   font-size: large;
-  font-family: 'Rufina', serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
-button {
-  font-family: 'Rufina', serif;
+article {
+  margin-top: 2%;
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 form.signup,
@@ -49,11 +55,21 @@ nav {
   color: #7dbacc;
 }
 
+#logOut {
+  color: #bf0a0b;
+  background-color: #f0fbff;
+}
+
+#logOut:hover {
+  color: #ee2b2b;
+  background-color: #f0fbff;
+}
+
 .pipe-logo {
   border-radius: 8px;
   margin-top: 5%;
   margin-left: 5%;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .pipe-logo:hover {
@@ -71,7 +87,7 @@ nav {
   height: 5%;
   width: 5%;
   border-radius: 8px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .pipe-p:hover {
@@ -84,7 +100,7 @@ nav {
 }
 
 a {
- color: #7dbacc; 
+  color: #7dbacc;
 }
 
 h1 {
@@ -116,7 +132,7 @@ h4 {
   background-color: #f0fbff;
   border-top: solid 2px #bf0a0a;
   box-shadow: 2px 1px 10px gray;
-  }
+}
 
 .menu-title,
 .past-meals {
@@ -174,7 +190,7 @@ h4 {
 
 .button.is-link.is-light {
   color: black;
-  background-color: #D4ECF3;
+  background-color: #d4ecf3;
 }
 .button.is-link.is-light:hover {
   color: white;
